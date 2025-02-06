@@ -10,7 +10,7 @@ export default function AppName({ size = "sm" }: { size?: string }) {
 
     return (
         <div className={`font-extrabold ${sizeClass}`}>
-            <span className="text-primary">OwenaHub</span>.
+            <span className="text-foreground">OwenaHub</span>.
         </div>
     );
 }

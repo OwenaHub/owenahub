@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 import type { Route } from "../+types/root";
-import { Album, ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LayoutTemplate, MonitorIcon, Regex, SquareUserRound, Twitter, Users } from "lucide-react";
+import { Album, ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LaptopMinimalCheck, LayoutTemplate, MonitorIcon, Regex, SquareUserRound, Twitter } from "lucide-react";
 
 export function meta(_: Route.MetaArgs) {
     return [
-        { title: "OwenaHub" },
+        { title: "OwenaHub | Build your career with expert mentors" },
         { name: "description", content: "Build your career with expert mentors" },
     ];
 }
@@ -12,103 +12,103 @@ export function meta(_: Route.MetaArgs) {
 export default function HomePage() {
     return (
         <>
-            <div className="bg-[#FFFAED]">
+            <div className="bg-muted">
                 <nav className="container py-10 flex items-center gap-2">
                     <img src="/images/logo.png" width={25} />
                     <Link to="/" className="font-bold">OwenaHub</Link>
                 </nav>
-                <header className="py-6 lg:pt-10" >
-                    <div className="container text-center md:text-start relative">
-                        <h1 className="my-3 z-10 text-4xl lg:text-6xl font-extrabold tracking-tight text-[#4B4B4B]">
-                            Build your career <br className="hidden md:block" /> with expert mentors
-                        </h1>
-                        {/* <h2 className="mt-7 z-10 mb-5 text-base lg:text-xl text-[#3D4D5C]">
-                            We offer a vibrant platform for learners to build successful <br className="hidden md:block" />
-                            careers by learning from experienced mentors.
-                        </h2> */}
+                <header className="py-6 lg:pt-10">
+                    <section className="md:flex container items-center gap-20">
+                        <div className="text-center md:text-start">
+                            <h1 className="my-3 z-10 text-4xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
+                                Build your career <br className="hidden md:block" /> with expert mentors
+                            </h1>
 
-                        <section className="flex flex-col gap-5 text-[#3D4D5C] my-12">
-                            <div className="flex items-center gap-4">
-                                <div className="rounded-md p-1.5 bg-[#FFE1BC]">
-                                    <Check size={14} strokeWidth={4} className="text-[#083156]" />
+                            <section className="flex flex-col gap-5 text-muted-foreground my-12">
+                                <div className="flex items-center gap-4">
+                                    <div className="rounded-md p-1.5 bg-secondary">
+                                        <Check size={14} strokeWidth={4} className="text-secondary-foreground" />
+                                    </div>
+                                    <h2>Learn online, from professionals</h2>
                                 </div>
-                                <h2>Learn online, from professionals</h2>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <div className="rounded-md p-1.5 bg-[#FFE1BC]">
-                                    <Check size={14} strokeWidth={4} className="text-[#083156]" />
+                                <div className="flex items-center gap-4">
+                                    <div className="rounded-md p-1.5 bg-secondary">
+                                        <Check size={14} strokeWidth={4} className="text-secondary-foreground" />
+                                    </div>
+                                    <h2>Get results in 3 months</h2>
                                 </div>
-                                <h2>Get results in 3 months</h2>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <div className="rounded-md p-1.5 bg-[#FFE1BC]">
-                                    <Check size={14} strokeWidth={4} className="text-[#083156]" />
+                                <div className="flex items-center gap-4">
+                                    <div className="rounded-md p-1.5 bg-secondary">
+                                        <Check size={14} strokeWidth={4} className="text-secondary-foreground" />
+                                    </div>
+                                    <h2>A fraction of the cost of other platforms</h2>
                                 </div>
-                                <h2>A fraction of the cost of other platforms</h2>
-                            </div>
-                        </section>
+                            </section>
 
-                        <div className="z-10 flex flex-col md:flex-row items-center gap-5">
-                            <a href="https://forms.gle/JYjmF9iUcLjWHMor6"
-                                target="_blank"
-                                className="block md:inline-block text-center w-full md:w-max text-sm rounded-lg font-bold px-7 py-2.5 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
-                                GET STARTED
-                            </a>
-                            <a href="#"
-                                target="_blank"
-                                className="block md:inline-block text-center w-full md:w-max text-sm rounded-lg font-bold px-7 py-2.5 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:text-[#FBE56D]">
-                                Learn more
-                            </a>
+                            <div className="z-10 flex flex-col md:flex-row items-center gap-5">
+                                <a href="https://forms.gle/JYjmF9iUcLjWHMor6"
+                                    target="_blank"
+                                    className="transition block md:inline-block text-center w-full md:w-max text-sm rounded-lg font-bold px-7 py-2.5 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
+                                    GET STARTED
+                                </a>
+                                <a href="#"
+                                    target="_blank"
+                                    className="block md:inline-block text-center w-full md:w-max text-sm rounded-lg font-bold px-7 py-2.5 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
+                                    Learn more
+                                </a>
+                            </div>
+
                         </div>
-
-                        <img
-                            src="/images/person-bulb.png"
-                            alt="..."
-                            className="absolute inline-block w-[440px] h-[440px] -top-28 lg:right-60 -right-0 z-0 pointer-events-none lg:opacity-100 opacity-20"
-                        />
-                    </div>
+                        <div className="hidden md:block me-14 flex-1">
+                            <img
+                                src="/images/personalised.png"
+                                alt="..."
+                                className="block mx-auto w-[440px] h-[440px]pointer-events-none"
+                            />
+                        </div>
+                    </section>
                 </header>
 
                 <section className="py-10 container">
                     <div className="mx-auto">
                         <div className="shadow-lg rounded-2xl border bg-white backdrop-blur-sm px-4 py-2 lg:px-8 lg:py-4 lg:flex items-center justify-between">
                             <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <MonitorIcon className="text-[#39546A] w-8 h-8" strokeWidth={2} />
+                                <LaptopMinimalCheck className="text-[#39546A]" strokeWidth={2} size={40} />
                                 <div>
-                                    <strong className="block font-semibold text-base text-[#4B4B4B]">Swift Sips</strong>
-                                    <p className="leading-tight text-xs text-[#76818B]">
-                                        Get into our short courses; <br className="hidden sm:inline" />
-                                        compact and focused.
+                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Virtual Teams</strong>
+                                    <p className="leading-tight text-[#76818B]">
+                                        Join teams to work on <br className="hidden sm:inline" />
+                                        real-life projects.
                                     </p>
                                 </div>
                             </div>
                             <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <SquareUserRound className="text-[#39546A] w-8 h-8" strokeWidth={2} />
+                                <SquareUserRound className="text-[#39546A]" strokeWidth={2} size={40} />
                                 <div>
-                                    <strong className="block font-semibold text-base text-[#4B4B4B]">Expert Sessions</strong>
-                                    <p className="leading-tight text-xs text-[#76818B]">
+                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Expert Sessions</strong>
+                                    <p className="leading-tight text-[#76818B]">
                                         Connect With Skilled Mentors <br className="hidden sm:inline" />
                                         That Inspire You.
                                     </p>
                                 </div>
                             </div>
                             <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <Album className="text-[#39546A] w-8 h-8" strokeWidth={2} />
+                                <MonitorIcon className="text-[#39546A]" strokeWidth={2} size={40} />
                                 <div>
-                                    <strong className="block font-semibold text-base text-[#4B4B4B]">Enriching Repository</strong>
-                                    <p className="leading-tight text-xs text-[#76818B]">
-                                        Access a Wealth of Informative Articles <br className="hidden sm:inline" />
-                                        on our Blog.
+                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Swift Sips</strong>
+                                    <p className="leading-tight text-[#76818B]">
+                                        Get into our short courses; <br className="hidden sm:inline" />
+                                        compact and focused.
                                     </p>
                                 </div>
                             </div>
                             <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <Users className="text-[#39546A] w-8 h-8" strokeWidth={2} />
+                                <Album className="text-[#39546A]" strokeWidth={2} size={40} />
                                 <div>
-                                    <strong className="block font-semibold text-base text-[#4B4B4B]">Virtual Teams</strong>
-                                    <p className="leading-tight text-xs text-[#76818B]">
-                                        Join teams to work on <br className="hidden sm:inline" />
-                                        real-life projects.
+                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Enriching Repository</strong>
+                                    <p className="leading-tight text-[#76818B]">
+                                        Access a Wealth of Informative Articles <br className="hidden sm:inline" />
+                                        on our Blog.
                                     </p>
                                 </div>
                             </div>
@@ -201,7 +201,7 @@ export default function HomePage() {
                     <div>
                         <div className="text-gray-800 pt-5 lg:px-4">
                             <div>
-                                <h3 className="text-[#4B4B4B] text-3xl md:text-4xl font-bold mb-4">
+                                <h3 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
                                     Personalised learning
                                 </h3>
                                 <p className="text-base leading-snug mb-4">
@@ -268,22 +268,23 @@ export default function HomePage() {
                 </div>
             </section>
 
-            <div className="bg-[#FFFAED]">
-                <section className="container mx-auto py-10">
+            <div className="container mb-10">
+                <section className="bg-primary-foreground shadow-xl rounded-3xl mx-auto py-10">
                     <div>
-                        <div className="text-center">
-                            <div className="mb-6">
-                                <h2 className="text-2xl lg:text-5xl font-normal">
-                                    Get started <br className="hidden md:block" /> for free today
+                        <div className="text-center px-5">
+                            <div className="mb-6 text-white">
+                                <h2 className="text-2xl lg:text-4xl font-bold mb-5">
+                                    Get started
                                 </h2>
-                                <p className="my-3 text-sm text-gray-700">
-                                    Our community awaits your grand entrance! <br /> Be part of an inspiring platform
+                                <p className="my-3 text-sm leading-loose">
+                                    Sign up now and start acquiring in demand tech skills today. Start online anytime, anywhere. <br className="hidden md:block" />
+                                    Fill out the form and have mentor reach out. Start your learning journey.
                                 </p>
                             </div>
                             <div>
-                                <a href="/getstarted"
-                                    className="inline-block bg-black text-white rounded-md shadow font-semibold text-xs px-4 py-2 hover:bg-gray-800 transition">
-                                    Get Started
+                                <a href="https://forms.gle/JYjmF9iUcLjWHMor6" target="_blank"
+                                    className="inline-block w-full md:w-max bg-secondary-auxiliary text-black rounded-xl shadow font-bold px-6 py-3.5 hover:bg-gray-800 transition">
+                                    GET STARTED
                                 </a>
                             </div>
                         </div>
@@ -307,7 +308,7 @@ export default function HomePage() {
                     </div>
                     <hr className="my-8 border-gray-200" />
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
-                        <div className="">
+                        <div>
                             <h2 className="text-sm pb-2 font-semibold">SOCIALS</h2>
                             <a href="https://instagram.com/owenahub?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
                                 target="_blank"
@@ -337,34 +338,34 @@ export default function HomePage() {
                         <div>
                             <h2 className="text-sm pb-2 font-semibold">QUICK LINKS</h2>
                             <a href="/articles" className="block hover:underline text-xs pb-2">
-                                OwenaHub Blog <i className="bi bi-arrow-right-short"></i>
+                                OwenaHub Blog
                             </a>
-                            <a href="{{ route('guest.slices.index') }}"
+                            <a href="#"
                                 className="block hover:underline text-xs pb-2">
-                                Slices: <span className="text-theme font-semibold">Swift Swips</span> <i className="bi bi-arrow-right-short"></i>
+                                Slices: <span className="text-theme font-semibold">Swift Swips</span>
                             </a>
-                            <a href="{{ route('user.session.index') }}"
+                            <a href="#"
                                 className="block hover:underline text-xs pb-2">
-                                Private Sessions <i className="bi bi-arrow-right-short"></i>
+                                Private Sessions
                             </a>
                         </div>
                         <div>
                             <h2 className="text-sm pb-2 font-semibold">COMMUNITIES</h2>
-                            <a href="https://linkedin.com/company/owenahub"
+                            <a href="https://linkedin.com/company/owenahub" target="_blank"
                                 className="block hover:underline text-xs pb-2">
-                                LinkedIn Community <i className="bi bi-arrow-right-short"></i>
+                                LinkedIn Community
                             </a>
-                            <a href="https://www.facebook.com/groups/896520008575738/?ref=share"
+                            <a href="https://www.facebook.com/groups/896520008575738/?ref=share" target="_blank"
                                 className="block hover:underline text-xs pb-2">
-                                Facebook Community <i className="bi bi-arrow-right-short"></i>
+                                Facebook Community
                             </a>
                         </div>
                     </div>
                     <div className="mt-6 block md:flex-row justify-between items-center text-xs text-gray-500">
                         <p className="m-0">&copy; 2025, OwenaHub. All Rights Reserved.</p>
                         <p className="m-0">
-                            <a href="#" className="hover:underline">Privacy Policy</a> &middot;
-                            <a href="#}" className="hover:underline">Terms of Service</a>
+                            <Link to="#" className="hover:underline">Privacy Policy</Link> &middot; {" "}
+                            <Link to="#" className="hover:underline">Terms of Service</Link>
                         </p>
                     </div>
                 </div>
