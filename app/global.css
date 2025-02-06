@@ -1,0 +1,28 @@
+body::-webkit-scrollbar {
+    width: 0.2rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #000;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #222;
+}
+
+.glow {
+    width: 440px;
+    height: 440px;
+    display: inline-block;
+    position: absolute;
+    top: 4rem;
+    right: 15rem;
+    z-index: -5;
+    pointer-events: none;
+    opacity: .6;
+    background-image: radial-gradient(50% 50% at 50% 50%, #F6A700 0%, rgba(255, 255, 255, 0) 100%);
+}
