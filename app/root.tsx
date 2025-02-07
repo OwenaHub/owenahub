@@ -28,6 +28,25 @@ export const links: Route.LinksFunction = () => [
   { rel: "stylesheet", href: globalcss },
 ];
 
+export const meta: Route.MetaFunction = () => {
+  return [
+    { name: "title", content: "OwenaHub | Build your career with expert mentors" },
+    { name: "description", content: "Join OwenaHub and connect with top industry mentors to advance your career. Get expert guidance, career advice, and skill development in your field." },
+    { name: "keywords", content: "mentorship, career growth, expert mentors, skill development, professional guidance, tech, software" },
+    { name: "author", content: "OwenaHub" },
+    { name: "robots", content: "index, follow" },
+    { property: "og:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
+    { property: "og:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
+    { property: "og:image", content: "https://owenahub.com/images/logos/owenahub_logo.png" }, // Replace with actual image URL
+    { property: "og:url", content: "https://owenahub.com" },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
+    { name: "twitter:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
+    { name: "twitter:image", content: "https://owenahub.com/images/logos/owenahub_logo.png" }, // Replace with actual image URL
+  ];
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -55,7 +74,7 @@ export function HydrateFallback() {
     <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <div>
         <div className="flex flex-col gap-2 justify-center items-center">
-          <img src="/images/logo.png" alt="..." width={30} />
+          <img src="/images/logos/logo.png" alt="..." width={30} />
           <div className="text-center mb-3">
             <AppName size="text-base" />
           </div>

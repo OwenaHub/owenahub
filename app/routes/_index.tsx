@@ -1,27 +1,6 @@
 import { Link } from "react-router";
-import type { Route } from "../+types/root";
 import { Album, ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LaptopMinimalCheck, LayoutTemplate, MonitorIcon, Regex, SquareUserRound, Twitter, User, UserRound } from "lucide-react";
 import Badge from "~/components/custom/badge";
-
-export function meta(_: Route.MetaArgs) {
-    return [
-        { title: "OwenaHub | Build your career with expert mentors" },
-        { name: "description", content: "Join OwenaHub and connect with top industry mentors to advance your career. Get expert guidance, career advice, and skill development in your field." },
-
-        { name: "keywords", content: "mentorship, career growth, expert mentors, skill development, professional guidance, tech, software" },
-        { name: "author", content: "OwenaHub" },
-        { name: "robots", content: "index, follow" },
-        { name: "og:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
-        { name: "og:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
-        { name: "og:image", content: "https://owenahub.com/owenahub_log.png" }, // Replace with actual image URL
-        { name: "og:url", content: "https://owenahub.com" },
-        { name: "og:type", content: "website" },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
-        { name: "twitter:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
-        { name: "twitter:image", content: "https://owenahub.com/owenahub_log.png" }, // Replace with actual image URL
-    ];
-}
 
 const categories = [
     {
@@ -92,7 +71,7 @@ export default function HomePage() {
         <>
             <div className="bg-muted">
                 <nav className="container py-10 flex items-center gap-2">
-                    <img src="/images/logo.png" width={25} />
+                    <img src="/images/logos/logo.png" width={25} />
                     <Link to="/" className="font-bold">OwenaHub</Link>
                 </nav>
                 <header className="py-6 lg:pt-10">
@@ -362,7 +341,7 @@ export default function HomePage() {
                     <div className="block md:flex justify-between items-center">
                         <div>
                             <div className="flex items-center space-x-2">
-                                <img src="/images/logo.png" alt="..." className="w-6 h-6 relative top-[2px]" />
+                                <img src="/images/logos/logo.png" alt="..." className="w-6 h-6 relative top-[2px]" />
                                 <div className="font-bold relative top-[3px]">OwenaHub</div>
                             </div>
                         </div>
