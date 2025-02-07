@@ -1,12 +1,25 @@
 import { Link } from "react-router";
 import type { Route } from "../+types/root";
-import { Album, ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LaptopMinimalCheck, LayoutTemplate, MonitorIcon, Regex, SquareUserRound, Twitter } from "lucide-react";
+import { Album, ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LaptopMinimalCheck, LayoutTemplate, MonitorIcon, Regex, SquareUserRound, Twitter, User, UserRound } from "lucide-react";
 import Badge from "~/components/custom/badge";
 
 export function meta(_: Route.MetaArgs) {
     return [
         { title: "OwenaHub | Build your career with expert mentors" },
-        { name: "description", content: "Build your career with expert mentors" },
+        { name: "description", content: "Join OwenaHub and connect with top industry mentors to advance your career. Get expert guidance, career advice, and skill development in your field." },
+
+        { name: "keywords", content: "mentorship, career growth, expert mentors, skill development, professional guidance, tech, software" },
+        { name: "author", content: "OwenaHub" },
+        { name: "robots", content: "index, follow" },
+        { name: "og:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
+        { name: "og:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
+        { name: "og:image", content: "https://owenahub.com/owenahub_log.png" }, // Replace with actual image URL
+        { name: "og:url", content: "https://owenahub.com" },
+        { name: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
+        { name: "twitter:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
+        { name: "twitter:image", content: "https://owenahub.com/owenahub_log.png" }, // Replace with actual image URL
     ];
 }
 
@@ -38,13 +51,13 @@ const tracks = [
     },
     {
         title: "Web development: JavaScript",
-        tutor: "Ernest Haruna",
+        tutor: "Jacob Williams",
         price: "Paid",
         level: "Intermediate"
     },
     {
         title: "Web development: React & TypeScript",
-        tutor: "Ernest Haruna",
+        tutor: "James Arua",
         price: "Paid",
         level: "Upper intermediate"
     },
@@ -56,19 +69,19 @@ const tracks = [
     },
     {
         title: "Styling with Tailwind",
-        tutor: "Ernest Haruna",
+        tutor: "Abdulhameed",
         price: "FREE",
         level: "Intermediate"
     },
     {
         title: "Project Management: Scrum & Agile",
-        tutor: "Ernest Haruna",
+        tutor: "Yvonne Johnson",
         price: "FREE",
         level: "Beginner"
     },
     {
         title: "Data Structures & Algorithms",
-        tutor: "Ernest Haruna",
+        tutor: "Tanko Mahmood",
         price: "Paid",
         level: "Upper-intermediate"
     },
@@ -217,13 +230,20 @@ export default function HomePage() {
                                             <div className="py-2">
                                                 <div>
                                                     <div className="flex items-center justify-between">
-                                                        <h4 className="text-sm text-gray-700">
-                                                            <a href="https://forms.gle/JYjmF9iUcLjWHMor6" target="_blank">
-                                                                <span aria-hidden="true" className="absolute inset-0" />
-                                                                {track.tutor}
-                                                            </a>
-                                                        </h4>
-                                                        <p className="text-xs border border-primary bg-muted text-primary font-medium px-2 py-0.5 rounded-md">{track.price}</p>
+                                                        <div className="flex items-center gap-1">
+                                                            <div className="h-5 w-5 border rounded-full flex justify-center items-center">
+                                                                <UserRound className="inline-block text-gray-400" size={16} />
+                                                            </div>
+                                                            <h4 className="text-sm text-gray-700">
+                                                                <a href="https://forms.gle/JYjmF9iUcLjWHMor6" target="_blank" className="!text-xs md:text-sm">
+                                                                    <span aria-hidden="true" className="absolute inset-0" />
+                                                                    {track.tutor}
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <p className="text-xs border border-primary bg-muted text-primary font-medium px-1 py-0.5 rounded-md">
+                                                            {track.price}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <p className="text-sm text-gray-500">{track.level}</p>
