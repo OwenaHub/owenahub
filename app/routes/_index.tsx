@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import type { Route } from "../+types/root";
 import { Album, ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LaptopMinimalCheck, LayoutTemplate, MonitorIcon, Regex, SquareUserRound, Twitter } from "lucide-react";
+import Badge from "~/components/custom/badge";
 
 export function meta(_: Route.MetaArgs) {
     return [
@@ -8,6 +9,70 @@ export function meta(_: Route.MetaArgs) {
         { name: "description", content: "Build your career with expert mentors" },
     ];
 }
+
+const categories = [
+    {
+        title: "Web Development",
+        icon: <LayoutTemplate size={15} />
+    },
+    {
+        title: "Data & Algorithms",
+        icon: <Code size={15} />
+    },
+    {
+        title: "Development methodologies",
+        icon: <Regex size={15} />
+    },
+    {
+        title: "Career Development",
+        icon: <Briefcase size={15} />
+    },
+]
+
+const tracks = [
+    {
+        title: "Web develeopment: HTML & CSS",
+        tutor: "Ernest Haruna",
+        price: "FREE",
+        level: "Beginner"
+    },
+    {
+        title: "Web development: JavaScript",
+        tutor: "Ernest Haruna",
+        price: "Paid",
+        level: "Intermediate"
+    },
+    {
+        title: "Web development: React & TypeScript",
+        tutor: "Ernest Haruna",
+        price: "Paid",
+        level: "Upper intermediate"
+    },
+    {
+        title: "Javascript: Master class ",
+        tutor: "Ernest Haruna",
+        price: "Paid",
+        level: "Advanced"
+    },
+    {
+        title: "Styling with Tailwind",
+        tutor: "Ernest Haruna",
+        price: "FREE",
+        level: "Intermediate"
+    },
+    {
+        title: "Project Management: Scrum & Agile",
+        tutor: "Ernest Haruna",
+        price: "FREE",
+        level: "Beginner"
+    },
+    {
+        title: "Data Structures & Algorithms",
+        tutor: "Ernest Haruna",
+        price: "Paid",
+        level: "Upper-intermediate"
+    },
+]
 
 export default function HomePage() {
     return (
@@ -19,9 +84,11 @@ export default function HomePage() {
                 </nav>
                 <header className="py-6 lg:pt-10">
                     <section className="md:flex container items-center gap-20">
-                        <div className="text-center md:text-start">
-                            <h1 className="my-3 z-10 text-4xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
-                                Build your career <br className="hidden md:block" /> with expert mentors
+                        <div className="text-start md:text-start">
+                            <h1 className="my-3 z-10 capitalize text-5xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
+                                Build your <br className="block md:hidden" />
+                                career <br className="hidden md:block" /> with
+                                <br className="block md:hidden" /> <span className="text-foreground">Expert mentors</span>
                             </h1>
 
                             <section className="flex flex-col gap-5 text-muted-foreground my-12">
@@ -48,12 +115,11 @@ export default function HomePage() {
                             <div className="z-10 flex flex-col md:flex-row items-center gap-5">
                                 <a href="https://forms.gle/JYjmF9iUcLjWHMor6"
                                     target="_blank"
-                                    className="transition block md:inline-block text-center w-full md:w-max text-sm rounded-lg font-bold px-7 py-2.5 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
+                                    className="transition block md:inline-block text-center w-full md:w-max rounded-xl font-bold px-10 py-3 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
                                     GET STARTED
                                 </a>
-                                <a href="#"
-                                    target="_blank"
-                                    className="block md:inline-block text-center w-full md:w-max text-sm rounded-lg font-bold px-7 py-2.5 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
+                                <a href="#learn-more"
+                                    className="block md:inline-block text-center w-full md:w-max rounded-xl font-bold px-10 py-3 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
                                     Learn more
                                 </a>
                             </div>
@@ -68,12 +134,12 @@ export default function HomePage() {
                         </div>
                     </section>
                 </header>
-
+                <hr className="border-gray-200" />
                 <section className="py-10 container">
                     <div className="mx-auto">
-                        <div className="shadow-lg rounded-2xl border bg-white backdrop-blur-sm px-4 py-2 lg:px-8 lg:py-4 lg:flex items-center justify-between">
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <LaptopMinimalCheck className="text-[#39546A]" strokeWidth={2} size={40} />
+                        <div className="lg:flex items-center justify-between opacity-90">
+                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
+                                <LaptopMinimalCheck className="text-[#39546A] opacity-50" size={40} />
                                 <div>
                                     <strong className="block font-semibold text-lg text-[#4B4B4B]">Virtual Teams</strong>
                                     <p className="leading-tight text-[#76818B]">
@@ -82,8 +148,8 @@ export default function HomePage() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <SquareUserRound className="text-[#39546A]" strokeWidth={2} size={40} />
+                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
+                                <SquareUserRound className="text-[#39546A] opacity-50" size={40} />
                                 <div>
                                     <strong className="block font-semibold text-lg text-[#4B4B4B]">Expert Sessions</strong>
                                     <p className="leading-tight text-[#76818B]">
@@ -92,8 +158,8 @@ export default function HomePage() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <MonitorIcon className="text-[#39546A]" strokeWidth={2} size={40} />
+                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
+                                <MonitorIcon className="text-[#39546A] opacity-50" size={40} />
                                 <div>
                                     <strong className="block font-semibold text-lg text-[#4B4B4B]">Swift Sips</strong>
                                     <p className="leading-tight text-[#76818B]">
@@ -102,8 +168,8 @@ export default function HomePage() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3 lg:flex-col">
-                                <Album className="text-[#39546A]" strokeWidth={2} size={40} />
+                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
+                                <Album className="text-[#39546A] opacity-50" size={40} />
                                 <div>
                                     <strong className="block font-semibold text-lg text-[#4B4B4B]">Enriching Repository</strong>
                                     <p className="leading-tight text-[#76818B]">
@@ -120,79 +186,58 @@ export default function HomePage() {
             <section className="py-10">
                 <div className="container mx-auto">
                     <div className="py-5">
-                        <div className="lg:text-center pb-8">
-                            <h2 className="text-gray-800 font-bold text-3xl md:text-4xl">
-                                Expand your skillset <br className="md:hidden" /> with <span className="animate-pulse text-[#F6A700]">OwenaHub</span>.
+                        <div className="lg:text-start pb-5">
+                            <h2 className="text-gray-800 pb-2 font-bold text-3xl md:text-4xl">
+                                Expand your skillset <br className="md:hidden" /> with <span className="text-primary">OwenaHub</span>.
                             </h2>
                             <p className="text-gray-500">
                                 Find resources curated by our team for Tech Enthusiasts.
                             </p>
                         </div>
 
-                        <div className="lg:flex lg:justify-center gap-6">
-                            <div className="rounded-xl p-3 shadow-sm bg-white border border-gray-200 border-b-4  mb-3 flex items-center">
-                                <div className="mr-3 rounded-full bg-[#FFE2BB] p-2">
-                                    <LayoutTemplate className="w-6 h-6 text-[#39546A]" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-800 m-0">Web Engineering</h3>
-                                    <p className="m-0">
-                                        <a className="text-gray-800 hover:text-indigo-600 text-sm" href="{{ route('guest.slices.index') }}">
-                                            View Resource
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
+                        <section className="flex flex-wrap mb-20 items-center gap-2 whitespace-nowrap">
+                            {categories.map((category) => (
+                                <Badge
+                                    icon={category.icon}
+                                    title={category.title}
+                                />
+                            ))}
+                        </section>
 
-                            <div className="rounded-xl p-3 shadow-sm bg-white border border-gray-200 border-b-4  mb-3 flex items-center">
-                                <div className="mr-3 rounded-full bg-[#FFE2BB] p-2">
-                                    <Code className="w-6 h-6 text-[#39546A]" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-800 m-0">Programming</h3>
-                                    <p className="m-0">
-                                        <a className="text-gray-800 hover:text-indigo-600 text-sm" href="{{ route('guest.slices.index') }}">
-                                            View Resource
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="lg:flex lg:justify-center gap-6">
-                            <div className="rounded-xl p-3 shadow-sm bg-white border border-gray-200 border-b-4  mb-3 flex items-center">
-                                <div className="mr-3 rounded-full bg-[#FFE2BB] p-2">
-                                    <Regex className="w-6 h-6 text-[#39546A]" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-800 m-0">Software Development Methodologies</h3>
-                                    <p className="m-0">
-                                        <a className="text-gray-800 hover:text-indigo-600 text-sm" href="{{ route('guest.slices.index') }}">
-                                            View Resource
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="rounded-xl p-3 shadow-sm bg-white border border-gray-200 border-b-4  mb-3 flex items-center">
-                                <div className="mr-3 rounded-full bg-[#FFE2BB] p-2">
-                                    <Briefcase className="w-6 h-6 text-[#39546A]" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-800 m-0">Career & Development</h3>
-                                    <p className="m-0">
-                                        <a className="text-gray-800 hover:text-indigo-600 text-sm" href="{{ route('guest.slices.index') }}">
-                                            View Resource
-                                        </a>
-                                    </p>
+                        <section>
+                            <div className="mx-auto max-w-2xl pb-10 sm:pb-16 lg:max-w-7xl">
+                                <div className="grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
+                                    {tracks.map((track, index) => (
+                                        <div key={index} className="group p-2 relative border border-gray-200 border-b-4 rounded hover:border-b transition-all">
+                                            <div className="aspect-square p-2 bg-slate-100 w-full roundedbg-slate-100 group-hover:opacity-75 lg:aspect-auto lg:h-36">
+                                                <div className="min-h-full text-secondary-foreground flex flex-col justify-center font-semibold md:text-2xl">
+                                                    {track.title}
+                                                </div>
+                                            </div>
+                                            <div className="py-2">
+                                                <div>
+                                                    <div className="flex items-center justify-between">
+                                                        <h4 className="text-sm text-gray-700">
+                                                            <a href="https://forms.gle/JYjmF9iUcLjWHMor6" target="_blank">
+                                                                <span aria-hidden="true" className="absolute inset-0" />
+                                                                {track.tutor}
+                                                            </a>
+                                                        </h4>
+                                                        <p className="text-xs border border-primary bg-muted text-primary font-medium px-2 py-0.5 rounded-md">{track.price}</p>
+                                                    </div>
+                                                </div>
+                                                <p className="text-sm text-gray-500">{track.level}</p>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </section>
 
-            <section className="pb-20 lg:pb-9 container">
+            <section className="pb-20 lg:pb-9 container" id="learn-more">
                 <div className="md:flex items-center justify-evenly gap-5 pt-5">
                     <div>
                         <img src="/images/personalised.png" alt="Personalized Learning" className="w-full" />
@@ -268,7 +313,7 @@ export default function HomePage() {
                 </div>
             </section>
 
-            <div className="container mb-10">
+            <div className="container mb-16">
                 <section className="bg-primary-foreground shadow-xl rounded-3xl mx-auto py-10">
                     <div>
                         <div className="text-center px-5">
@@ -292,7 +337,7 @@ export default function HomePage() {
                 </section>
             </div>
 
-            <footer className="bg-white py-8 text-gray-700" id="footer">
+            <footer className="bg-gray-50 py-8 text-gray-700" id="footer">
                 <div className="container text-sm">
                     <div className="block md:flex justify-between items-center">
                         <div>
