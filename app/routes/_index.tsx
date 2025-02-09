@@ -105,15 +105,13 @@ export default function HomePage() {
                             </section>
 
                             <div className="z-10 flex flex-col md:flex-row items-center gap-5">
-                                <a href="https://forms.gle/JYjmF9iUcLjWHMor6"
-                                    target="_blank"
-                                    className="transition block md:inline-block text-center w-full md:w-max rounded-xl font-bold px-10 py-3 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
+                                <Link to="/register" className="transition block md:inline-block text-center w-full md:w-max rounded-xl font-bold px-10 py-3 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
                                     GET STARTED
-                                </a>
-                                <a href="#learn-more"
+                                </Link>
+                                <Link to="#learn-more"
                                     className="block md:inline-block text-center w-full md:w-max rounded-xl font-bold px-10 py-3 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
                                     Learn more
-                                </a>
+                                </Link>
                             </div>
 
                         </div>

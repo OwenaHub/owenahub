@@ -68,7 +68,7 @@ export default {
 		},
 		container: {
 			center: true,
-			padding: '1rem', // Add custom padding
+			padding: '1.5rem', // Add custom padding
 			screens: {
 				sm: '576px',
 				md: '768px',
