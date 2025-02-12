@@ -1,9 +1,42 @@
-import { BadgeCheck, BedDouble, Laptop } from "lucide-react";
-import { Form, Link } from "react-router";
+import { BadgeCheck, BedDouble, Ellipsis, Laptop, Loader } from "lucide-react";
+import { Form, Link, redirect, useNavigation } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
+import type { Route } from "../../+types/root";
+import { toast } from "~/hooks/use-toast";
+import registerUser from "./register";
+import { ToastAction } from "~/components/ui/toast";
+import InputError from "~/components/forms/input-error";
 
-export default function Register() {
+export async function clientAction({ request }: Route.ClientActionArgs) {
+    const formData = await request.formData();
+    const credentials = Object.fromEntries(formData);
+    console.log(credentials);
+
+    try {
+        const res = await registerUser(credentials);
+        console.log(res);
+        toast({
+            title: "Congratulations! ✨",
+            description: "Your account has been registered, we hope you enjoy your experience",
+            action: <ToastAction altText="Report issue">
+                <Link to={"/account/general"}>Setup profile</Link>
+            </ToastAction>,
+        })
+        return redirect('/home');
+    } catch ({ response }: any) {
+        console.error(response)
+        const error: any = response?.data?.errors;
+        return error;
+    }
+}
+
+
+export default function Register({ actionData }: Route.ComponentProps) {
+    let errors = actionData;
+    const { state } = useNavigation();
+    const busy: boolean = state === "submitting" || state === "loading";
+
     return (
         <section className="container">
             <div className="max-w-fit mx-auto md:flex items-center gap-10 justify-center py-10">
@@ -48,16 +81,53 @@ export default function Register() {
                             </p>
                             <p className="text-muted-foreground text-sm">to access your free acount</p>
                         </div>
-                        <Form>
+                        <Form method="POST">
                             <div className="mb-5">
-                                <Input className="py-5" placeholder="Email address" />
+                                <Input
+                                    className="py-5"
+                                    type="text"
+                                    name="name"
+                                    placeholder="Full name"
+                                    autoFocus
+                                    required
+                                />
+                                <InputError for="name" error={errors} />
                             </div>
                             <div className="mb-5">
-                                <Input className="py-5" placeholder="Password" />
+                                <Input
+                                    className="py-5"
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email address"
+                                    required
+                                />
+                                <InputError for="email" error={errors} />
+                            </div>
+                            <div className="mb-5">
+                                <Input
+                                    className="py-5"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    required
+                                />
+                                <InputError for="password" error={errors} />
+                            </div>
+                            <div className="mb-5">
+                                <Input
+                                    className="py-5"
+                                    type="password"
+                                    name="password_confirmation"
+                                    placeholder="Confirm password"
+                                    required
+                                />
                             </div>
                             <div className="mt-7">
-                                <Button className="py-5 w-full uppercase bg-primary-foreground text-secondary-auxiliary font-semibold">
-                                    Register
+                                <Button
+                                    className="py-5 w-full uppercase bg-primary-foreground text-secondary-auxiliary font-semibold"
+                                    disabled={busy}
+                                >
+                                    {busy ? (<Loader className="animate-spin" />) : "Register"}
                                 </Button>
                             </div>
                         </Form>

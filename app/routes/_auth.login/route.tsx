@@ -1,12 +1,36 @@
-import { Form, Link } from "react-router";
+import { Form, Link, redirect, useNavigation } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import type { Route } from "../../+types/root";
+import loginUser from "./login";
+import { toast } from "~/hooks/use-toast";
+import { Loader } from "lucide-react";
+import InputError from "~/components/forms/input-error";
 
-export default function Login() {
+export async function clientAction({ request }: Route.ClientActionArgs) {
+    const formData = await request.formData();
+    const credentials = Object.fromEntries(formData);
+
+    try {
+        await loginUser(credentials);
+        toast({ description: "Welcome back!" });
+        return redirect('/home');
+    } catch ({ response }: any) {
+        console.error(response)
+        const error: any = response?.data?.errors;
+        return error;
+    }
+}
+
+export default function Login({ actionData }: Route.ComponentProps) {
+    let errors = actionData;
+    const { state } = useNavigation();
+    const busy: boolean = state === "submitting" || state === "loading";
+
     return (
         <section className="container">
-            <div className="max-w-fit mx-auto md:flex items-center gap-10 justify-center py-10">
+            <div className="max-w-sm mx-auto md:flex items-center gap-10 justify-center py-10">
                 <div className="flex-1">
                     <div className="border rounded-xl py-6 px-5 md:px-8 h-full">
                         <div className="text-center pb-5">
@@ -17,7 +41,16 @@ export default function Login() {
                         <Form>
                             <div className="mb-5">
                                 <Label className="text-xs pb-1">Email address</Label>
-                                <Input className="py-5" placeholder="Email address" />
+                                <Input
+                                    className="py-5"
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    placeholder="m@example.com"
+                                    required
+                                    autoFocus
+                                />
+                                <InputError for="email" error={errors} />
                             </div>
                             <div className="mb-5">
                                 <div className="flex items-center justify-between pb-1">
@@ -26,11 +59,21 @@ export default function Login() {
                                         Forgot password?
                                     </Link>
                                 </div>
-                                <Input className="py-5" placeholder="Password" />
+                                <Input
+                                    className="py-5"
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    required
+                                />
                             </div>
                             <div className="mt-7">
-                                <Button className="py-5 w-full uppercase bg-primary-foreground text-secondary-auxiliary font-semibold">
-                                    Log in
+                                <Button
+                                    disabled={busy}
+                                    className="py-5 w-full uppercase bg-primary-foreground text-secondary-auxiliary font-semibold"
+                                >
+                                    {busy ? (<Loader className="animate-spin" />) : "Login"}
                                 </Button>
                             </div>
                         </Form>
@@ -47,9 +90,14 @@ export default function Login() {
                             <span className="text-secondary-foreground font-bold">Sign up with Google</span>
                         </Button>
 
-                        <p className="text-center text-xs p-4">
-                            By continuing, you agree to our Terms and Privacy Policy.
-                        </p>
+                        <div className="flex flex-col gap-3">
+                            <p className="text-center text-xs p-5 text-pretty">
+                                By continuing, you agree to our {" "}
+                                <Link to="#" target="_blank" data-bypass>Terms</Link>
+                                {" "}and{" "}
+                                <Link to="/privacy" target="_blank">Privacy Policy</Link>.
+                            </p>
+                        </div>
                     </div>
                     <div className="text-foreground text-sm text-center py-5 font-semibold uppercase">
                         Need an account? <Link to="/register" className="text-primary-foreground">sign up</Link>

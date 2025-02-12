@@ -12,6 +12,7 @@ import stylesheet from "./app.css?url";
 import globalcss from "./global.css?url";
 import AppName from "./components/custom/app-name";
 import { Zap } from "lucide-react";
+import { Toaster } from "./components/ui/toaster";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -60,6 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <Toaster />
       </body>
     </html>
   );

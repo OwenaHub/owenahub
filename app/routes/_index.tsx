@@ -186,8 +186,9 @@ export default function HomePage() {
                         </div>
 
                         <section className="flex flex-wrap mb-20 items-center gap-2 whitespace-nowrap">
-                            {categories.map((category) => (
+                            {categories.map((category, index) => (
                                 <Badge
+                                    key={index}
                                     icon={category.icon}
                                     title={category.title}
                                 />
