@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigation } from "react-router";
 import { Album, ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LaptopMinimalCheck, LayoutTemplate, MonitorIcon, Regex, SquareUserRound, Twitter, User, UserRound } from "lucide-react";
 import Badge from "~/components/custom/badge";
 
@@ -67,9 +67,12 @@ const tracks = [
 ]
 
 export default function HomePage() {
+    const { state } = useNavigation();
+    let busy: boolean = state === "submitting" || state === "loading";
+
     return (
         <>
-            <div className="bg-muted">
+            <div className={`bg-muted ${busy && "opacity-35"} transition`}>
                 <nav className="container py-10 flex items-center gap-2">
                     <img src="/images/logos/logo.png" width={25} />
                     <Link to="/" className="font-bold">OwenaHub</Link>
