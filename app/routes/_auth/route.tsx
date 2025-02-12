@@ -1,8 +1,19 @@
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, redirect } from "react-router";
 import type { Route } from "../_auth/+types/route";
+import useSession from "~/lib/session";
+
+export async function clientLoader(_: Route.ClientLoaderArgs) {
+    const { validateSession } = useSession();
+
+    try {
+        await validateSession();
+        return redirect('/home');
+    } catch ({ response }: any) {
+        return {};
+    }
+}
 
 export default function AuthLayout(_: Route.ComponentProps) {
-    console.log("AuthLayout rendered");
     return (
         <main className="transition">
             <header className="container py-4 flex justify-center">

@@ -17,14 +17,16 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
         toast({ description: "Welcome back!" });
         return redirect('/home');
     } catch ({ response }: any) {
-        console.error(response)
+        // console.error(response)
         const error: any = response?.data?.errors;
         return error;
     }
 }
 
 export default function Login({ actionData }: Route.ComponentProps) {
-    let errors = actionData;
+    const errors = actionData;
+    console.log(errors);
+    
     const { state } = useNavigation();
     const busy: boolean = state === "submitting" || state === "loading";
 
@@ -38,7 +40,7 @@ export default function Login({ actionData }: Route.ComponentProps) {
                                 Log in to your account
                             </p>
                         </div>
-                        <Form>
+                        <Form method="POST">
                             <div className="mb-5">
                                 <Label className="text-xs pb-1">Email address</Label>
                                 <Input
