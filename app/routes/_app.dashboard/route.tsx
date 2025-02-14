@@ -1,6 +1,13 @@
-import { ChevronLeft, ChevronRight, Headset, SearchCheck } from "lucide-react";
-import { Link } from "react-router";
+import { ChevronRight, Headset, SearchCheck } from "lucide-react";
+import { Link, type MetaFunction } from "react-router";
 import { Button } from "~/components/ui/button";
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Home | OwenaHub" },
+        { name: "description", content: "The Learner's Hub" },
+    ];
+};
 
 export default function Home() {
     return (
@@ -8,7 +15,7 @@ export default function Home() {
             <div className="md:flex items- justify-between gap-5 ">
                 <div>
                     <div className="mb-8">
-                        <h1 className="md:mt-20 text-xl md:text-2xl text-[#083156] mb-3 font-bold">
+                        <h1 className="md:mt-20 text-xl md:text-2xl text-primary-foreground mb-3 font-bold">
                             Start your learning journey today!
                         </h1>
                         <p className="text-sm leading-7">
@@ -36,7 +43,7 @@ export default function Home() {
 
             <div>
                 <div className="mb-5">
-                    <h4 className="md:mt-20 text-xl text-[#083156] mb-3 font-bold">
+                    <h4 className="md:mt-20 text-xl text-primary-foreground mb-3 font-bold">
                         Not quite ready?
                     </h4>
                     <p className="text-sm leading-7">
@@ -52,9 +59,9 @@ export default function Home() {
                         <div>
                             <h5 className="font-bold text-[#083156] mb-2">Talk to a today</h5>
                             <p className="text-sm">
-                                <Link to="#" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
+                                <a href="tel:+2348026658956" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
                                     <span>Make a call </span> <ChevronRight strokeWidth={3} size={12} />
-                                </Link>
+                                </a>
                             </p>
                         </div>
                     </div>

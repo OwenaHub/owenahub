@@ -1,5 +1,4 @@
-import { Link, Outlet, redirect, useNavigation, type MetaFunction } from 'react-router'
-import { ArrowRight, ArrowUpNarrowWide, ChevronRight, Send, TrendingUp } from 'lucide-react'
+import { Link, Outlet, redirect, useNavigation } from 'react-router'
 import AppName from '~/components/custom/app-name'
 import MobileNav from '~/components/navigation/mobile-nav'
 import NavButton from '~/components/navigation/nav-button'
@@ -7,13 +6,6 @@ import { toast } from '~/hooks/use-toast'
 import APP_TABS from '~/components/navigation/app-tabs'
 import useSession from '~/lib/session'
 import type { Route } from '../_app/+types/route'
-
-export const meta: MetaFunction = () => {
-    return [
-        { title: "Home | OwenaHub" },
-        { name: "description", content: "The Learner's Hub" },
-    ];
-};
 
 export async function clientLoader() {
     const { validateSession } = useSession();
@@ -53,14 +45,14 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                 </nav>
                             </div>
                             <section>
-                                <div className="text-sm bg-gray-200 rounded-md p-3 mb-4">
+                                <div className="text-sm border rounded-md p-3 mb-4">
                                     <div className="font-semibold pb-2 text-base">Upgrade to premium</div>
                                     <p className="text-xs pb-3">
                                         Unlock all features and get unlimited access to our support team.
                                     </p>
-                                    <button className="rounded-md w-full py-2 px-4 text-xs bg-[#001836] font-medium text-white">Subscribe</button>
+                                    <button className="rounded-md w-full py-2 px-4 text-xs bg-secondary font-bold text-secondary-foreground">Subscribe</button>
                                 </div>
-                                <div className="text-sm bg-gray-100 rounded-md p-3">
+                                <div className="text-sm border rounded-md p-3">
                                     <h3 className="font-bold text-[#001836]">{user?.name}</h3>
                                     <p className="text-black text-xs">{user?.email}</p>
                                 </div>
@@ -68,13 +60,15 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                         </div>
                     </aside>
 
-                    <main className={`w-full flex-1 transition ${busy && "opacity-35"}`}>
+                    <main className="w-full flex-1 transition">
                         <header className='py-5 md:hidden'>
                             <div className='flex items-center gap-1'>
                                 <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
                             </div>
                         </header>
-                        <Outlet context={user} />
+                        <div className={`${busy && "opacity-35"}`}>
+                            <Outlet context={user} />
+                        </div>
                     </main>
                 </section>
             </div>
