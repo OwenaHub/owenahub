@@ -7,7 +7,7 @@ export async function clientLoader(_: Route.ClientLoaderArgs) {
 
     try {
         await validateSession();
-        return redirect('/home');
+        return redirect('/dashboard');
     } catch ({ response }: any) {
         return {};
     }

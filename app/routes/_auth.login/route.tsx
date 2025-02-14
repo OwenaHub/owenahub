@@ -15,7 +15,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     try {
         await loginUser(credentials);
         toast({ description: "Welcome back!" });
-        return redirect('/home');
+        return redirect('/dashboard');
     } catch ({ response }: any) {
         // console.error(response)
         const error: any = response?.data?.errors;
@@ -26,7 +26,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 export default function Login({ actionData }: Route.ComponentProps) {
     const errors = actionData;
     console.log(errors);
-    
+
     const { state } = useNavigation();
     const busy: boolean = state === "submitting" || state === "loading";
 

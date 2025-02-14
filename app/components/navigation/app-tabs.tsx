@@ -1,25 +1,25 @@
-import { House, Inbox, Search, Bell, UserRound } from 'lucide-react';
+import { House, UserRound, Wallet, GraduationCap, Shapes, LayoutGrid } from 'lucide-react';
 
 const APP_TABS = [
     {
-        href: `/home`,
-        title: 'Feed',
-        icon: <House size={22} strokeWidth={2.2} />,
+        href: `/dashboard`,
+        title: 'Dashboard',
+        icon: <LayoutGrid size={22} strokeWidth={2.2} />,
     },
     {
-        href: `/inbox`,
-        title: 'Inbox',
-        icon: <Inbox size={22} strokeWidth={2.2} />,
+        href: `/classes`,
+        title: 'Classes',
+        icon: <Shapes size={22} strokeWidth={2.2} />,
     },
     {
-        href: `/search`,
-        title: 'Search',
-        icon: <Search size={22} strokeWidth={2.2} />,
+        href: `/courses`,
+        title: 'Courses',
+        icon: <GraduationCap size={22} strokeWidth={2.2} />,
     },
     {
-        href: `/notifications`,
-        title: 'Alerts',
-        icon: <Bell size={22} strokeWidth={2.2} />,
+        href: `/payments`,
+        title: 'Payments',
+        icon: <Wallet size={22} strokeWidth={2.2} />,
     },
     {
         href: `/account`,

@@ -10,15 +10,15 @@ export default function NavButton({ href, label, icon }: {
             to={href}
             className={({ isActive, isPending }) =>
                 isActive
-                    ? "block mb-2 text-primary bg-muted rounded-lg hover:bg-gray-100 hover:text-primary"
+                    ? "block mb-2 text-[#001836] bg-gray-100 border border-gray-300 rounded-lg"
                     : isPending
-                        ? "block mb-2 bg-secondary rounded-lg"
-                        : "block mb-2 rounded-lg hover:bg-secondary"
+                        ? "block mb-2 rounded-lg border hover:bg-gray-100 text-[#67737E]"
+                        : "block mb-2 rounded-lg hover:bg-gray-100 text-[#67737E]"
             }
         >
             {({ isActive }) => (
                 <div className="flex items-center gap-2">
-                    <span className={`inline-block p-2 ${isActive ? "text-primary rounded-lg" : ""}`}>
+                    <span className={`inline-block p-2 ${isActive ? "text-[#001836] rounded-lg" : ""}`}>
                         {icon ? (React.cloneElement(icon, { fill: isActive ? 'none' : 'none' }))
                             : (<span>
                                 <Square size={24} />

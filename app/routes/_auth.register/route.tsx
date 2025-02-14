@@ -23,7 +23,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
                 <Link to={"/account/general"}>Setup profile</Link>
             </ToastAction>,
         })
-        return redirect('/home');
+        return redirect('/dashboard');
     } catch ({ response }: any) {
         console.error(response)
         const error: any = response?.data?.errors;
