@@ -51,7 +51,7 @@ export default function Home() {
                     </p>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-6 md:items-center">
+                <div className="flex flex-col md:flex-row gap-6 md:items-stretch">
                     <div className="border rounded-lg p-3 flex-1 flex items-center gap-3">
                         <div>
                             <Headset size={40} strokeWidth={1} />
