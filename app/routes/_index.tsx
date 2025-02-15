@@ -71,8 +71,8 @@ export default function HomePage() {
     let busy: boolean = state === "submitting" || state === "loading";
 
     return (
-        <>
-            <div className={`bg-muted ${busy && "opacity-35"} transition`}>
+        <section className={`${busy && "opacity-35"} transition`}>
+            <div className={`bg-muted ${busy && "opacity-35"}`}>
                 <nav className="container py-10 flex items-center gap-2">
                     <img src="/images/logos/logo.png" width={25} />
                     <Link to="/" className="font-bold">OwenaHub</Link>
@@ -416,6 +416,6 @@ export default function HomePage() {
                     </div>
                 </div>
             </footer>
-        </>
+        </section>
     )
 }

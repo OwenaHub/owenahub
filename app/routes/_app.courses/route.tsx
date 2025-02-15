@@ -1,5 +1,7 @@
 import { UserRound } from 'lucide-react';
-import type { MetaFunction } from 'react-router';
+import { Link, useOutletContext, type MetaFunction } from 'react-router';
+import { IsAdmin } from '~/components/permissions/admin';
+import { Button } from '~/components/ui/button';
 
 const tracks = [
     {
@@ -54,18 +56,40 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Courses() {
+    const user: User = useOutletContext();
+    console.log(user);
+
     return (
         <section className="md:px-10 mt-10">
             <section>
-                <h1 className="md:mt-20 text-xl md:text-2xl text-primary-foreground mb-3 font-bold">
-                    Courses
-                </h1>
+                <div className=" md:mt-20 flex justify-between items-center">
+                    <h1 className="text-xl md:text-2xl text-primary-foreground font-bold">
+                        Courses
+                    </h1>
+                    
+                    <IsAdmin user={user}>
+                        <Link
+                            to={"create"}
+                            className='py-2 bg-secondary text-secondary-foreground px-6 rounded-md font-bold uppercase text-xs hover:opacity-50 transition'
+                        >
+                            Create
+                        </Link>
+                    </IsAdmin>
+                </div>
                 <p className="py-7 text-sm text-gray-500 ">
                     You aren't enrolled in any courses
                 </p>
             </section>
             <hr className="my-10" />
             <div>
+                <div className="mb-5">
+                    <h4 className="md:mt-20 text-xl text-primary-foreground mb-3 font-bold">
+                        Suggested courses?
+                    </h4>
+                    <p className="text-sm leading-7">
+                        Enroll into our collection of courses and practice exercises.
+                    </p>
+                </div>
                 <div className="mx-auto max-w-2xl pb-10 sm:pb-16 lg:max-w-7xl">
                     <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
                         {tracks.map((track, index) => (
