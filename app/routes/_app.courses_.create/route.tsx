@@ -9,9 +9,8 @@ import { toast } from "~/hooks/use-toast";
 import InputError from "~/components/forms/input-error";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
-    const formData = Object
-        .fromEntries(await request.formData());
-    console.log(formData);
+    const formData = Object.fromEntries(await request.formData());
+
     try {
         await createCourse(formData);
         toast({
