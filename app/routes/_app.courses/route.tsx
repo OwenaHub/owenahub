@@ -1,7 +1,6 @@
 import { UserRound } from 'lucide-react';
 import type { MetaFunction } from 'react-router';
 
-
 const tracks = [
     {
         title: "Web develeopment: HTML & CSS",
@@ -12,13 +11,13 @@ const tracks = [
     {
         title: "Web development: JavaScript",
         tutor: "Jacob Williams",
-        price: "Paid",
+        price: "N9,200",
         level: "Intermediate"
     },
     {
         title: "Web development: React & TypeScript",
         tutor: "James Arua",
-        price: "Paid",
+        price: "10,000",
         level: "Upper intermediate"
     },
     {
@@ -42,7 +41,7 @@ const tracks = [
     {
         title: "Data Structures & Algorithms",
         tutor: "Tanko Mahmood",
-        price: "Paid",
+        price: "12,500",
         level: "Upper-intermediate"
     },
 ];
@@ -68,16 +67,16 @@ export default function Courses() {
             <hr className="my-10" />
             <div>
                 <div className="mx-auto max-w-2xl pb-10 sm:pb-16 lg:max-w-7xl">
-                    <div className="grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
+                    <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
                         {tracks.map((track, index) => (
-                            <div key={index} className="group p-2 relative border border-gray-200 border-b-4 rounded hover:border-b transition-all">
-                                <div className="aspect-square p-2 bg-slate-100 w-full roundedbg-slate-100 group-hover:opacity-75 lg:aspect-auto lg:h-36">
-                                    <div className="min-h-full text-secondary-foreground flex flex-col justify-center font-semibold md:text-xl">
+                            <div key={index} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
+                                <div className="mb-1 aspect-video p-2 bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-auto lg:h-36">
+                                    <div className="min-h-full text-gray-700 flex flex-col justify-center font-semibold text-2xl md:text-xl">
                                         {track.title}
                                     </div>
                                 </div>
                                 <div className="py-2">
-                                    <div>
+                                    <div className='mb-2'>
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-1">
                                                 <div className="h-5 w-5 rounded-full flex justify-center items-center">
@@ -90,7 +89,7 @@ export default function Courses() {
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <p className="text-xs border border-primary bg-muted text-primary font-medium px-1 py-0.5 rounded-md">
+                                            <p className="text-xs text-sky-800 font-bold px-1 py-0.5 rounded-md">
                                                 {track.price}
                                             </p>
                                         </div>

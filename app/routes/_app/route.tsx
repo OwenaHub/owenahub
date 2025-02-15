@@ -50,7 +50,9 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                     <p className="text-xs pb-3">
                                         Unlock all features and get unlimited access to our support team.
                                     </p>
-                                    <button className="rounded-md w-full py-2 px-4 text-xs bg-secondary font-bold text-secondary-foreground">Subscribe</button>
+                                    <button className="rounded-md w-full py-2 px-4 text-xs bg-primary-foreground font-bold text-secondary-auxiliary">
+                                        Subscribe
+                                    </button>
                                 </div>
                                 <div className="text-sm border rounded-md p-3">
                                     <h3 className="font-bold text-[#001836]">{user?.name}</h3>
