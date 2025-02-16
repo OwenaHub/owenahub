@@ -48,7 +48,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                             Course overview
                         </div>
                         <div className="text-light">
-                            {slice.overview}
+                            <div dangerouslySetInnerHTML={{ __html: slice.overview }} />
                         </div>
                         <div className="mt-5">
                             <Tags args={slice.tags} />

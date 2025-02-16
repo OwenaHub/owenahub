@@ -1,4 +1,7 @@
+import { EditorContent, useEditor } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
 import { Loader } from "lucide-react"
+import { useState } from "react"
 import { Form, useNavigation } from "react-router"
 import { Button } from "~/components/ui/button"
 import {
@@ -17,6 +20,16 @@ import { Textarea } from "~/components/ui/textarea"
 export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
     const { state } = useNavigation();
     const busy: boolean = state === "submitting" || state === "loading";
+
+    const [content, setContent] = useState("<p>Start typing...</p>");
+
+    const editor = useEditor({
+        extensions: [StarterKit],
+        content: content,
+        onUpdate: ({ editor }) => {
+            setContent(editor.getHTML());
+        }
+    });
 
     return (
         <Dialog>
@@ -60,10 +73,10 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                     </div>
                     <div className="mb-5">
                         <Label>Content</Label>
-                        <Textarea
-                            name="content"
-                            placeholder="Setting your environment alot more than the open SSL..."
-                        />
+                        <div className="border rounded-lg bg-white">
+                            <EditorContent editor={editor} className="p-4" />
+                        </div>
+                        <input type="hidden" name="content" value={content} />
                     </div>
                     {error && (
                         <div className="text-red-500 text-xs mb-4">
