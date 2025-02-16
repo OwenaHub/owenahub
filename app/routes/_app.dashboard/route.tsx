@@ -1,5 +1,5 @@
 import { ChevronRight, Headset, SearchCheck } from "lucide-react";
-import { Link, type MetaFunction } from "react-router";
+import { Link, Navigate, type MetaFunction } from "react-router";
 import { Button } from "~/components/ui/button";
 
 export const meta: MetaFunction = () => {
@@ -23,11 +23,11 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <Button
-                        className="bg-secondary-foreground text-white text-sm font-bold px-5 uppercase w-full md:w-max"
-                    >
-                        buy now
-                    </Button>
+                    <Link to="/courses">
+                        <Button className="bg-secondary-foreground text-white text-sm font-bold px-5 uppercase w-full md:w-max">
+                            buy now
+                        </Button>
+                    </Link>
                 </div>
 
                 <div className="hidden md:block">

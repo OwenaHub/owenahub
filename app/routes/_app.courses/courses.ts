@@ -20,7 +20,6 @@ export async function getEnrolledCourse(slice_id: string, bite_id: string) {
     const response = await client.get(
         `api/slices/enrolled/${slice_id}/?bite=${bite_id}`
     );
-    console.log(response)
     return response.data;
 }
 

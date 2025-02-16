@@ -1,6 +1,8 @@
-import { redirect, useSearchParams } from "react-router";
+import { Link, redirect, useLocation, useNavigate, useSearchParams } from "react-router";
 import type { Route } from "../_app.courses_.$id/+types/route";
 import { getEnrolledCourse } from "../_app.courses/courses";
+import { Button } from "~/components/ui/button";
+import { ChevronLeft } from "lucide-react";
 
 export async function clientLoader({ params, request }: Route.ClientLoaderArgs) {
     const url = new URL(request.url);
@@ -18,43 +20,72 @@ export async function clientLoader({ params, request }: Route.ClientLoaderArgs) 
     } catch ({ response }: any) {
         return redirect('/courses')
     }
+
 }
 
 export default function CourseLearn({ loaderData }: Route.ComponentProps) {
     const { bite, bite_list }: any = loaderData;
+    console.log(bite);
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleBiteChange = (biteId: number) => {
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.set("bite", biteId.toString());
+        navigate(`${location.pathname}?${searchParams.toString()}`);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     return (
         <section className="md:px-10 mt-10">
             <div className="md:mt-20 mb-8">
                 <div className="flex md:flex-row flex-col gap-10 md:gap-4">
-                    <div className="basis-9/12">
-                        <div className="mb-10">
-                            <h4 className="text-xl text-primary-foreground mb-3 font-bold">
-                                {bite.title}
-                            </h4>
-                            <p className="text-sm leading-7">
-                                {bite.description}
-                            </p>
+                    <div className="basis-2/3">
+                        <div className="mb-4">
+                            <Link to="/courses" className="flex gap-1 text-xs items-center uppercase hover:underline hover:underline-offset-2">
+                                <ChevronLeft size={18} strokeWidth={2} /> <span>Courses</span>
+                            </Link>
                         </div>
-                        <div>
-                            <div dangerouslySetInnerHTML={{ __html: bite.content }} />
-                        </div>
+                        {bite
+                            ? <>
+                                <div className="mb-10">
+
+                                    <h4 className="text-xl text-primary-foreground mb-3 font-bold">
+                                        {bite.title}
+                                    </h4>
+                                    <p className="text-sm leading-7">
+                                        {bite.description}
+                                    </p>
+                                </div>
+                                <div>
+                                    <div dangerouslySetInnerHTML={{ __html: bite.content }} />
+                                </div>
+                            </>
+                            : <p className="text-gray-500 text-sm">No content available</p>
+                        }
                     </div>
-                    <div className="basis-3/12">
+                    <div className="basis-1/3">
                         <div className="border p-3 rounded-xl">
-                            <h4 className="font-bold text-secondary-foreground">
+                            <h4 className="font-bold text-secondary-foreground border-b pb-2">
                                 All lessons
                             </h4>
                             {bite_list.length
-                                ? bite_list.map((bite: any) => (
-                                    <div key={bite.position} className="border-b border-gray-200 py-3 cursor-pointer">
-                                        <h5 className="text-sm text-gray-500 mb-2">
+                                ? bite_list.map((bite: any, index: number) => (
+                                    <div
+                                        key={bite.position}
+                                        className="border-gray-200 py-3 cursor-pointer hover:text-secondary-foreground transition"
+                                        onClick={() => handleBiteChange(index + 1)}
+                                    >
+                                        <h5 className="text-sm font-bold">
                                             {bite.title}
                                         </h5>
                                         <p className="text-xs">{bite.description}</p>
                                     </div>
                                 ))
-                                : <p className="text-sm text-gray-500 mb-2">No lessons found</p>
+                                : <p className="text-sm text-gray-500 my-2">No lessons found</p>
                             }
                         </div>
                     </div>

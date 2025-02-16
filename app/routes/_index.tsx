@@ -80,10 +80,10 @@ export default function HomePage() {
                 <header className="py-6 pb-10 lg:pt-10">
                     <section className="md:flex container items-center gap-20">
                         <div className="text-start md:text-start">
-                            <h1 className="my-3 z-10 capitalize text-5xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
-                                Build your <br className="block md:hidden" />
-                                career <br className="hidden md:block" /> with
-                                <br className="block md:hidden" /> <span className="text-foreground">Expert mentors</span>
+                            <h1 className="mt-3 z-10 capitalize text-4xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
+                                Build your career {" "}
+                                <br className="hidden md:block" />
+                                with <span className="text-foreground">Expert mentors</span>.
                             </h1>
 
                             <section className="flex flex-col gap-5 text-muted-foreground my-12">
@@ -108,11 +108,11 @@ export default function HomePage() {
                             </section>
 
                             <div className="z-10 flex flex-col md:flex-row items-center gap-5">
-                                <Link to="/register" className="transition block md:inline-block text-center w-full md:w-max rounded-xl font-bold px-10 py-3 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
+                                <Link to="/register" className="transition block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-2.5 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
                                     GET STARTED
                                 </Link>
                                 <Link to="#learn-more"
-                                    className="block md:inline-block text-center w-full md:w-max rounded-xl font-bold px-10 py-3 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
+                                    className="block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-2.5 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
                                     Learn more
                                 </Link>
                             </div>
