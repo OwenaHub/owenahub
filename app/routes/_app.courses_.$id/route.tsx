@@ -25,7 +25,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                     <h1 className="text-2xl md:text-3xl text-primary-foreground font-bold">
                         {slice.title}
                     </h1>
-                    <p className="text-sm mt-2 leading-tight">
+                    <p className="text-sm mt-2 leading-tight max-w-3xl">
                         {slice.about}
                     </p>
 
