@@ -51,7 +51,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
     return (
         <section className="md:px-10 mt-10">
             <section>
-                <div className=" md:mt-20 mb-8 flex justify-between items-center">
+                <div className=" md:mt-20 mb-8 flex justify-between items-start">
                     <div>
                         <h4 className="text-xl text-primary-foreground mb-3 font-bold">
                             Courses
@@ -81,11 +81,14 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                     <div>
                                         <h5 className="font-bold text-[#083156] mb-2">{enrolled.slice.title}</h5>
                                         <p className="text-sm">
-                                            <a href="#" className="font-light text-gray-400 text-xs flex items-center gap-1">
+                                            <Link to={`${enrolled.slice_id}/learn/?bite=1`} className="font-light text-gray-400 text-xs flex items-center gap-1">
                                                 <span>
-                                                    Starting on 14th December
+                                                    Starting on 14th December •
                                                 </span>
-                                            </a>
+                                                <span className='font-medium underline underline-offset-1 text-blue-600'>
+                                                    continue
+                                                </span>
+                                            </Link>
                                         </p>
                                     </div>
                                 </div>
