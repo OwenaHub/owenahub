@@ -9,16 +9,16 @@ import Tags from "~/components/custom/tags";
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
         if (!params.id) throw new Error("Bad Request")
-        const slice = await getCourse(params.id);
+        const { slice, is_enrolled } = await getCourse(params.id);
         const bites = getBites(params.id);
-        return { slice, bites };
+        return { slice, bites, is_enrolled };
     } catch ({ response }: any) {
         return redirect('/courses')
     }
 }
 
 export default function ShowCourse({ loaderData }: Route.ComponentProps) {
-    const { slice, bites }: any = loaderData;
+    const { slice, bites, is_enrolled }: any = loaderData;
 
     return (
         <section className="md:px-10 mt-10">
@@ -66,11 +66,22 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                             ) : "FREE"}
                         </div>
                         <hr className="my-5" />
-                        <Form action={`/courses/enroll/${slice.id}`} method="POST">
-                            <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
+                        {is_enrolled
+                            ? <Form
+                                action={`/courses/enroll/${slice.id}`}
+                                method="POST"
+                            >
+                                <Button
+                                    disabled
+                                    className="w-full py-6 text-sm font-bold uppercase rounded-lg"
+                                >
+                                    Already enrolled
+                                </Button>
+                            </Form>
+                            : <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
                                 Enroll now
                             </Button>
-                        </Form>
+                        }
                     </div>
                 </div>
 

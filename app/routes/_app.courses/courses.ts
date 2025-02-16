@@ -6,19 +6,18 @@ export async function getCreatedCourses() {
 }
 
 export async function getCourses() {
-    const response = await client.get(`api/guest/slices`);
-    console.log(response)
+    const response = await client.get(`api/slices`);
     return response.data.slices;
 }
 
 export async function getCourse(id: string) {
-    const response = await client.get(`api/mentor/slices/${id}`);
-    return response.data.slice;
+    const response = await client.get(`api/slices/${id}/overview`);
+    console.log(response)
+    return response.data;
 }
 
 export async function getBites(id: string) {
     const response = await client.get(`api/mentor/slices/bites/${id}`);
-    console.log(response.data)
     return response.data;
 }
 
