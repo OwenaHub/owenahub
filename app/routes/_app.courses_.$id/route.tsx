@@ -1,22 +1,42 @@
-import { Link, redirect } from "react-router";
+import { Await, Link, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { getCourse } from "../_app.courses/courses";
+import { createBite, getBites, getCourse } from "../_app.courses/courses";
 import { Button } from "~/components/ui/button";
-import { ChevronRight, Headset, SearchCheck } from "lucide-react";
+import { ChevronRight, Headset, SearchCheck, SquareChartGantt } from "lucide-react";
+import { CreateBite } from "./create-bite";
+import { toast } from "~/hooks/use-toast";
+import { Suspense } from "react";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
         if (!params.id) throw new Error("Bad Request")
         const slice = await getCourse(params.id);
-        return { slice };
+        const bites = getBites(params.id);
+        return { slice, bites };
     } catch ({ response }: any) {
-        console.log(response);
         return redirect('/courses')
     }
 }
 
-export default function ShowCourse({ loaderData }: Route.ComponentProps) {
-    const { slice }: any = loaderData;
+export async function clientAction({ request }: Route.ClientActionArgs) {
+    const formData = Object.fromEntries(await request.formData());
+    try {
+        await createBite(formData);
+        toast({
+            variant: 'default',
+            description: 'Slice created successfully!'
+        })
+        return redirect(`/courses/${formData.slice_id}`)
+    } catch ({ response }: any) {
+        const error: any = response?.data?.error;
+        return error;
+    }
+
+}
+
+export default function ShowCourse({ loaderData, actionData }: Route.ComponentProps) {
+    const { slice, bites }: any = loaderData;
+    const error = actionData;
 
     return (
         <section className="md:px-10 mt-10">
@@ -34,7 +54,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                 </p>
                 <hr className="my-5" />
 
-                <div className="px-4 py-2 mb-10 rounded-lg bg-gray-100 shadow">
+                <div className="px-4 py-4 mb-14 rounded-lg bg-gray-50 shadow">
                     <div className="mb-3">
                         <div className="font-bold mb-1">Course price</div>
                         <div className="text-light text-sm">
@@ -55,43 +75,45 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                     </div>
                 </div>
 
-                <div>
-                    <div className="flex items-center justify-between mb-5">
+                <div className="mb-10">
+                    <div className="flex items-center justify-between mb-8">
                         <h2 className="text-base md:text-2xl text-gray-600 font-bold">
                             Course Bites
                         </h2>
-                        <Button variant="outline" className="uppercase text-xs">
-                            Add a bite
-                        </Button>
+                        <CreateBite
+                            slice={slice}
+                            error={error}
+                        />
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-6 md:items-stretch">
-                        <div className="border rounded-lg p-3 flex-1 flex items-center gap-3">
-                            <div>
-                                <Headset size={40} strokeWidth={1} />
-                            </div>
-                            <div>
-                                <h5 className="font-bold text-[#083156] mb-2">Talk to a today</h5>
-                                <p className="text-sm">
-                                    <a href="tel:+2348026658956" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
-                                        <span>Make a call </span> <ChevronRight strokeWidth={3} size={12} />
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="border rounded-lg p-3 flex-1 flex items-center gap-3">
-                            <div>
-                                <SearchCheck size={40} strokeWidth={1} />
-                            </div>
-                            <div>
-                                <h5 className="font-bold text-[#083156] mb-2">Learn about the program</h5>
-                                <p className="text-sm">
-                                    <Link to="#" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
-                                        <span>Learn more </span> <ChevronRight strokeWidth={3} size={12} />
-                                    </Link>
-                                </p>
-                            </div>
-                        </div>
+                        <Suspense fallback={<p className="text-gray-500 text-sm">Loading bites</p>}>
+                            <Await resolve={bites}>
+                                {(bites) => (
+                                    bites.length ? (
+                                        bites.map((bite: any) => (
+                                            <div key={bite.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3">
+                                                <div>
+                                                    <SquareChartGantt size={40} strokeWidth={1} />
+                                                </div>
+                                                <div>
+                                                    <h5 className="font-bold text-[#083156] mb-2">{bite.title}</h5>
+                                                    <p className="text-sm">
+                                                        <a href="tel:+2348026658956" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
+                                                            <span>
+                                                                {bite.description}
+                                                            </span>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p className="text-gray-500 text-sm">No bites available</p>
+                                    )
+                                )}
+                            </Await>
+                        </Suspense>
 
                     </div>
                 </div>

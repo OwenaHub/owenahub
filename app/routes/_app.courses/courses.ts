@@ -2,14 +2,34 @@ import client from "~/lib/interceptor";
 
 export async function getCreatedCourses() {
     const response = await client.get(`api/mentor/slices`);
-    return response.data;
+    return response.data.slices;
+}
+
+export async function getCourses() {
+    const response = await client.get(`api/guest/slices`);
+    console.log(response)
+    return response.data.slices;
 }
 
 export async function getCourse(id: string) {
     const response = await client.get(`api/mentor/slices/${id}`);
-    console.log(response);
-
     return response.data.slice;
+}
+
+export async function getBites(id: string) {
+    const response = await client.get(`api/mentor/slices/bites/${id}`);
+    console.log(response.data)
+    return response.data;
+}
+
+export async function createBite(props: { [k: string]: FormDataEntryValue }) {
+    const formData = new FormData();
+
+    for (const key in props) formData.append(key, props[key]);
+
+    const response = await client.post(`api/mentor/slices/bites/${props.slice_id}/store`, formData);
+
+    return response;
 }
 
 export async function createCourse(props: { [k: string]: FormDataEntryValue }) {

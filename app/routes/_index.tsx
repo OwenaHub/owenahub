@@ -77,7 +77,7 @@ export default function HomePage() {
                     <img src="/images/logos/logo.png" width={25} />
                     <Link to="/" className="font-bold">OwenaHub</Link>
                 </nav>
-                <header className="py-6 lg:pt-10">
+                <header className="py-6 pb-10 lg:pt-10">
                     <section className="md:flex container items-center gap-20">
                         <div className="text-start md:text-start">
                             <h1 className="my-3 z-10 capitalize text-5xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
@@ -127,7 +127,7 @@ export default function HomePage() {
                         </div>
                     </section>
                 </header>
-                <hr className="border-gray-200" />
+                {/* <hr className="border-gray-200" />
                 <section className="py-10 container">
                     <div className="mx-auto">
                         <div className="lg:flex items-center justify-between opacity-90">
@@ -173,7 +173,7 @@ export default function HomePage() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
             </div>
 
             <section className="py-10">
