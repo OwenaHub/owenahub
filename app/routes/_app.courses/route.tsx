@@ -21,10 +21,11 @@ export async function clientLoader({ }: Route.ClientLoaderArgs) {
     const { getUserType } = useSession();
     try {
         const enrolledSlices = await getEnrolledCourses();
-        const slices = await getCourses();
+
+        const slices = getCourses();
 
         const role = await getUserType();
-        const mentorSlices = role === "admin" ? await getCreatedCourses() : null;
+        const mentorSlices = role === "admin" ? getCreatedCourses() : null;
 
         return { mentorSlices, slices, enrolledSlices };
     } catch ({ response }: any) {
@@ -70,34 +71,28 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                     </IsAdmin>
                 </div>
                 <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-3">
-                    <Suspense fallback={<p className="text-gray-500 text-sm">Loading</p>}>
-                        <Await resolve={enrolledSlices}>
-                            {(enrolledSlices) => (
-                                enrolledSlices.length ? (
-                                    enrolledSlices.map((enrolled: any) => (
-                                        <div key={enrolled.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3">
-                                            <div>
-                                                <SquareChartGantt size={40} strokeWidth={1} />
-                                            </div>
-                                            <div>
-                                                <h5 className="font-bold text-[#083156] mb-2">{enrolled.slice.title}</h5>
-                                                <p className="text-sm">
-                                                    <a href="#" className="font-light text-gray-400 text-xs flex items-center gap-1">
-                                                        <span>
-                                                            Starting on 14th December
-                                                        </span>
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p className="text-gray-500 text-sm">You haven't enrolled in any slices</p>
-                                )
-                            )}
-                        </Await>
-                    </Suspense>
-
+                    {enrolledSlices.length
+                        ? (
+                            enrolledSlices.map((enrolled: any) => (
+                                <div key={enrolled.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3">
+                                    <div>
+                                        <SquareChartGantt size={40} strokeWidth={1} />
+                                    </div>
+                                    <div>
+                                        <h5 className="font-bold text-[#083156] mb-2">{enrolled.slice.title}</h5>
+                                        <p className="text-sm">
+                                            <a href="#" className="font-light text-gray-400 text-xs flex items-center gap-1">
+                                                <span>
+                                                    Starting on 14th December
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        )
+                        : <p className="text-gray-500 text-sm border px-3 py-1.5 w-max rounded">You haven't enrolled in any slices</p>
+                    }
                 </div>
             </section>
 
@@ -114,42 +109,47 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                         </p>
                     </div>
                     <div className="mx-auto max-w-2xl pb-5 sm:pb-16 lg:max-w-7xl">
-                        <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
-                            {(mentorSlices ?? []).map((slice: Slice, index: number) => (
-                                <div key={index} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
-                                    <div className="mb-1 aspect-video bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-video">
-                                        <img
-                                            src={slice.image_path ? slice.image_path : "/images/banners/default-course-img.png"}
-                                            className="max-w-full object-fill"
-                                        />
-                                    </div>
-                                    <div className="py-2">
-                                        <div className='mb-2'>
-                                            <div className="flex items-center justify-between mb-1">
-                                                <div className="flex items-center gap-1">
-                                                    <h4 className="text-sm text-gray-700">
-                                                        <Link to={`my/${slice.id}`} className="!text-sm md:text-sm font-bold">
-                                                            <span aria-hidden="true" className="absolute inset-0" />
-                                                            {slice.title}
-                                                        </Link>
-                                                    </h4>
+                        <Suspense fallback={<p className="text-gray-500 text-sm">Loading your courses...</p>}>
+                            <Await resolve={mentorSlices}>
+                                {(mentorSlices) => (
+                                    <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
+                                        {(mentorSlices ?? []).map((slice: Slice, index: number) => (
+                                            <div key={index} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
+                                                <div className="mb-1 aspect-video bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-video">
+                                                    <img
+                                                        src={slice.image_path ? slice.image_path : "/images/banners/default-course-img.png"}
+                                                        className="max-w-full object-fill"
+                                                    />
                                                 </div>
-                                                <p className="text-xs text-sky-800 font-bold px-1 py-0.5 rounded-md">
-                                                    {slice.price.toLocaleString()}
-                                                </p>
+                                                <div className="py-2">
+                                                    <div className='mb-2'>
+                                                        <div className="flex items-center justify-between mb-1">
+                                                            <div className="flex items-center gap-1">
+                                                                <h4 className="text-sm text-gray-700">
+                                                                    <Link to={`my/${slice.id}`} className="!text-sm md:text-sm font-bold">
+                                                                        <span aria-hidden="true" className="absolute inset-0" />
+                                                                        {slice.title}
+                                                                    </Link>
+                                                                </h4>
+                                                            </div>
+                                                            <p className="text-xs text-sky-800 font-bold px-1 py-0.5 rounded-md">
+                                                                {slice.price.toLocaleString()}
+                                                            </p>
+                                                        </div>
+                                                        <div className="text-light text-xs mb-1">
+                                                            {slice.about}
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-xs text-gray-500">
+                                                        <Tags args={slice.tags} />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="text-light text-xs mb-1">
-                                                {slice.about}
-                                            </div>
-                                        </div>
-                                        <div className="text-xs text-gray-500">
-                                            <Tags args={slice.tags} />
-                                        </div>
+                                        ))}
                                     </div>
-                                </div>
-                            ))}
-
-                        </div>
+                                )}
+                            </Await>
+                        </Suspense>
                     </div>
                 </div>
             </IsAdmin>
@@ -165,41 +165,50 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                 </div>
 
                 <div className="mx-auto max-w-2xl pb-5 sm:pb-16 lg:max-w-7xl">
-                    <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
-                        {slices.map((slice: Slice, index: number) => (
-                            <div key={index} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
-                                <div className="mb-1 aspect-video bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-video">
-                                    <img
-                                        src={slice.image_path ? slice.image_path : "/images/banners/default-course-img.png"}
-                                        className="max-w-full object-fill"
-                                    />
-                                </div>
-                                <div className="py-2">
-                                    <div className='mb-2'>
-                                        <div className="flex items-center justify-between mb-1">
-                                            <div className="flex items-center gap-1">
-                                                <h4 className="text-sm text-gray-700">
-                                                    <Link to={slice.id} className="!text-sm md:text-sm font-bold">
-                                                        <span aria-hidden="true" className="absolute inset-0" />
-                                                        {slice.title}
-                                                    </Link>
-                                                </h4>
+                    <Suspense fallback={<p className="text-gray-500 text-sm">Loading suggested courses...</p>}>
+                        <Await resolve={slices}>
+                            {(slices) => (
+                                <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
+                                    {slices.length
+                                        ? slices.map((slice: Slice, index: number) => (
+                                            <div key={index} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
+                                                <div className="mb-1 aspect-video bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-video">
+                                                    <img
+                                                        src={slice.image_path ? slice.image_path : "/images/banners/default-course-img.png"}
+                                                        className="max-w-full object-fill"
+                                                    />
+                                                </div>
+                                                <div className="py-2">
+                                                    <div className='mb-2'>
+                                                        <div className="flex items-center justify-between mb-1">
+                                                            <div className="flex items-center gap-1">
+                                                                <h4 className="text-sm text-gray-700">
+                                                                    <Link to={slice.id} className="!text-sm md:text-sm font-bold">
+                                                                        <span aria-hidden="true" className="absolute inset-0" />
+                                                                        {slice.title}
+                                                                    </Link>
+                                                                </h4>
+                                                            </div>
+                                                            <p className="text-xs text-sky-800 font-bold px-1 py-0.5 rounded-md">
+                                                                {slice.price.toLocaleString()}
+                                                            </p>
+                                                        </div>
+                                                        <div className="text-light text-xs mb-1">
+                                                            {slice.about}
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-xs text-gray-500">
+                                                        <Tags args={slice.tags} />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <p className="text-xs text-sky-800 font-bold px-1 py-0.5 rounded-md">
-                                                {slice.price.toLocaleString()}
-                                            </p>
-                                        </div>
-                                        <div className="text-light text-xs mb-1">
-                                            {slice.about}
-                                        </div>
-                                    </div>
-                                    <div className="text-xs text-gray-500">
-                                        <Tags args={slice.tags} />
-                                    </div>
+                                        ))
+                                        : <p className="text-gray-500 text-sm border px-3 py-1.5 w-max rounded">Nothing here yet</p>
+                                    }
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            )}
+                        </Await>
+                    </Suspense>
                 </div>
 
             </div>
