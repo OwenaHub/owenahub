@@ -9,6 +9,7 @@ import useSession from '~/lib/session';
 import { getCreatedCourses } from '../_app.courses_.my_.$id/mentor-courses';
 import { Suspense } from 'react';
 import { SquareChartGantt } from 'lucide-react';
+import { truncateText } from '~/lib/texts';
 
 export const meta: MetaFunction = () => {
     return [
@@ -140,7 +141,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                                             </p>
                                                         </div>
                                                         <div className="text-light text-xs mb-1">
-                                                            {slice.about}
+                                                            {truncateText(slice.about)}
                                                         </div>
                                                     </div>
                                                     <div className="text-xs text-gray-500">
