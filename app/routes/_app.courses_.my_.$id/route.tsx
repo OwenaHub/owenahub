@@ -1,11 +1,10 @@
 import { Await, Link, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { createBite, getBites, getCourse } from "../_app.courses/courses";
-import { Button } from "~/components/ui/button";
-import { ChevronRight, Headset, SearchCheck, SquareChartGantt } from "lucide-react";
+import { SquareChartGantt } from "lucide-react";
 import { CreateBite } from "./create-bite";
 import { toast } from "~/hooks/use-toast";
 import { Suspense } from "react";
+import { createBite, getBites, getCourse } from "./mentor-courses";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
@@ -26,7 +25,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
             variant: 'default',
             description: 'Slice created successfully!'
         })
-        return redirect(`/courses/${formData.slice_id}`)
+        return redirect(`/courses/my/${formData.slice_id}`)
     } catch ({ response }: any) {
         const error: any = response?.data?.error;
         return error;
@@ -86,7 +85,7 @@ export default function ShowCourse({ loaderData, actionData }: Route.ComponentPr
                         />
                     </div>
 
-                    <div className="flex flex-col md:flex-row gap-6 md:items-stretch">
+                    <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-3">
                         <Suspense fallback={<p className="text-gray-500 text-sm">Loading bites</p>}>
                             <Await resolve={bites}>
                                 {(bites) => (

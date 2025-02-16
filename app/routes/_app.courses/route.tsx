@@ -1,11 +1,14 @@
-import { Link, redirect, useOutletContext, type MetaFunction } from 'react-router';
+import { Await, Link, redirect, useOutletContext, type MetaFunction } from 'react-router';
 import { IsAdmin } from '~/components/permissions/admin';
 import type { Route } from '../_app.courses/+types/route';
-import { getCourses, getCreatedCourses } from './courses';
+import { getCourses, getEnrolledCourses } from './courses';
 import { toast } from '~/hooks/use-toast';
 import { ToastAction } from '~/components/ui/toast';
 import Tags from '~/components/custom/tags';
 import useSession from '~/lib/session';
+import { getCreatedCourses } from '../_app.courses_.my_.$id/mentor-courses';
+import { Suspense } from 'react';
+import { SquareChartGantt } from 'lucide-react';
 
 export const meta: MetaFunction = () => {
     return [
@@ -17,12 +20,13 @@ export const meta: MetaFunction = () => {
 export async function clientLoader({ }: Route.ClientLoaderArgs) {
     const { getUserType } = useSession();
     try {
+        const enrolledSlices = await getEnrolledCourses();
+        const slices = await getCourses();
+
         const role = await getUserType();
         const mentorSlices = role === "admin" ? await getCreatedCourses() : null;
 
-        const slices = await getCourses();
-
-        return { mentorSlices, slices };
+        return { mentorSlices, slices, enrolledSlices };
     } catch ({ response }: any) {
         console.log(response);
 
@@ -41,15 +45,20 @@ export async function clientLoader({ }: Route.ClientLoaderArgs) {
 
 export default function Courses({ loaderData }: Route.ComponentProps) {
     const user: User = useOutletContext();
-    const { mentorSlices, slices }: any = loaderData;
+    const { mentorSlices, slices, enrolledSlices }: any = loaderData;
 
     return (
         <section className="md:px-10 mt-10">
             <section>
-                <div className=" md:mt-20 flex justify-between items-center">
-                    <h1 className="text-xl md:text-2xl text-primary-foreground font-bold">
-                        Courses
-                    </h1>
+                <div className=" md:mt-20 mb-8 flex justify-between items-center">
+                    <div>
+                        <h4 className="text-xl text-primary-foreground mb-3 font-bold">
+                            Courses
+                        </h4>
+                        <p className="text-sm leading-7">
+                            Here are coureses you have enrolled in
+                        </p>
+                    </div>
 
                     <IsAdmin user={user}>
                         <Link
@@ -60,9 +69,36 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                         </Link>
                     </IsAdmin>
                 </div>
-                <p className="py-7 text-sm text-gray-500 ">
-                    You aren't enrolled in any courses
-                </p>
+                <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-3">
+                    <Suspense fallback={<p className="text-gray-500 text-sm">Loading</p>}>
+                        <Await resolve={enrolledSlices}>
+                            {(enrolledSlices) => (
+                                enrolledSlices.length ? (
+                                    enrolledSlices.map((enrolled: any) => (
+                                        <div key={enrolled.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3">
+                                            <div>
+                                                <SquareChartGantt size={40} strokeWidth={1} />
+                                            </div>
+                                            <div>
+                                                <h5 className="font-bold text-[#083156] mb-2">{enrolled.slice.title}</h5>
+                                                <p className="text-sm">
+                                                    <a href="#" className="font-light text-gray-400 text-xs flex items-center gap-1">
+                                                        <span>
+                                                            Starting on 14th December
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="text-gray-500 text-sm">You haven't enrolled in any slices</p>
+                                )
+                            )}
+                        </Await>
+                    </Suspense>
+
+                </div>
             </section>
 
             <hr className="my-10" />

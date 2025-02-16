@@ -1,8 +1,7 @@
-import { Await, Form, Link, redirect } from "react-router";
+import { Form, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { createBite, getBites, getCourse } from "../_app.courses/courses";
-import { Clock, SquareChartGantt, User } from "lucide-react";
-import { Suspense } from "react";
+import { getCourse } from "../_app.courses/courses";
+import { Clock, Share2, User } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import Tags from "~/components/custom/tags";
 
@@ -10,15 +9,14 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
         if (!params.id) throw new Error("Bad Request")
         const { slice, is_enrolled } = await getCourse(params.id);
-        const bites = getBites(params.id);
-        return { slice, bites, is_enrolled };
+        return { slice, is_enrolled };
     } catch ({ response }: any) {
         return redirect('/courses')
     }
 }
 
 export default function ShowCourse({ loaderData }: Route.ComponentProps) {
-    const { slice, bites, is_enrolled }: any = loaderData;
+    const { slice, is_enrolled }: any = loaderData;
 
     return (
         <section className="md:px-10 mt-10">
@@ -44,9 +42,11 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                 </div>
                 {/* <hr className="my-5" /> */}
 
-                <div className="mb-14 flex flex-col md:flex-row md:items-start gap-8">
+                <div className="mb-10 flex flex-col md:flex-row md:items-start gap-8">
                     <div className="basis-8/12">
-                        <div className="font-bold mb-4">Course overview</div>
+                        <div className="font-bold mb-4 text-xl">
+                            Course overview
+                        </div>
                         <div className="text-light">
                             {slice.overview}
                         </div>
@@ -67,65 +67,31 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                         </div>
                         <hr className="my-5" />
                         {is_enrolled
-                            ? <Form
+                            ? <Button
+                                disabled
+                                className="w-full py-6 text-sm font-bold uppercase rounded-lg">
+                                Already enrolled
+                            </Button>
+
+                            : <Form
                                 action={`/courses/enroll/${slice.id}`}
-                                method="POST"
-                            >
-                                <Button
-                                    disabled
-                                    className="w-full py-6 text-sm font-bold uppercase rounded-lg"
-                                >
-                                    Already enrolled
+                                method="POST">
+                                <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
+                                    Enroll now
                                 </Button>
                             </Form>
-                            : <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
-                                Enroll now
-                            </Button>
                         }
                     </div>
                 </div>
 
                 <div className="mb-10">
-                    <div className="flex items-center justify-between mb-8">
-                        <h2 className="font-bold">
-                            Course content
-                        </h2>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row gap-6 md:items-stretch">
-                        <Suspense fallback={<p className="text-gray-500 text-sm">Loading bites</p>}>
-                            <Await resolve={bites}>
-                                {(bites) => (
-                                    bites.length ? (
-                                        bites.map((bite: any) => (
-                                            <div key={bite.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3">
-                                                <div>
-                                                    <SquareChartGantt size={40} strokeWidth={1} />
-                                                </div>
-                                                <div>
-                                                    <h5 className="font-bold text-[#083156] mb-2">{bite.title}</h5>
-                                                    <p className="text-sm">
-                                                        <a href="tel:+2348026658956" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
-                                                            <span>
-                                                                {bite.description}
-                                                            </span>
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <p className="text-gray-500 text-sm">No bites available</p>
-                                    )
-                                )}
-                            </Await>
-                        </Suspense>
-
-                    </div>
+                    <Button className="flex items-center gap-1 rounded-full w-full md:w-max px-6 py-5" variant={"outline"}>
+                        <Share2 /> <span>Share this course</span>
+                    </Button>
                 </div>
 
             </section>
-        </section>
+        </section >
 
     )
 }
