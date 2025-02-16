@@ -1,7 +1,6 @@
 import axios, { type AxiosError, type AxiosInstance } from "axios";
 import { API_URL, BASE_URL } from "./utils";
 import { toast } from "~/hooks/use-toast";
-import { useNavigate } from "react-router";
 
 const client: AxiosInstance = axios.create({
     baseURL: `${API_URL}`,
@@ -22,8 +21,8 @@ client.interceptors.response.use((response) => response,
             console.log(error);
 
             if (error.response?.status === 401) {
-                const navigate = useNavigate();
-                navigate("/");
+                // const navigate = useNavigate();
+                // navigate("/");
             }
 
             if (error.response?.status === 500) {

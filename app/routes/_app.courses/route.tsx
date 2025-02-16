@@ -24,6 +24,8 @@ export async function clientLoader({ }: Route.ClientLoaderArgs) {
 
         return { mentorSlices, slices };
     } catch ({ response }: any) {
+        console.log(response);
+
         toast({
             variant: "destructive",
             title: "Something went wrong",
@@ -33,13 +35,13 @@ export async function clientLoader({ }: Route.ClientLoaderArgs) {
                     Refresh
                 </ToastAction>,
         })
-        return redirect('.');
+        return;
     }
 }
 
 export default function Courses({ loaderData }: Route.ComponentProps) {
     const user: User = useOutletContext();
-    const { mentorSlices, slices } = loaderData;
+    const { mentorSlices, slices }: any = loaderData;
 
     return (
         <section className="md:px-10 mt-10">
@@ -90,7 +92,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                             <div className="flex items-center justify-between mb-1">
                                                 <div className="flex items-center gap-1">
                                                     <h4 className="text-sm text-gray-700">
-                                                        <Link to={slice.id} className="!text-sm md:text-sm font-bold">
+                                                        <Link to={`my/${slice.id}`} className="!text-sm md:text-sm font-bold">
                                                             <span aria-hidden="true" className="absolute inset-0" />
                                                             {slice.title}
                                                         </Link>
@@ -104,9 +106,9 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                                 {slice.about}
                                             </div>
                                         </div>
-                                        <p className="text-xs text-gray-500">
+                                        <div className="text-xs text-gray-500">
                                             <Tags args={slice.tags} />
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -121,6 +123,9 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                     <h4 className="md:mt-20 text-xl text-primary-foreground mb-3 font-bold">
                         Suggested courses?
                     </h4>
+                    <p className="text-sm leading-7">
+                        Here are courses you have created on OwenaHub
+                    </p>
                 </div>
 
                 <div className="mx-auto max-w-2xl pb-5 sm:pb-16 lg:max-w-7xl">

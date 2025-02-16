@@ -1,11 +1,11 @@
 import { Await, Link, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
 import { createBite, getBites, getCourse } from "../_app.courses/courses";
-import { Clock, SquareChartGantt, User } from "lucide-react";
+import { Button } from "~/components/ui/button";
+import { ChevronRight, Headset, SearchCheck, SquareChartGantt } from "lucide-react";
+import { CreateBite } from "./create-bite";
 import { toast } from "~/hooks/use-toast";
 import { Suspense } from "react";
-import { Button } from "~/components/ui/button";
-import Tags from "~/components/custom/tags";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
@@ -18,66 +18,72 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     }
 }
 
-export default function ShowCourse({ loaderData }: Route.ComponentProps) {
+export async function clientAction({ request }: Route.ClientActionArgs) {
+    const formData = Object.fromEntries(await request.formData());
+    try {
+        await createBite(formData);
+        toast({
+            variant: 'default',
+            description: 'Slice created successfully!'
+        })
+        return redirect(`/courses/${formData.slice_id}`)
+    } catch ({ response }: any) {
+        const error: any = response?.data?.error;
+        return error;
+    }
+
+}
+
+export default function ShowCourse({ loaderData, actionData }: Route.ComponentProps) {
     const { slice, bites }: any = loaderData;
+    const error = actionData;
 
     return (
         <section className="md:px-10 mt-10">
             <section>
-                <div className="py-10 px-5 mb-8 rounded-2xl md:mt-20 border border-sky-700 text-sky-900 bg-sky-100">
-                    <h1 className="text-2xl md:text-3xl text-primary-foreground font-bold">
+                <div className="md:mt-20">
+                    <p className="text-sm rounded-md w-max mb-4 border border-sky-700 text-sky-900 px-2 bg-sky-100">
+                        <Link to="/courses">Your slices </Link> / {slice.title}
+                    </p>
+                    <h1 className="text-xl md:text-2xl text-primary-foreground font-bold">
                         {slice.title}
                     </h1>
-                    <p className="text-sm mt-2 leading-tight">
-                        {slice.about}
-                    </p>
-
-                    <div className="mt-6 font-semibold text-sm">
-                        <p className="flex items-center gap-1 mb-1">
-                            <User size={18} />
-                            <span>OwenaHub</span>
-                        </p>
-                        <p className="flex items-center gap-1">
-                            <Clock size={18} />
-                            <span>{slice.duration} weeks</span>
-                        </p>
-                    </div>
                 </div>
-                {/* <hr className="my-5" /> */}
+                <p className="text-sm text-gray-500 ">
+                    {slice.about}
+                </p>
+                <hr className="my-5" />
 
-                <div className="mb-14 flex flex-col md:flex-row md:items-start gap-8">
-                    <div className="basis-8/12">
-                        <div className="font-bold mb-4">Course overview</div>
-                        <div className="text-light">
+                <div className="px-4 py-4 mb-14 rounded-lg bg-gray-50 shadow">
+                    <div className="mb-3">
+                        <div className="font-bold mb-1">Course price</div>
+                        <div className="text-light text-sm">
+                            {slice.price} Weeks
+                        </div>
+                    </div>
+                    <div className="mb-3">
+                        <div className="font-bold mb-1">Course duration</div>
+                        <div className="text-light text-sm">
+                            {slice.duration} Weeks
+                        </div>
+                    </div>
+                    <div className="mb-3">
+                        <div className="font-bold mb-1">Course overview</div>
+                        <div className="text-light text-sm">
                             {slice.overview}
                         </div>
-                        <div className="mt-5">
-                            <Tags args={slice.tags} />
-                        </div>
-                    </div>
-                    <div className="p-4 border rounded-xl basis-4/12">
-                        <div className="text-primary text-xl font-bold">
-                            {slice.price ? (
-                                <span className="">
-                                    &#8358;{parseFloat(slice.price).toLocaleString()} {" "}
-                                    <span className="line-through font-normal text-gray-500">
-                                        &#8358;{(parseInt(slice.price) + 4000).toLocaleString()}
-                                    </span>
-                                </span>
-                            ) : "FREE"}
-                        </div>
-                        <hr className="my-5" />
-                        <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
-                            Enroll now
-                        </Button>
                     </div>
                 </div>
 
                 <div className="mb-10">
                     <div className="flex items-center justify-between mb-8">
-                        <h2 className="font-bold">
-                            Course content
+                        <h2 className="text-base md:text-2xl text-gray-600 font-bold">
+                            Course Bites
                         </h2>
+                        <CreateBite
+                            slice={slice}
+                            error={error}
+                        />
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-6 md:items-stretch">

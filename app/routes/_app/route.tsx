@@ -16,7 +16,7 @@ export async function clientLoader() {
         toast({
             variant: "destructive",
             title: "Your session has expired!",
-            description: "Login again to continue using Kribb",
+            description: "Login again to continue using OwenaHub",
         })
         return redirect('/login');
     }
