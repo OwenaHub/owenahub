@@ -1,8 +1,7 @@
-import { Await, Link, redirect } from "react-router";
+import { Await, Form, Link, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
 import { createBite, getBites, getCourse } from "../_app.courses/courses";
 import { Clock, SquareChartGantt, User } from "lucide-react";
-import { toast } from "~/hooks/use-toast";
 import { Suspense } from "react";
 import { Button } from "~/components/ui/button";
 import Tags from "~/components/custom/tags";
@@ -67,9 +66,11 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                             ) : "FREE"}
                         </div>
                         <hr className="my-5" />
-                        <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
-                            Enroll now
-                        </Button>
+                        <Form action={`/courses/enroll/${slice.id}`} method="POST">
+                            <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
+                                Enroll now
+                            </Button>
+                        </Form>
                     </div>
                 </div>
 
