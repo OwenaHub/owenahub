@@ -1,3 +1,12 @@
+import type { MetaFunction } from "react-router";
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Payments | OwenaHub" },
+        { name: "description", content: "The Learner's Hub" },
+    ];
+};
+
 export default function Payments() {
     return (
         <section className="md:px-10 mt-10">

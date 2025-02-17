@@ -1,4 +1,4 @@
-import { Form, Link, redirect, useNavigation } from "react-router";
+import { Form, Link, redirect, useNavigation, type MetaFunction } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -7,6 +7,14 @@ import loginUser from "./login";
 import { toast } from "~/hooks/use-toast";
 import { Loader } from "lucide-react";
 import InputError from "~/components/forms/input-error";
+
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Login | OwenaHub" },
+        { name: "description", content: "The Learner's Hub" },
+    ];
+};
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
     const formData = await request.formData();

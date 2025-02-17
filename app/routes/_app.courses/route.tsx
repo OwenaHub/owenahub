@@ -1,4 +1,4 @@
-import { Await, Link, redirect, useOutletContext, type MetaFunction } from 'react-router';
+import { Await, Link, useOutletContext, type MetaFunction } from 'react-router';
 import { IsAdmin } from '~/components/permissions/admin';
 import type { Route } from '../_app.courses/+types/route';
 import { getCourses, getEnrolledCourses } from './courses';

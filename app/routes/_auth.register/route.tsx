@@ -1,5 +1,5 @@
-import { BadgeCheck, BedDouble, Ellipsis, Laptop, Loader } from "lucide-react";
-import { Form, Link, redirect, useNavigation } from "react-router";
+import { BadgeCheck, CheckCheck, Laptop, Loader } from "lucide-react";
+import { Form, Link, redirect, useNavigation, type MetaFunction } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import type { Route } from "../../+types/root";
@@ -7,6 +7,13 @@ import { toast } from "~/hooks/use-toast";
 import registerUser from "./register";
 import { ToastAction } from "~/components/ui/toast";
 import InputError from "~/components/forms/input-error";
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Register | OwenaHub" },
+        { name: "description", content: "The Learner's Hub" },
+    ];
+};
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
     const formData = await request.formData();
@@ -39,35 +46,35 @@ export default function Register({ actionData }: Route.ComponentProps) {
 
     return (
         <section className="container">
-            <div className="max-w-fit mx-auto md:flex items-center gap-10 justify-center py-10">
+            <div className="max-w-fit mx-auto md:flex items-start gap-10 justify-center py-10">
                 <div className="flex-1 hidden md:block">
-                    <h1 className="pb-5 text-primary-foreground font-bold text-2xl mb-5">
+                    <h1 className="pb-5 text-primary-foreground font-bold text-2xl my-5">
                         Sign up for free, <br className="md:block hidden" />
                         unlimited practice!
                     </h1>
                     <div className="flex flex-col gap-5">
-                        <div className="flex items-center gap-5">
-                            <div className="bg-secondary outline outline-1 outline-secondary-foreground p-1 rounded-lg border-2 border-white">
-                                <Laptop size="25" strokeWidth={"1.5"} className="text-secondary-foreground" />
+                        <div className="flex items-center gap-3">
+                            <div className="bg-secondary outline-dotted outline-1 outline-offset-2 outline-secondary-foreground p-1 rounded-full border-2 border-white">
+                                <CheckCheck size="25" strokeWidth={"1.5"} className="text-secondary-foreground" />
                             </div>
                             <p className="text-sm">
-                                Unlimited practice tests for free
+                                Unlimited access to free courses
                             </p>
                         </div>
-                        <div className="flex items-center gap-5">
-                            <div className="bg-secondary outline outline-1 outline-secondary-foreground p-1 rounded-lg border-2 border-white">
-                                <BadgeCheck size="25" strokeWidth={"1.5"} className="text-secondary-foreground" />
+                        <div className="flex items-center gap-3">
+                            <div className="bg-secondary outline-dotted outline-1 outline-offset-2 outline-secondary-foreground p-1 rounded-full border-2 border-white">
+                                <CheckCheck size="25" strokeWidth={"1.5"} className="text-secondary-foreground" />
                             </div>
                             <p className="text-sm">
-                                Instant score estimate
+                                Instant feedback on assignments
                             </p>
                         </div>
-                        <div className="flex items-center gap-5">
-                            <div className="bg-secondary outline outline-1 outline-secondary-foreground p-1 rounded-lg border-2 border-white">
-                                <BedDouble size="25" strokeWidth={"1.5"} className="text-secondary-foreground" />
+                        <div className="flex items-center gap-3">
+                            <div className="bg-secondary outline-dotted outline-1 outline-offset-2 outline-secondary-foreground p-1 rounded-full border-2 border-white">
+                                <CheckCheck size="25" strokeWidth={"1.5"} className="text-secondary-foreground" />
                             </div>
                             <p className="text-sm">
-                                Tips on preparing for the test
+                                Expert tips to help you succeed
                             </p>
                         </div>
                     </div>

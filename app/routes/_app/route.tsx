@@ -46,9 +46,9 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                             </div>
                             <section>
                                 <div className="text-sm border rounded-md p-3 mb-4">
-                                    <div className="font-semibold pb-2 text-base">Upgrade to premium</div>
+                                    <div className="font-bold pb-2 text-base">Upgrade to premium</div>
                                     <p className="text-xs pb-3">
-                                        Unlock all features and get unlimited access to our support team.
+                                        Get full access to all courses offered on OwenaHub with a one time payment.
                                     </p>
                                     <button className="rounded-md w-full py-2 px-4 text-xs bg-primary-foreground font-bold text-secondary-auxiliary">
                                         Subscribe

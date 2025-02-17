@@ -1,6 +1,14 @@
 import { LogOut } from "lucide-react";
-import { Form, useOutletContext } from "react-router"
+import { Form, useOutletContext, type MetaFunction } from "react-router"
 import CustomAvatar from "~/components/custom/kribb-avatar";
+
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Account | OwenaHub" },
+        { name: "description", content: "The Learner's Hub" },
+    ];
+};
 
 export default function Account() {
     const user: User = useOutletContext();

@@ -1,7 +1,6 @@
-import { Link, redirect, useLocation, useNavigate, useSearchParams } from "react-router";
+import { Link, redirect, useLocation, useNavigate } from "react-router";
 import type { Route } from "../_app.courses_.$id/+types/route";
 import { getEnrolledCourse } from "../_app.courses/courses";
-import { Button } from "~/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 
 export async function clientLoader({ params, request }: Route.ClientLoaderArgs) {

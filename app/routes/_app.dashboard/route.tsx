@@ -1,10 +1,10 @@
 import { ChevronRight, Headset, SearchCheck } from "lucide-react";
-import { Link, Navigate, type MetaFunction } from "react-router";
+import { Link, type MetaFunction } from "react-router";
 import { Button } from "~/components/ui/button";
 
 export const meta: MetaFunction = () => {
     return [
-        { title: "Home | OwenaHub" },
+        { title: "Dashboard | OwenaHub" },
         { name: "description", content: "The Learner's Hub" },
     ];
 };
@@ -19,12 +19,12 @@ export default function Home() {
                             Start your learning journey today!
                         </h1>
                         <p className="text-sm leading-7">
-                            Join millions of students who have taken the Duolingo English Test.
+                            Join hundreds of students who have changed their lives with tech.
                         </p>
                     </div>
 
                     <Link to="/courses">
-                        <Button className="bg-secondary-foreground text-white text-sm font-bold px-5 uppercase w-full md:w-max">
+                        <Button className="bg-secondary-foreground text-white text-xs font-bold px-5 py-0 uppercase w-full md:w-max">
                             buy now
                         </Button>
                     </Link>
@@ -57,7 +57,7 @@ export default function Home() {
                             <Headset size={40} strokeWidth={1} />
                         </div>
                         <div>
-                            <h5 className="font-bold text-[#083156] mb-2">Talk to a today</h5>
+                            <h5 className="font-bold text-[#083156] mb-2">Talk to a mentor</h5>
                             <p className="text-sm">
                                 <a href="tel:+2348026658956" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
                                     <span>Make a call </span> <ChevronRight strokeWidth={3} size={12} />
@@ -72,9 +72,9 @@ export default function Home() {
                         <div>
                             <h5 className="font-bold text-[#083156] mb-2">Learn about the program</h5>
                             <p className="text-sm">
-                                <Link to="#" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
+                                <a href="https://youtu.be/hBDECFvIk8w?si=G_1qfFhyCYJWwVv8" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
                                     <span>Learn more </span> <ChevronRight strokeWidth={3} size={12} />
-                                </Link>
+                                </a>
                             </p>
                         </div>
                     </div>
