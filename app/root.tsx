@@ -40,13 +40,13 @@ export const meta: MetaFunction = () => {
     { name: "robots", content: "index, follow" },
     { property: "og:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
     { property: "og:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
-    { property: "og:image", content: "https://owenahub.com/images/logos/owenahub_logo.png" }, // Replace with actual image URL
+    { property: "og:image", content: "https://owenahub.com/images/logos/banner_image.png" }, // Replace with actual image URL
     { property: "og:url", content: "https://owenahub.com" },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
     { name: "twitter:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
-    { name: "twitter:image", content: "https://owenahub.com/images/logos/owenahub_logo.png" }, // Replace with actual image URL
+    { name: "twitter:image", content: "https://owenahub.com/images/logos/banner_image.png" }, // Replace with actual image URL
   ];
 }
 
