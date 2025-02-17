@@ -1,4 +1,5 @@
-import { useOutletContext } from "react-router"
+import { LogOut } from "lucide-react";
+import { Form, useOutletContext } from "react-router"
 import CustomAvatar from "~/components/custom/kribb-avatar";
 
 export default function Account() {
@@ -22,13 +23,18 @@ export default function Account() {
                     <div>
                         <CustomAvatar name={user.name} styles="w-[5rem] h-[5rem] text-2xl" />
                     </div>
-                    <div>
+                    <div className="pe-4">
                         <h5 className="text-sm text-secondary-foreground font-bold">
                             {user.name}
                         </h5>
                         <p className="text-sm leading-7">
                             {user.email}
                         </p>
+                    </div>
+                    <div className="border-s px-4 py-4">
+                        <Form method="POST" action="logout" className="cursor-pointer" title="logout">
+                            <button type="submit"><LogOut className="text-destructive" strokeWidth={1} /></button>
+                        </Form>
                     </div>
                 </div>
             </section>
