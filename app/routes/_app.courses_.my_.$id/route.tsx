@@ -57,7 +57,7 @@ export default function ShowCourse({ loaderData, actionData }: Route.ComponentPr
                     <div className="mb-3">
                         <div className="font-bold mb-1">Course price</div>
                         <div className="text-light text-sm">
-                            {slice.price} Weeks
+                            {slice.price ? `₦${parseInt(slice.price).toLocaleString()}` : "FREE"}
                         </div>
                     </div>
                     <div className="mb-3">
@@ -69,7 +69,7 @@ export default function ShowCourse({ loaderData, actionData }: Route.ComponentPr
                     <div className="mb-3">
                         <div className="font-bold mb-1">Course overview</div>
                         <div className="text-light text-sm">
-                            {slice.overview}
+                            <div dangerouslySetInnerHTML={{ __html: slice.overview }} />
                         </div>
                     </div>
                 </div>

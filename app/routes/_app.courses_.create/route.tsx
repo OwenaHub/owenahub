@@ -92,8 +92,8 @@ export default function CreateCourse({ actionData }: Route.ComponentProps) {
                         <InputError for="tags" error={errors} />
                     </div>
                     <div className="mb-5">
-                        <Label htmlFor="price">Price</Label>
-                        <Input className="bg-white" type="number" id="price" name="price" required />
+                        <Label htmlFor="price">Price (optional)</Label>
+                        <Input className="bg-white" type="number" id="price" name="price" />
                         <InputError for="price" error={errors} />
                     </div>
                     <div className="mb-5">

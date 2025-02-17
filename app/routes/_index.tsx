@@ -111,10 +111,10 @@ export default function HomePage() {
                                 <Link to="/register" className="transition block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-2.5 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
                                     GET STARTED
                                 </Link>
-                                <Link to="#learn-more"
+                                <a href="https://youtu.be/hBDECFvIk8w?si=G_1qfFhyCYJWwVv8" target="_blank"
                                     className="block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-2.5 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
                                     Learn more
-                                </Link>
+                                </a>
                             </div>
 
                         </div>
@@ -127,53 +127,6 @@ export default function HomePage() {
                         </div>
                     </section>
                 </header>
-                {/* <hr className="border-gray-200" />
-                <section className="py-10 container">
-                    <div className="mx-auto">
-                        <div className="lg:flex items-center justify-between opacity-90">
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
-                                <LaptopMinimalCheck className="text-[#39546A] opacity-50" size={40} />
-                                <div>
-                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Virtual Teams</strong>
-                                    <p className="leading-tight text-[#76818B]">
-                                        Join teams to work on <br className="hidden sm:inline" />
-                                        real-life projects.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
-                                <SquareUserRound className="text-[#39546A] opacity-50" size={40} />
-                                <div>
-                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Expert Sessions</strong>
-                                    <p className="leading-tight text-[#76818B]">
-                                        Connect With Skilled Mentors <br className="hidden sm:inline" />
-                                        That Inspire You.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
-                                <MonitorIcon className="text-[#39546A] opacity-50" size={40} />
-                                <div>
-                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Swift Sips</strong>
-                                    <p className="leading-tight text-[#76818B]">
-                                        Get into our short courses; <br className="hidden sm:inline" />
-                                        compact and focused.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="mx-2 my-8 lg:mx-4 lg:my-6 flex flex-row gap-3">
-                                <Album className="text-[#39546A] opacity-50" size={40} />
-                                <div>
-                                    <strong className="block font-semibold text-lg text-[#4B4B4B]">Enriching Repository</strong>
-                                    <p className="leading-tight text-[#76818B]">
-                                        Access a Wealth of Informative Articles <br className="hidden sm:inline" />
-                                        on our Blog.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section> */}
             </div>
 
             <section className="py-10">
@@ -254,7 +207,8 @@ export default function HomePage() {
                                     OwenaHub offers courses focused on mentorship. <br className="hidden lg:block" />
                                     Enroll in mentorship courses & learn at your own pace.
                                 </p>
-                                <a href="#" className="inline-block bg-[#FFE1BC] text-[#3D4D5C] rounded-xl px-6 py-2 font-bold hover:bg-gray-800 hover:text-white transition">
+                                <a href="https://youtu.be/hBDECFvIk8w?si=G_1qfFhyCYJWwVv8" target="_blank"
+                                    className="inline-block bg-[#FFE1BC] text-[#3D4D5C] rounded-xl px-6 py-2 font-bold hover:bg-gray-800 hover:text-white transition">
                                     Learn more
                                 </a>
                             </div>
@@ -278,10 +232,10 @@ export default function HomePage() {
                                 <p className="text-lg leading-relaxed mb-4">
                                     Work towards long-term goals by connecting <br className="hidden lg:block" /> with mentors for private sessions.
                                 </p>
-                                <a href="#" target="_blank"
+                                <Link to="/register"
                                     className="inline-block bg-[#FFE1BC] text-[#3D4D5C] rounded-xl px-6 py-2 font-bold hover:bg-gray-800 hover:text-white transition">
                                     See mentors for you <ArrowRight className="inline-block relative ms-1" size={16} />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -304,7 +258,7 @@ export default function HomePage() {
                                     From Web Development to Software Engineering, <br className="hidden lg:block" /> there are thousands of top
                                     experts, you can get access for free.
                                 </p>
-                                <a href="https://youtube.com/@owenahub"
+                                <a href="https://youtube.com/@owenahub" target="_blank"
                                     className="inline-block bg-[#FFE1BC] text-[#3D4D5C] rounded-xl px-6 py-2 font-bold hover:bg-gray-800 hover:text-white transition">
                                     Learn more
                                 </a>
@@ -328,10 +282,10 @@ export default function HomePage() {
                                 </p>
                             </div>
                             <div>
-                                <a href="https://forms.gle/JYjmF9iUcLjWHMor6" target="_blank"
+                                <Link to="/register"
                                     className="inline-block w-full md:w-max bg-secondary-auxiliary text-black rounded-xl shadow font-bold px-6 py-3.5 hover:bg-gray-800 transition">
                                     GET STARTED
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -383,7 +337,7 @@ export default function HomePage() {
                         </div>
                         <div>
                             <h2 className="text-sm pb-2 font-semibold">QUICK LINKS</h2>
-                            <a href="/articles" className="block hover:underline text-xs pb-2">
+                            <a href="#" className="block hover:underline text-xs pb-2">
                                 OwenaHub Blog
                             </a>
                             <a href="#"

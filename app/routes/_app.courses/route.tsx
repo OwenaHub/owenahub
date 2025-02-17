@@ -10,6 +10,7 @@ import { getCreatedCourses } from '../_app.courses_.my_.$id/mentor-courses';
 import { Suspense } from 'react';
 import { SquareChartGantt } from 'lucide-react';
 import { truncateText } from '~/lib/texts';
+import { STORAGE_URL } from '~/lib/utils';
 
 export const meta: MetaFunction = () => {
     return [
@@ -116,18 +117,20 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                         <Suspense fallback={<p className="text-gray-500 text-sm">Loading your courses...</p>}>
                             <Await resolve={mentorSlices}>
                                 {(mentorSlices) => (
-                                    <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
+                                    <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-3">
                                         {(mentorSlices ?? []).map((slice: Slice, index: number) => (
                                             <div key={index} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
                                                 <div className="mb-1 aspect-video bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-video">
                                                     <img
-                                                        src={slice.image_path ? slice.image_path : "/images/banners/default-course-img.png"}
-                                                        className="max-w-full object-fill"
+                                                        src={slice.image_path
+                                                            ? `${STORAGE_URL}/${slice.image_path}`
+                                                            : "/images/banners/default-course-img.png"}
+                                                        className="w-full h-full object-cover rounded"
                                                     />
                                                 </div>
                                                 <div className="py-2">
                                                     <div className='mb-2'>
-                                                        <div className="flex items-center justify-between mb-1">
+                                                        <div className="flex items-center justify-between mb-2">
                                                             <div className="flex items-center gap-1">
                                                                 <h4 className="text-sm text-gray-700">
                                                                     <Link to={`my/${slice.id}`} className="!text-sm md:text-sm font-bold">
@@ -136,9 +139,10 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                                                     </Link>
                                                                 </h4>
                                                             </div>
-                                                            <p className="text-xs text-sky-800 font-bold px-1 py-0.5 rounded-md">
-                                                                {slice.price.toLocaleString()}
+                                                            <p className="text-sm text-sky-800 font-bold px-1 py-0.5 rounded-md">
+                                                                {slice.price ? `₦${parseInt(slice.price).toLocaleString()}` : "FREE"}
                                                             </p>
+
                                                         </div>
                                                         <div className="text-light text-xs mb-1">
                                                             {truncateText(slice.about)}
@@ -172,19 +176,21 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                     <Suspense fallback={<p className="text-gray-500 text-sm">Loading suggested courses...</p>}>
                         <Await resolve={slices}>
                             {(slices) => (
-                                <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-3">
+                                <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-3">
                                     {slices.length
                                         ? slices.map((slice: Slice, index: number) => (
                                             <div key={index} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
                                                 <div className="mb-1 aspect-video bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-video">
                                                     <img
-                                                        src={slice.image_path ? slice.image_path : "/images/banners/default-course-img.png"}
-                                                        className="max-w-full object-fill"
+                                                        src={slice.image_path
+                                                            ? `${STORAGE_URL}/${slice.image_path}`
+                                                            : "/images/banners/default-course-img.png"}
+                                                        className="w-full h-full object-cover rounded"
                                                     />
                                                 </div>
                                                 <div className="py-2">
                                                     <div className='mb-2'>
-                                                        <div className="flex items-center justify-between mb-1">
+                                                        <div className="flex items-center justify-between mb-2">
                                                             <div className="flex items-center gap-1">
                                                                 <h4 className="text-sm text-gray-700">
                                                                     <Link to={slice.id} className="!text-sm md:text-sm font-bold">
@@ -193,12 +199,12 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                                                     </Link>
                                                                 </h4>
                                                             </div>
-                                                            <p className="text-xs text-sky-800 font-bold px-1 py-0.5 rounded-md">
-                                                                {slice.price.toLocaleString()}
+                                                            <p className="text-sm text-sky-800 font-bold px-1 py-0.5 rounded-md">
+                                                                {slice.price ? `₦${parseInt(slice.price).toLocaleString()}` : "FREE"}
                                                             </p>
                                                         </div>
                                                         <div className="text-light text-xs mb-1">
-                                                            {slice.about}
+                                                            {truncateText(slice.about)}
                                                         </div>
                                                     </div>
                                                     <div className="text-xs text-gray-500">
