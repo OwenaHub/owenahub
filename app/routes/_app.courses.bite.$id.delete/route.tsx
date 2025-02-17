@@ -1,13 +1,22 @@
-import { redirect } from "react-router";
 import client from "~/lib/interceptor";
 import type { Route } from "../_app.account/+types/route";
-import { toast } from "~/hooks/use-toast";
+import { toast } from "sonner";
 
 export async function clientAction({ params }: Route.ClientActionArgs) {
-    await client.post(`/api/mentor/slices/bites/${params.id}/delete`);
-    toast({
-        variant: 'destructive',
-        description: 'Bite deleted!'
+    const promise = new Promise(async (resolve, reject) => {
+        try {
+            await client.delete(`/api/mentor/slices/bites/${params.id}/delete`);
+            resolve('Bite deleted successfully');
+        } catch (error) {
+            reject(error);
+        }
     });
+
+    toast.promise(promise, {
+        loading: 'Deleting bite...',
+        success: (message) => message as string,
+        error: 'Error deleting bite',
+    });
+
     return null;
 }
