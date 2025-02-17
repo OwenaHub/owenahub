@@ -6,9 +6,8 @@ import type { Route } from "../_app.courses/+types/route";
 import { toast } from "~/hooks/use-toast";
 import InputError from "~/components/forms/input-error";
 import { createCourse } from "../_app.courses_.my_.$id/mentor-courses";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
+import { TextEditor } from "~/components/custom/quill.client";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
     const formData = Object.fromEntries(await request.formData());
@@ -32,15 +31,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 export default function CreateCourse({ actionData }: Route.ComponentProps) {
     const errors = actionData;
-    const [overview, setOverview] = useState("<p>Start typing...</p>");
-
-    const editor = useEditor({
-        extensions: [StarterKit],
-        content: overview,
-        onUpdate: ({ editor }) => {
-            setOverview(editor.getHTML());
-        }
-    });
+    const [overview, setOverview] = useState("");
 
     return (
         <section className="md:px-10 my-10">
@@ -69,9 +60,15 @@ export default function CreateCourse({ actionData }: Route.ComponentProps) {
                         <InputError for="about" error={errors} />
                     </div>
                     <div className="mb-5">
+
                         <Label>Course overview</Label>
                         <div className="border rounded-lg bg-white">
-                            <EditorContent editor={editor} className="p-4" />
+                            <TextEditor
+                                theme="snow"
+                                placeholder="Write description"
+                                onChange={setOverview}
+                                value={overview}
+                            />
                         </div>
                         <InputError for="overview" error={errors} />
                         <input type="hidden" name="overview" value={overview} />

@@ -1,6 +1,6 @@
-import { Await, Link, redirect } from "react-router";
+import { Await, Link, redirect, useFetcher } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { SquareChartGantt } from "lucide-react";
+import { Trash } from "lucide-react";
 import { CreateBite } from "./create-bite";
 import { toast } from "~/hooks/use-toast";
 import { Suspense } from "react";
@@ -36,6 +36,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 export default function ShowCourse({ loaderData, actionData }: Route.ComponentProps) {
     const { slice, bites }: any = loaderData;
     const error = actionData;
+    const fetcher = useFetcher();
 
     return (
         <section className="md:px-10 mt-10">
@@ -91,14 +92,22 @@ export default function ShowCourse({ loaderData, actionData }: Route.ComponentPr
                                 {(bites) => (
                                     bites.length ? (
                                         bites.map((bite: any) => (
-                                            <div key={bite.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3">
+                                            <div key={bite.id} className="border rounded-lg p-3 gap-3">
                                                 <div>
-                                                    <SquareChartGantt size={40} strokeWidth={1} />
-                                                </div>
-                                                <div>
-                                                    <h5 className="font-bold text-[#083156] mb-2">{bite.title}</h5>
+                                                    <h5 className="font-bold text-black mb-1 flex items-center justify-between">
+                                                        <span>{bite.title}</span>
+                                                        <fetcher.Form
+                                                            method="POST"
+                                                            action={`/courses/bite/${bite.id}/delete`}
+                                                            className="p-1 rounded-full hover:bg-gray-100 cursor-pointer"
+                                                        >
+                                                            <button type="submit" disabled={fetcher.state != "idle"}>
+                                                                <Trash size={18} className="text-destructive" />
+                                                            </button>
+                                                        </fetcher.Form>
+                                                    </h5>
                                                     <p className="text-sm">
-                                                        <a href="tel:+2348026658956" className="font-bold text-sky-600 uppercase text-xs flex items-center gap-1">
+                                                        <a href="tel:+2348026658956" className="font-light text-xs flex items-center gap-1">
                                                             <span>
                                                                 {bite.description}
                                                             </span>

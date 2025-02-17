@@ -1,8 +1,7 @@
-import { EditorContent, useEditor } from "@tiptap/react"
-import StarterKit from "@tiptap/starter-kit"
 import { Loader } from "lucide-react"
 import { useState } from "react"
 import { Form, useNavigation } from "react-router"
+import { TextEditor } from "~/components/custom/quill.client"
 import { Button } from "~/components/ui/button"
 import {
     Dialog,
@@ -15,21 +14,12 @@ import {
 } from "~/components/ui/dialog"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
-import { Textarea } from "~/components/ui/textarea"
 
 export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
     const { state } = useNavigation();
     const busy: boolean = state === "submitting" || state === "loading";
 
-    const [content, setContent] = useState("<p>Start typing...</p>");
-
-    const editor = useEditor({
-        extensions: [StarterKit],
-        content: content,
-        onUpdate: ({ editor }) => {
-            setContent(editor.getHTML());
-        }
-    });
+    const [content, setContent] = useState("");
 
     return (
         <Dialog>
@@ -37,7 +27,7 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                 <Button variant="outline" className="rounded-lg uppercase text-xs">New bite</Button>
             </DialogTrigger>
             <DialogContent
-                className="sm:max-w-[425px]"
+                className="lg:max-w-4xl"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
@@ -74,7 +64,12 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                     <div className="mb-5">
                         <Label>Content</Label>
                         <div className="border rounded-lg bg-white">
-                            <EditorContent editor={editor} className="p-4" />
+                            <TextEditor
+                                theme="snow"
+                                placeholder="Write description"
+                                onChange={setContent}
+                                value={content}
+                            />
                         </div>
                         <input type="hidden" name="content" value={content} />
                     </div>

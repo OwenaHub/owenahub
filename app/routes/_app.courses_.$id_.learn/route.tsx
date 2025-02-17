@@ -51,7 +51,6 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
                         {bite
                             ? <>
                                 <div className="mb-10">
-
                                     <h4 className="text-xl text-primary-foreground mb-3 font-bold">
                                         {bite.title}
                                     </h4>
@@ -67,15 +66,15 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
                         }
                     </div>
                     <div className="basis-1/3">
-                        <div className="border p-3 rounded-xl">
-                            <h4 className="font-bold text-secondary-foreground border-b pb-2">
-                                All lessons
+                        <div className="border py-3 rounded-xl">
+                            <h4 className="text-secondary-foreground uppercase text-lg border-b px-3 pb-2">
+                                Lessons
                             </h4>
                             {bite_list.length
-                                ? bite_list.map((bite: any, index: number) => (
+                                ? bite_list.map((item: any, index: number) => (
                                     <div
-                                        key={bite.position}
-                                        className="border-gray-200 py-3 cursor-pointer hover:text-secondary-foreground transition"
+                                        key={item.position}
+                                        className={`border-gray-200 p-3 cursor-pointer hover:text-secondary transition ${item.id === bite.id && "bg-secondary-foreground text-white hover:text-secondary"}`}
                                         onClick={() => handleBiteChange(index + 1)}
                                     >
                                         <h5 className="text-sm font-bold">
@@ -90,6 +89,6 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
