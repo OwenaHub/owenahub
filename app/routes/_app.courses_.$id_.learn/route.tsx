@@ -83,7 +83,7 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
                                         <p className="text-xs">{bite.description}</p>
                                     </div>
                                 ))
-                                : <p className="text-sm text-gray-500 my-2">No lessons found</p>
+                                : <p className="text-sm text-gray-500 my-2 p-3">No lessons found</p>
                             }
                         </div>
                     </div>
