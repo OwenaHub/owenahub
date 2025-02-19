@@ -50,7 +50,6 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                         <Input
                             type="text"
                             name="title"
-                            placeholder="Introduction: Setting your environment"
                         />
                     </div>
                     <div className="mb-2">
@@ -58,7 +57,6 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                         <Input
                             type="text"
                             name="description"
-                            placeholder="Getting to know the impoeing process"
                         />
                     </div>
                     <div className="mb-5">

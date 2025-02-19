@@ -2,6 +2,7 @@ import { Link, redirect, useNavigate } from "react-router";
 import type { Route } from "../_app.courses_.$id/+types/route";
 import { getEnrolledCourse } from "../_app.courses/courses";
 import { ChevronLeft } from "lucide-react";
+import { toast } from "~/hooks/use-toast";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
@@ -11,6 +12,12 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 
         return { bite, bite_list };
     } catch ({ response }: any) {
+        let message = response.data.error ??= "Something went wrong";
+        toast({
+            variant: 'warning',
+            title: 'Content unavailable!',
+            description: message
+        })
         return redirect('/courses')
     }
 

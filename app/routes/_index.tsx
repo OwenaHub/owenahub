@@ -56,9 +56,10 @@ export default function HomePage() {
 
     return (
         <section className={`${busy && "opacity-35"} transition`}>
-            <div className="bg-primary py-16 relative">
+            <div className="bg-muted py-16 relative">
                 <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 container px-4">
-                    <nav className="bg-white/90 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg flex justify-between items-center gap-2">
+                    {/* Navbar */}
+                    <nav className="bg-white/60 z-50 border border-gray-100 backdrop-blur-md py-4 px-4 mx-auto rounded-xl shadow-lg flex justify-between items-center gap-2">
                         <div className="flex gap-2 items-center">
                             <img src="/images/logos/logo.png" width={30} />
                             <Link to="/" className="mt-1 font-extrabold text-primary-foreground">OwenaHub</Link>
@@ -92,9 +93,9 @@ export default function HomePage() {
                                         </Link>
                                     </div>
                                     <div className="py-4">
-                                        <Link to={"/classes"} className="font-light text-sm text-foreground flex gap-2 items-center">
+                                        <a href="tel:+2348026658956" className="font-light text-sm text-foreground flex gap-2 items-center">
                                             <span>Contact support</span> <ChevronRight size={12} />
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-4">
@@ -115,7 +116,7 @@ export default function HomePage() {
                             <h1 className="mt-3 z-10 capitalize text-4xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
                                 Build your career {" "}
                                 <br className="hidden md:block" />
-                                with <span className="">Expert mentors</span>.
+                                with <span className="text-foreground">Expert mentors</span>.
                             </h1>
 
                             <section className="flex flex-col gap-5 text-muted-foreground my-12">
