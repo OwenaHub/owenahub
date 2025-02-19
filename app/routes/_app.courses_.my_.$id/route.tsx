@@ -1,6 +1,6 @@
-import { Await, Link, redirect, useFetcher } from "react-router";
+import { Await, Link, redirect, useFetcher, useNavigate } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { Pencil, Trash } from "lucide-react";
+import { ChevronLeft, Pencil, Trash } from "lucide-react";
 import { CreateBite } from "./create-bite";
 import { toast } from "~/hooks/use-toast";
 import { Suspense } from "react";
@@ -48,14 +48,18 @@ export default function ShowCourse({ loaderData, actionData }: Route.ComponentPr
     const { slice, bites }: any = loaderData;
     const error = actionData;
     const fetcher = useFetcher();
+    const navigate = useNavigate();
 
     return (
         <section className="md:px-10 mt-10">
             <section>
                 <div className="md:mt-20">
-                    <p className="text-sm rounded-md w-max mb-4 border border-sky-700 text-sky-900 px-2 bg-sky-100">
-                        <Link to="/courses">Your slices </Link> / {slice.title}
-                    </p>
+                    <div className="mb-4">
+                        <Link to={"#"} onClick={() => navigate(-1)}
+                            className="flex gap-1 text-xs items-center uppercase hover:underline hover:underline-offset-2">
+                            <ChevronLeft size={18} strokeWidth={2} /> <span>Back</span>
+                        </Link>
+                    </div>
                     <h1 className="text-xl md:text-2xl text-primary-foreground font-bold">
                         {slice.title}
                     </h1>
