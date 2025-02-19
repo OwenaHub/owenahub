@@ -14,6 +14,7 @@ import {
 } from "~/components/ui/dialog"
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
+import { Textarea } from "~/components/ui/textarea"
 
 export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
     const { state } = useNavigation();
@@ -27,7 +28,7 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                 <Button variant="outline" className="rounded-lg uppercase text-xs">New bite</Button>
             </DialogTrigger>
             <DialogContent
-                className="lg:max-w-4xl"
+                className="lg:max-w-6xl"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
@@ -54,8 +55,7 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                     </div>
                     <div className="mb-2">
                         <Label>Description</Label>
-                        <Input
-                            type="text"
+                        <Textarea
                             name="description"
                         />
                     </div>

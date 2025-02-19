@@ -1,10 +1,22 @@
 import { Await, Link, redirect, useFetcher } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { Trash } from "lucide-react";
+import { Pencil, Trash } from "lucide-react";
 import { CreateBite } from "./create-bite";
 import { toast } from "~/hooks/use-toast";
 import { Suspense } from "react";
-import { createBite, getBites, getCourse } from "./mentor-courses";
+import { createBite, editBite, getBites, getCourse } from "./mentor-courses";
+
+import {
+    AlertDialog,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "~/components/ui/alert-dialog"
+import { Button } from "~/components/ui/button";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
@@ -30,7 +42,6 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
         const error: any = response?.data?.error;
         return error;
     }
-
 }
 
 export default function ShowCourse({ loaderData, actionData }: Route.ComponentProps) {
@@ -96,22 +107,47 @@ export default function ShowCourse({ loaderData, actionData }: Route.ComponentPr
                                                 <div>
                                                     <h5 className="font-bold text-black mb-1 flex items-center justify-between">
                                                         <span>{bite.title}</span>
-                                                        <fetcher.Form
-                                                            method="POST"
-                                                            action={`/courses/bite/${bite.id}/delete`}
-                                                            className="p-1 rounded-full hover:bg-gray-100 cursor-pointer"
-                                                        >
-                                                            <button type="submit" disabled={fetcher.state != "idle"}>
+                                                        <AlertDialog>
+                                                            <AlertDialogTrigger asChild>
                                                                 <Trash size={18} className="text-destructive" />
-                                                            </button>
-                                                        </fetcher.Form>
+                                                            </AlertDialogTrigger>
+                                                            <AlertDialogContent>
+                                                                <AlertDialogHeader>
+                                                                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                                                    <AlertDialogDescription>
+                                                                        Delete <span className="font-bold">
+                                                                            {bite.title}.
+                                                                        </span> This action cannot be undone.
+                                                                    </AlertDialogDescription>
+                                                                </AlertDialogHeader>
+                                                                <AlertDialogFooter>
+                                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                                    <fetcher.Form
+                                                                        method="POST"
+                                                                        action={`/courses/bite/${bite.id}/delete`}
+                                                                        className="rounded-full hover:bg-gray-100 cursor-pointer"
+                                                                    >
+                                                                        <Button
+                                                                            type="submit"
+                                                                            disabled={fetcher.state !== "idle"}
+                                                                            className="bg-destructive text-white px-4 py-2 rounded-md"
+                                                                        >
+                                                                            Delete
+                                                                        </Button>
+                                                                    </fetcher.Form>
+                                                                </AlertDialogFooter>
+                                                            </AlertDialogContent>
+                                                        </AlertDialog>
                                                     </h5>
                                                     <p className="text-sm">
-                                                        <a href="tel:+2348026658956" className="font-light text-xs flex items-center gap-1">
+                                                        <div className="font-light text-xs flex items-center gap-3">
                                                             <span>
                                                                 {bite.description}
                                                             </span>
-                                                        </a>
+                                                            <Link to={`bite/${bite.id}/edit`} className="hover:bg-gray-100 rounded-full p-1">
+                                                                <Pencil size={18} />
+                                                            </Link>
+                                                        </div>
                                                     </p>
                                                 </div>
                                             </div>

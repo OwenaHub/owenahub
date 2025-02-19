@@ -25,10 +25,12 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 
 export default function CourseLearn({ loaderData, params }: Route.ComponentProps) {
     const { bite, bite_list }: any = loaderData;
+    console.log(bite_list)
 
     const navigate = useNavigate();
 
     const handleBiteChange = (biteId: number) => {
+        console.log(biteId)
         navigate(`/courses/${params.id}/learn/bite/${biteId}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -53,7 +55,7 @@ export default function CourseLearn({ loaderData, params }: Route.ComponentProps
                                         {bite.description}
                                     </p>
                                 </div>
-                                <div className="font-sans">
+                                <div className="reader_content">
                                     <div dangerouslySetInnerHTML={{ __html: bite.content }} />
                                 </div>
                             </>
