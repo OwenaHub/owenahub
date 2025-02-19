@@ -2,8 +2,6 @@ import { Await, Link, useOutletContext, type MetaFunction } from 'react-router';
 import { IsAdmin } from '~/components/permissions/admin';
 import type { Route } from '../_app.courses/+types/route';
 import { getCourses, getEnrolledCourses } from './courses';
-import { toast } from '~/hooks/use-toast';
-import { ToastAction } from '~/components/ui/toast';
 import Tags from '~/components/custom/tags';
 import useSession from '~/lib/session';
 import { getCreatedCourses } from '../_app.courses_.my_.$id/mentor-courses';
@@ -11,6 +9,7 @@ import { Suspense } from 'react';
 import { SquareChartGantt } from 'lucide-react';
 import { truncateText } from '~/lib/texts';
 import { STORAGE_URL } from '~/lib/utils';
+import { formatRelativeDate } from '~/components/time-pipes/relative-date';
 
 export const meta: MetaFunction = () => {
     return [
@@ -32,16 +31,6 @@ export async function clientLoader({ }: Route.ClientLoaderArgs) {
         return { mentorSlices, slices, enrolledSlices };
     } catch ({ response }: any) {
         console.log(response);
-
-        toast({
-            variant: "destructive",
-            title: "Something went wrong",
-            description: "Reload this page, or try logging in again",
-            action:
-                <ToastAction altText="Report issue" className='text-sm' onClick={() => window.location.reload()}>
-                    Refresh
-                </ToastAction>,
-        })
         return;
     }
 }
@@ -83,9 +72,9 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                     <div>
                                         <h5 className="font-bold text-[#083156] mb-2">{enrolled.slice.title}</h5>
                                         <p className="text-sm">
-                                            <Link to={`${enrolled.slice_id}/learn/?bite=1`} className="font-light text-gray-400 text-xs flex items-center gap-1">
+                                            <Link to={`${enrolled.slice_id}/learn/bite/1`} className="font-normal text-gray-600 text-xs flex items-center gap-1">
                                                 <span>
-                                                    Starting on 14th December •
+                                                    {formatRelativeDate(enrolled.slice.start_date)} •
                                                 </span>
                                                 <span className='font-medium underline underline-offset-1 text-blue-600'>
                                                     continue

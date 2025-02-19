@@ -32,7 +32,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
         <>
             <div className="container mx-auto p">
                 <section className="flex flex-col md:flex-row min-h-screen">
-                    <aside className="md:block hidden py-6 pr-5 md:basis-1/5 sticky top-0 border-e">
+                    <aside className="md:block hidden py-6 pr-5 md:basis-1/5 sticky top-0 border-e max-h-screen">
                         <div className="flex flex-col justify-between h-full">
                             <div>
                                 <Link to={"/"} className='flex items-center gap-1'>

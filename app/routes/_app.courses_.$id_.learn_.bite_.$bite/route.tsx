@@ -1,19 +1,13 @@
-import { Link, redirect, useLocation, useNavigate } from "react-router";
+import { Link, redirect, useNavigate } from "react-router";
 import type { Route } from "../_app.courses_.$id/+types/route";
 import { getEnrolledCourse } from "../_app.courses/courses";
 import { ChevronLeft } from "lucide-react";
 
-export async function clientLoader({ params, request }: Route.ClientLoaderArgs) {
-    const url = new URL(request.url);
-
-    const searchParams = new URLSearchParams(url.search);
-
-    const bite_index = searchParams.get("bite");
-
+export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
-        if (!params.id || !bite_index) throw new Error("Bad Request");
+        if (!params.id || !params.bite) throw new Error("Bad Request");
 
-        const { bite, bite_list } = await getEnrolledCourse(params.id, bite_index);
+        const { bite, bite_list } = await getEnrolledCourse(params.id, params.bite);
 
         return { bite, bite_list };
     } catch ({ response }: any) {
@@ -22,19 +16,13 @@ export async function clientLoader({ params, request }: Route.ClientLoaderArgs) 
 
 }
 
-export default function CourseLearn({ loaderData }: Route.ComponentProps) {
+export default function CourseLearn({ loaderData, params }: Route.ComponentProps) {
     const { bite, bite_list }: any = loaderData;
-    console.log(bite);
-
 
     const navigate = useNavigate();
-    const location = useLocation();
 
     const handleBiteChange = (biteId: number) => {
-        const searchParams = new URLSearchParams(location.search);
-        searchParams.set("bite", biteId.toString());
-        navigate(`${location.pathname}?${searchParams.toString()}`);
-
+        navigate(`/courses/${params.id}/learn/bite/${biteId}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
@@ -54,11 +42,11 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
                                     <h4 className="text-xl text-primary-foreground mb-3 font-bold">
                                         {bite.title}
                                     </h4>
-                                    <p className="text-sm leading-7">
+                                    <p className="text-sm leading-tight px-2 py-4 border bg-gray-50 rounded-md">
                                         {bite.description}
                                     </p>
                                 </div>
-                                <div>
+                                <div className="font-sans">
                                     <div dangerouslySetInnerHTML={{ __html: bite.content }} />
                                 </div>
                             </>
@@ -78,9 +66,9 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
                                         onClick={() => handleBiteChange(index + 1)}
                                     >
                                         <h5 className="text-sm font-bold">
-                                            {bite.title}
+                                            {item.title}
                                         </h5>
-                                        <p className="text-xs">{bite.description}</p>
+                                        <p className="text-xs">{item.description}</p>
                                     </div>
                                 ))
                                 : <p className="text-sm text-gray-500 my-2 p-3">No lessons found</p>

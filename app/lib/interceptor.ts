@@ -20,12 +20,15 @@ client.interceptors.response.use((response) => response,
         try {
             console.log(error);
 
-            if (error.response?.status === 401) {
-                // const navigate = useNavigate();
-                // navigate("/");
+            if (error.response?.status === 500) {
+                toast({
+                    variant: "destructive",
+                    title: "Uh oh! Something went wrong.",
+                    description: "It's not you, it's us — If this persists contact support@kribb.ng",
+                })
             }
 
-            if (error.response?.status === 500) {
+            if (error.response?.status === 419) {
                 toast({
                     variant: "destructive",
                     title: "Uh oh! Something went wrong.",

@@ -5,6 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const BASE_URL = import.meta.env.BASE_URL ?? "http://localhost";
-export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
-export const STORAGE_URL = import.meta.env.VITE_STORAGE_URL ?? "http://localhost:8000/storage"
+export const BASE_URL = import.meta.env.BASE_URL;
+export const API_URL = import.meta.env.VITE_API_URL;
+export const STORAGE_URL = import.meta.env.VITE_STORAGE_URL
