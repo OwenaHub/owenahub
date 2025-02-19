@@ -25,7 +25,6 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
         toast({ description: "Welcome back!" });
         return redirect('/dashboard');
     } catch ({ response }: any) {
-        // console.error(response)
         const error: any = response?.data?.errors;
         return error;
     }
@@ -33,7 +32,6 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 export default function Login({ actionData }: Route.ComponentProps) {
     const errors = actionData;
-    console.log(errors);
 
     const { state } = useNavigation();
     const busy: boolean = state === "submitting" || state === "loading";

@@ -1,6 +1,7 @@
 import { Link, useNavigation } from "react-router";
-import { ArrowRight, Briefcase, Check, Code, Facebook, Instagram, LayoutTemplate, Regex, Twitter, UserRound } from "lucide-react";
+import { ArrowRight, Briefcase, Check, ChevronRight, Code, Facebook, Instagram, LayoutTemplate, Menu, Regex, Twitter, UserRound } from "lucide-react";
 import Badge from "~/components/custom/badge";
+import { useState } from "react";
 
 const categories = [
     {
@@ -51,38 +52,87 @@ const tracks = [
 export default function HomePage() {
     const { state } = useNavigation();
     let busy: boolean = state === "submitting" || state === "loading";
+    const [menu, setMenu] = useState(false);
 
     return (
         <section className={`${busy && "opacity-35"} transition`}>
-            <div className={`bg-muted ${busy && "opacity-35"}`}>
-                <nav className="container py-10 flex items-center gap-2">
-                    <img src="/images/logos/logo.png" width={25} />
-                    <Link to="/" className="font-bold">OwenaHub</Link>
-                </nav>
-                <header className="py-6 pb-10 lg:pt-10">
+            <div className="bg-primary py-16 relative">
+                <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 container px-4">
+                    <nav className="bg-white/90 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg flex justify-between items-center gap-2">
+                        <div className="flex gap-2 items-center">
+                            <img src="/images/logos/logo.png" width={30} />
+                            <Link to="/" className="mt-1 font-extrabold text-primary-foreground">OwenaHub</Link>
+                        </div>
+                        <div className="hidden md:block">
+                            <div className="flex items-center gap-2">
+                                <Link to="/login" className="border border-secondary-foreground text-[#083156] bg-white text-xs text-secondary-foreground font-extrabold rounded-[6px] uppercase hover:shadow-lg px-5 py-1.5">
+                                    Log in
+                                </Link>
+                                <Link to="/register" className="border border-[#083156] text-[#FBE56D] bg-[#083156] hover:bg-gray-800 text-xs font-bold rounded-[6px] uppercase px-5 py-1.5">
+                                    Sign up
+                                </Link>
+                            </div>
+                        </div>
+                        <button className="block md:hidden" type="button" onClick={() => setMenu(!menu)}>
+                            <Menu />
+                        </button>
+                    </nav>
+                    {menu && (
+                        <div className="bg-white/90 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg block md:hidden">
+                            <div>
+                                <div className="mb-3">
+                                    <div className="border-b py-4">
+                                        <Link to={"/courses"} className="font-bold text-primary-foreground">
+                                            Courses
+                                        </Link>
+                                    </div>
+                                    <div className="border-b py-4">
+                                        <Link to={"/classes"} className="font-bold text-primary-foreground">
+                                            Classes
+                                        </Link>
+                                    </div>
+                                    <div className="py-4">
+                                        <Link to={"/classes"} className="font-light text-sm text-foreground flex gap-2 items-center">
+                                            <span>Contact support</span> <ChevronRight size={12} />
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-4">
+                                    <Link to="/login" className="block w-full text-center border border-secondary-foreground text-[#083156] bg-white text-sm text-secondary-foreground font-extrabold rounded-[6px] uppercase hover:shadow-lg px-5 py-3">
+                                        Log in
+                                    </Link>
+                                    <Link to="/register" className="block w-full text-center border border-[#083156] text-[#FBE56D] bg-[#083156] hover:bg-gray-800 text-sm font-bold rounded-[6px] uppercase px-5 py-3">
+                                        Sign up
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+                <header className="pt-[4rem] pb-10 lg:pt-16">
                     <section className="md:flex container items-center gap-20">
                         <div className="text-start md:text-start">
                             <h1 className="mt-3 z-10 capitalize text-4xl lg:text-6xl font-extrabold tracking-tight text-primary-foreground">
                                 Build your career {" "}
                                 <br className="hidden md:block" />
-                                with <span className="text-foreground">Expert mentors</span>.
+                                with <span className="">Expert mentors</span>.
                             </h1>
 
                             <section className="flex flex-col gap-5 text-muted-foreground my-12">
                                 <div className="flex items-center gap-4">
-                                    <div className="rounded-md p-1.5 bg-secondary">
+                                    <div className="rounded-lg p-1.5 bg-secondary border border-secondary-foreground">
                                         <Check size={14} strokeWidth={4} className="text-secondary-foreground" />
                                     </div>
                                     <h2>Learn online, from professionals</h2>
                                 </div>
                                 <div className="flex items-center gap-4">
-                                    <div className="rounded-md p-1.5 bg-secondary">
+                                    <div className="rounded-lg p-1.5 bg-secondary border border-secondary-foreground">
                                         <Check size={14} strokeWidth={4} className="text-secondary-foreground" />
                                     </div>
                                     <h2>Get results in 3 months</h2>
                                 </div>
                                 <div className="flex items-center gap-4">
-                                    <div className="rounded-md p-1.5 bg-secondary">
+                                    <div className="rounded-lg p-1.5 bg-secondary border border-secondary-foreground">
                                         <Check size={14} strokeWidth={4} className="text-secondary-foreground" />
                                     </div>
                                     <h2>A fraction of the cost of other platforms</h2>
@@ -151,10 +201,10 @@ export default function HomePage() {
                                                                 <UserRound className="inline-block text-gray-400" size={16} />
                                                             </div>
                                                             <h4 className="text-sm text-gray-700">
-                                                                <a href="https://forms.gle/JYjmF9iUcLjWHMor6" target="_blank" className="md:text-sm">
+                                                                <Link to="/courses" className="md:text-sm">
                                                                     <span aria-hidden="true" className="absolute inset-0" />
                                                                     {track.tutor}
-                                                                </a>
+                                                                </Link>
                                                             </h4>
                                                         </div>
                                                         <p className="text-xs border border-primary bg-muted text-primary font-medium px-1 py-0.5 rounded-md">
