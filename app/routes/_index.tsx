@@ -99,10 +99,10 @@ export default function HomePage() {
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-4">
-                                    <Link to="/login" className="block w-full text-center border border-secondary-foreground text-[#083156] bg-white text-sm text-secondary-foreground font-extrabold rounded-[6px] uppercase hover:shadow-lg px-5 py-3">
+                                    <Link to="/login" className="block w-full text-center border border-secondary-foreground text-[#083156] bg-white text-sm text-secondary-foreground font-extrabold rounded-[6px] uppercase hover:shadow-lg py-2">
                                         Log in
                                     </Link>
-                                    <Link to="/register" className="block w-full text-center border border-[#083156] text-[#FBE56D] bg-[#083156] hover:bg-gray-800 text-sm font-bold rounded-[6px] uppercase px-5 py-3">
+                                    <Link to="/register" className="block w-full text-center border border-[#083156] text-[#FBE56D] bg-[#083156] hover:bg-gray-800 text-sm font-bold rounded-[6px] uppercase py-2">
                                         Sign up
                                     </Link>
                                 </div>

@@ -29,14 +29,13 @@ export async function clientLoader({ }: Route.ClientLoaderArgs) {
 
         return { mentorSlices, slices, enrolledSlices };
     } catch ({ response }: any) {
-        console.log(response);
-        return null;
+        return {};
     }
 }
 
 export default function Courses({ loaderData }: Route.ComponentProps) {
     const user: User = useOutletContext();
-    const { mentorSlices, slices, enrolledSlices }: any = loaderData;
+    const { enrolledSlices, slices, mentorSlices } = loaderData;
 
     return (
         <section className="md:px-10 mt-10">

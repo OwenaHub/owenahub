@@ -31,6 +31,9 @@ export const links: Route.LinksFunction = () => [
   },
   { rel: "stylesheet", href: stylesheet },
   { rel: "stylesheet", href: globalcss },
+  
+  { rel: "preconnect", href: "https://www.googletagmanager.com" },
+  { rel: "dns-prefetch", href: "https://www.googletagmanager.com" },
 ];
 
 export const meta: MetaFunction = () => {
@@ -63,6 +66,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </title>
         <Meta />
         <Links />
+
+        {/* Google Analytics Tag */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSLS7K2448"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-HSLS7K2448');
+            `,
+          }}
+        />
       </head>
       <body>
         {children}

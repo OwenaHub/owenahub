@@ -20,11 +20,10 @@ client.interceptors.response.use((response) => response,
         try {
             if (import.meta.env.DEV) console.log(error);
 
-
             if (error.response?.status === 500) {
                 toast({
                     variant: "destructive",
-                    title: "Uh oh! Something went wrong.",
+                    title: "Something went wrong on the server",
                     description: "It's not you, it's us — If this persists contact support@kribb.ng",
                 })
             }
@@ -32,10 +31,11 @@ client.interceptors.response.use((response) => response,
             if (error.response?.status === 419) {
                 toast({
                     variant: "destructive",
-                    title: "Uh oh! Something went wrong.",
+                    title: "Uh oh! Something went wrong - 419",
                     description: "It's not you, it's us — If this persists contact support@kribb.ng",
                 })
             }
+
 
             if (error.code === "ERR_NETWORK") {
                 toast({

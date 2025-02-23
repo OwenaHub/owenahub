@@ -18,7 +18,7 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
             title: 'Content unavailable!',
             description: message
         })
-        return redirect('/courses')
+        return redirect('/courses');
     }
 
 }

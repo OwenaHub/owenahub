@@ -2,10 +2,10 @@ import { Link, Outlet, redirect, useNavigation } from 'react-router'
 import AppName from '~/components/custom/app-name'
 import MobileNav from '~/components/navigation/mobile-nav'
 import NavButton from '~/components/navigation/nav-button'
-import { toast } from '~/hooks/use-toast'
 import APP_TABS from '~/components/navigation/app-tabs'
 import useSession from '~/lib/session'
 import type { Route } from '../_app/+types/route'
+import { toast } from '~/hooks/use-toast'
 
 export async function clientLoader() {
     const { validateSession, intendedRoute } = useSession();
