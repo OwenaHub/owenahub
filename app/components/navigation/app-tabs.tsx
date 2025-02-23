@@ -4,27 +4,27 @@ const APP_TABS = [
     {
         href: `/dashboard`,
         title: 'Dashboard',
-        icon: <LayoutGrid size={22} strokeWidth={2.2} />,
+        icon: <LayoutGrid size={22} strokeWidth={1.7} />,
     },
     {
         href: `/classes`,
         title: 'Classes',
-        icon: <Shapes size={22} strokeWidth={2.2} />,
+        icon: <Shapes size={22} strokeWidth={1.7} />,
     },
     {
         href: `/courses`,
         title: 'Courses',
-        icon: <GraduationCap size={22} strokeWidth={2.2} />,
+        icon: <GraduationCap size={22} strokeWidth={1.7} />,
     },
     {
         href: `/payments`,
         title: 'Payments',
-        icon: <Wallet size={22} strokeWidth={2.2} />,
+        icon: <Wallet size={22} strokeWidth={1.7} />,
     },
     {
         href: `/account`,
         title: 'Account',
-        icon: <UserRound size={22} strokeWidth={2.2} />,
+        icon: <UserRound size={22} strokeWidth={1.7} />,
     },
 ];
 

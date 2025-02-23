@@ -10,9 +10,9 @@ export default function NavButton({ href, label, icon }: {
             to={href}
             className={({ isActive, isPending }) =>
                 isActive
-                    ? "block mb-2 text-[#001836] bg-gray-100 border border-gray-300 rounded-lg"
+                    ? "block mb-2 text-[#001836] outline outline-1 outline-gray-300 outline-offset-1 bg-gray-100 rounded-md"
                     : isPending
-                        ? "block mb-2 rounded-lg border hover:bg-gray-100 text-[#67737E]"
+                        ? "block mb-2 rounded-lg  hover:bg-gray-100 text-[#67737E]"
                         : "block mb-2 rounded-lg hover:bg-gray-100 text-[#67737E]"
             }
         >

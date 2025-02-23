@@ -17,7 +17,8 @@ export async function clientLoader() {
             variant: "destructive",
             title: "Your session has expired!",
             description: "Login again to continue using OwenaHub",
-        })
+        });
+        console.log(window.location.href);
         return redirect('/login');
     }
 }
@@ -68,7 +69,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                 <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
                             </div>
                         </header>
-                        <div className={`${busy && "opacity-35"} transition`}>
+                        <div className={`${busy && "opacity-35"} transition overflow-x-hidden`}>
                             <Outlet context={user} />
                         </div>
                     </main>

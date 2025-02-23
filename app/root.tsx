@@ -15,6 +15,7 @@ import AppName from "./components/custom/app-name";
 import { Zap } from "lucide-react";
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "sonner";
+import ProgressBar from "./components/navigation/progress-bar";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -69,6 +70,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
         <Toaster />
         <Sonner />
+        <ProgressBar />
       </body>
     </html>
   );

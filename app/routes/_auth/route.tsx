@@ -4,9 +4,9 @@ import useSession from "~/lib/session";
 
 export async function clientLoader(_: Route.ClientLoaderArgs) {
     const { validateSession } = useSession();
-
     try {
         await validateSession();
+
         return redirect('/dashboard');
     } catch ({ response }: any) {
         return {};
@@ -15,7 +15,7 @@ export async function clientLoader(_: Route.ClientLoaderArgs) {
 
 export default function AuthLayout(_: Route.ComponentProps) {
     return (
-        <main className="transition">
+        <main>
             <header className="container py-4 flex justify-center">
                 <div className="flex items-center gap-2">
                     <img width="30" className="inline-block" src="/images/logos/logo.png" />
@@ -25,7 +25,9 @@ export default function AuthLayout(_: Route.ComponentProps) {
                     </Link>
                 </div>
             </header>
-            <Outlet />
+            <div className="transition">
+                <Outlet />
+            </div>
         </main>
     )
 }

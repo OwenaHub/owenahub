@@ -46,7 +46,6 @@ export default function EditBite({ actionData, loaderData }: Route.ComponentProp
     const { state } = useNavigation();
     const busy: boolean = state === "submitting" || state === "loading";
 
-
     return (
         <section className="md:px-10 my-10">
             <div className="md:mt-20">
@@ -109,7 +108,7 @@ export default function EditBite({ actionData, loaderData }: Route.ComponentProp
                     </div>
                     <div>
                         <Button type="submit" disabled={busy}>
-                            {busy ? (<Loader className="animate-spin" />) : "Create bite"}
+                            {busy ? (<Loader className="animate-spin" />) : "Edit bite"}
                         </Button>
                     </div>
                 </Form>

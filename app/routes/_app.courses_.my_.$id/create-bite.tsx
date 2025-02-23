@@ -34,7 +34,7 @@ export function CreateBite({ slice, error }: { slice: Slice, error?: string }) {
                 <DialogHeader>
                     <DialogTitle>Create new bite</DialogTitle>
                     <DialogDescription>
-                        Make changes to your profile here. Click save when you're done.
+                        Create learning resources. Click create when you're done.
                     </DialogDescription>
                 </DialogHeader>
                 <Form method="POST">

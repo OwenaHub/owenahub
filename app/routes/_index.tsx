@@ -59,7 +59,7 @@ export default function HomePage() {
             <div className="bg-muted py-16 relative">
                 <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 container px-4">
                     {/* Navbar */}
-                    <nav className="bg-white/60 z-50 border border-gray-100 backdrop-blur-md py-4 px-4 mx-auto rounded-xl shadow-lg flex justify-between items-center gap-2">
+                    <nav className="bg-white/90 shadow z-50 backdrop-blur-md p-3.5 mx-auto rounded-xl flex justify-between items-center gap-2">
                         <div className="flex gap-2 items-center">
                             <img src="/images/logos/logo.png" width={30} />
                             <Link to="/" className="mt-1 font-extrabold text-primary-foreground">OwenaHub</Link>
@@ -79,7 +79,7 @@ export default function HomePage() {
                         </button>
                     </nav>
                     {menu && (
-                        <div className="bg-white/90 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg block md:hidden">
+                        <div className="bg-white/90 transition z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg block md:hidden">
                             <div>
                                 <div className="mb-3">
                                     <div className="border-b py-4">
@@ -141,11 +141,11 @@ export default function HomePage() {
                             </section>
 
                             <div className="z-10 flex flex-col md:flex-row items-center gap-5">
-                                <Link to="/register" className="transition block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-2.5 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
+                                <Link to="/register" className="transition block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-3 shadow-md text-[#FBE56D] bg-[#083156] hover:bg-gray-800">
                                     GET STARTED
                                 </Link>
                                 <a href="https://youtu.be/hBDECFvIk8w?si=G_1qfFhyCYJWwVv8" target="_blank"
-                                    className="block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-2.5 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
+                                    className="block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-3 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
                                     Learn more
                                 </a>
                             </div>

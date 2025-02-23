@@ -1,6 +1,6 @@
 import { Link, redirect, useNavigate } from "react-router";
 import type { Route } from "../_app.courses_.$id/+types/route";
-import { getEnrolledCourse } from "../_app.courses/courses";
+import { getEnrolledCourse } from "../_app.courses/course";
 import { ChevronLeft } from "lucide-react";
 import { toast } from "~/hooks/use-toast";
 

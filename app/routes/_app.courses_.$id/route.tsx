@@ -1,6 +1,6 @@
 import { Form, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { getCourse } from "../_app.courses/courses";
+import { getCourse } from "../_app.courses/course";
 import { Clock, Share2, User } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import Tags from "~/components/custom/tags";

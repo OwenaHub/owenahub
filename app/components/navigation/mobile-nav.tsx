@@ -9,7 +9,7 @@ export default function MobileNav() {
     return (
         <>
             {!notNeeded && (
-                <nav className='bg-white p-2 fixed bottom-0 left-0 right-0 border-t !shadow-[0px_0px_25px_#80808041]'>
+                <nav className='bg-white p-2 fixed bottom-0 left-0 right-0 !shadow-[0px_0px_25px_#80808041]'>
                     <div className='flex justify-around'>
                         {APP_TABS.map((item) => (
                             <NavLink key={item.href} to={item.href}
