@@ -7,6 +7,7 @@ import loginUser from "./login";
 import { toast } from "~/hooks/use-toast";
 import { Loader } from "lucide-react";
 import InputError from "~/components/forms/input-error";
+import useSession from "~/lib/session";
 
 
 export const meta: MetaFunction = () => {
@@ -20,10 +21,14 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     const formData = await request.formData();
     const credentials = Object.fromEntries(formData);
 
+    const { getIntentedRoute } = useSession();
+    let route = (await getIntentedRoute()) ?? "/dashboard";
+
     try {
         await loginUser(credentials);
         toast({ description: "Welcome back!" });
-        return redirect('/dashboard');
+
+        return redirect(route);
     } catch ({ response }: any) {
         const error: any = response?.data?.errors;
         return error;

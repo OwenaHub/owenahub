@@ -79,7 +79,7 @@ export default function HomePage() {
                         </button>
                     </nav>
                     {menu && (
-                        <div className="bg-white/90 transition z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg block md:hidden">
+                        <div className="bg-white/90 mt-1 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg block md:hidden">
                             <div>
                                 <div className="mb-3">
                                     <div className="border-b py-4">

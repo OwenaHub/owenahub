@@ -30,7 +30,7 @@ export async function clientLoader({ }: Route.ClientLoaderArgs) {
         return { mentorSlices, slices, enrolledSlices };
     } catch ({ response }: any) {
         console.log(response);
-        return;
+        return null;
     }
 }
 

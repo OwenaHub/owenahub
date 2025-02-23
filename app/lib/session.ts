@@ -7,8 +7,10 @@ export default function useSession() {
         try {
             const response = await client.get(`api/user`);
             storeUser(response?.data);
+            console.log(response?.data);
             return response?.data;
         } catch (error) {
+            localStorage.removeItem(storageKeys.user);
             throw error;
         }
     }
@@ -16,8 +18,10 @@ export default function useSession() {
     async function getUserType() {
         try {
             const user = await getUser();
-            return user.account_type;
 
+            if (!user) return null;
+
+            return user.account_type;
         } catch (error) {
             throw error;
         }
@@ -42,5 +46,14 @@ export default function useSession() {
         }
     }
 
-    return { validateSession, getUserType };
+    async function intendedRoute(path: string) {
+        sessionStorage.setItem(storageKeys.route, path);
+    }
+
+    async function getIntentedRoute(): Promise<string> {
+        const route = sessionStorage.getItem(storageKeys.route);
+        return route || '';
+    }
+
+    return { validateSession, getUserType, intendedRoute, getIntentedRoute };
 }

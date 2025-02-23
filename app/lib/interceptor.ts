@@ -18,9 +18,8 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use((response) => response,
     async (error: AxiosError) => {
         try {
-            if (import.meta.env.DEV) {
-                console.log(error);
-            }
+            if (import.meta.env.DEV) console.log(error);
+
 
             if (error.response?.status === 500) {
                 toast({
@@ -46,9 +45,7 @@ client.interceptors.response.use((response) => response,
                 });
             }
         } catch (error) {
-            if (import.meta.env.DEV) {
-                console.log(error);
-            }
+            if (import.meta.env.DEV) console.log(error);
         }
         throw error
     }

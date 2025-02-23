@@ -8,17 +8,18 @@ import useSession from '~/lib/session'
 import type { Route } from '../_app/+types/route'
 
 export async function clientLoader() {
-    const { validateSession } = useSession();
+    const { validateSession, intendedRoute } = useSession();
+
     try {
         let user = await validateSession();
-        return { user }
+        return user
     } catch ({ response }: any) {
         toast({
             variant: "destructive",
             title: "Your session has expired!",
             description: "Login again to continue using OwenaHub",
         });
-        console.log(window.location.href);
+        intendedRoute(window.location.pathname);
         return redirect('/login');
     }
 }
@@ -27,7 +28,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
     const { state } = useNavigation();
     let busy: boolean = state === "submitting" || state === "loading";
 
-    let { user }: { user: User } = loaderData;
+    const user: User = loaderData;
 
     return (
         <>
