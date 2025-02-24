@@ -4,4 +4,5 @@ interface Bite extends Model {
     description: string;
     content: string;
     position: number;
+    completed?: boolean;
 }

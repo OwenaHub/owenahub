@@ -73,7 +73,7 @@ export default function HomePage() {
             <div className="bg-muted py-16 relative">
                 <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 container px-4">
                     {/* Navbar */}
-                    <nav className="bg-white/90 shadow z-50 backdrop-blur-md p-3.5 mx-auto rounded-xl flex justify-between items-center gap-2">
+                    <nav className="bg-white/90 border-t border-gray-200 shadow z-50 backdrop-blur-md p-3.5 mx-auto rounded-xl flex justify-between items-center gap-2">
                         <div className="flex gap-2 items-center">
                             <img src="/images/logos/logo.png" width={30} />
                             <Link to="/" className="mt-1 font-extrabold text-primary-foreground">OwenaHub</Link>
@@ -218,7 +218,7 @@ export default function HomePage() {
                                                 {/* Title & Description */}
                                                 <div className="flex flex-col gap-1.5 mb-1.5">
                                                     <div className="flex items-center">
-                                                        <h4 className="text-primary-foreground font-bold">
+                                                        <h4 className="text-primary-foreground font-bold leading-5">
                                                             <span className="leading-[-5px]">{track.title}</span>
                                                             <Link to="/courses">
                                                                 <span aria-hidden="true" className="absolute inset-0" />

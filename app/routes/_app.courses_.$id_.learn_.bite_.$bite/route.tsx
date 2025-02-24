@@ -23,7 +23,7 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     }
 }
 
-export async function clientAction({ request }: Route.ClientActionArgs) {
+export async function clientAction({ request, params }: Route.ClientActionArgs) {
     const formData = await request.formData();
     const credentials = Object.fromEntries(formData);
 
@@ -36,7 +36,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
             title: "Fantastic 🎊",
             description: "You've completed this bite, keep going!",
         })
-        return redirect('.');
+        return redirect(`/courses/${params.id}/learn`);
     } catch ({ response }: any) {
         console.error(response);
         toast({
@@ -74,17 +74,28 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
                                         {bite.description}
                                     </p>
                                 </div>
+
                                 <div className="reader_content">
                                     <div dangerouslySetInnerHTML={{ __html: bite.content }} />
                                 </div>
-                                <div className="mt-8">
-                                    <Form method="POST">
-                                        <input type="hidden" name="completed" value={1} />
-                                        <input type="hidden" name="bite_id" value={bite.id} />
-                                        <Button className="font-light w-full md:w-max px-6 rounded-full" variant="outline">
-                                            Mark complete <span className="text-xs">🎉</span>
+
+                                <div className="my-8">
+                                    {bite.completed
+                                        ? <Button
+                                            disabled
+                                            type="button"
+                                            className="bg-secondary font-light w-full md:w-max px-6 rounded-full"
+                                        >
+                                            Completed
                                         </Button>
-                                    </Form>
+                                        : <Form method="POST">
+                                            <input type="hidden" name="completed" value={1} />
+                                            <input type="hidden" name="bite_id" value={bite.id} />
+                                            <Button className="font-light w-full md:w-max px-6 rounded-full" variant="outline">
+                                                Mark complete <span className="text-xs">🎉</span>
+                                            </Button>
+                                        </Form>
+                                    }
                                 </div>
                             </>
                             : <p className="text-gray-500 text-sm">No content available</p>
