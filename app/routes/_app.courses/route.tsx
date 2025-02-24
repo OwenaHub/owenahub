@@ -74,7 +74,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                                                     <div>
                                                         <h5 className="font-bold text-[#083156] mb-2">{enrolled.slice.title}</h5>
                                                         <p className="text-sm">
-                                                            <Link to={`${enrolled.slice_id}/learn/bite/1`} className="font-normal text-gray-600 text-xs flex items-center gap-1">
+                                                            <Link to={`${enrolled.slice_id}/learn`} className="font-normal text-gray-600 text-xs flex items-center gap-1">
                                                                 <span>
                                                                     {formatRelativeDate(enrolled.slice.start_date)} •
                                                                 </span>

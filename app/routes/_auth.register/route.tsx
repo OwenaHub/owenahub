@@ -5,7 +5,6 @@ import { Input } from "~/components/ui/input";
 import type { Route } from "../../+types/root";
 import { toast } from "~/hooks/use-toast";
 import registerUser from "./register";
-import { ToastAction } from "~/components/ui/toast";
 import InputError from "~/components/forms/input-error";
 
 export const meta: MetaFunction = () => {
@@ -18,11 +17,9 @@ export const meta: MetaFunction = () => {
 export async function clientAction({ request }: Route.ClientActionArgs) {
     const formData = await request.formData();
     const credentials = Object.fromEntries(formData);
-    console.log(credentials);
 
     try {
         const res = await registerUser(credentials);
-        console.log(res);
         toast({
             title: "Congratulations! ✨",
             description: "Your account has been registered, we hope you enjoy your experience",

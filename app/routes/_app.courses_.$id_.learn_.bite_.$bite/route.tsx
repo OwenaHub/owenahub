@@ -1,16 +1,17 @@
-import { Link, redirect, useNavigate } from "react-router";
+import { Form, redirect, useNavigate } from "react-router";
 import type { Route } from "../_app.courses_.$id/+types/route";
-import { getEnrolledCourse } from "../_app.courses/course";
+import { createUserBite, getBite } from "../_app.courses/course";
 import { ChevronLeft } from "lucide-react";
 import { toast } from "~/hooks/use-toast";
+import { Button } from "~/components/ui/button";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
         if (!params.id || !params.bite) throw new Error("Bad Request");
 
-        const { bite, bite_list } = await getEnrolledCourse(params.id, params.bite);
+        const { bite } = await getBite(params.id, params.bite);
 
-        return { bite, bite_list };
+        return { bite };
     } catch ({ response }: any) {
         let message = response.data.error ??= "Something went wrong";
         toast({
@@ -20,30 +21,48 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
         })
         return redirect('/courses');
     }
+}
+
+export async function clientAction({ request }: Route.ClientActionArgs) {
+    const formData = await request.formData();
+    const credentials = Object.fromEntries(formData);
+
+    console.log(credentials);
+
+    try {
+        const res = await createUserBite(credentials);
+        console.log(res);
+        toast({
+            title: "Fantastic 🎊",
+            description: "You've completed this bite, keep going!",
+        })
+        return redirect('.');
+    } catch ({ response }: any) {
+        console.error(response);
+        toast({
+            variant: 'destructive',
+            title: 'Something went wrong!',
+            description: 'Oh well, try again later then'
+        })
+        const error: any = response?.data?.errors;
+        return error;
+    }
 
 }
 
-export default function CourseLearn({ loaderData, params }: Route.ComponentProps) {
-    const { bite, bite_list }: any = loaderData;
-    console.log(bite_list)
-
+export default function CourseLearn({ loaderData }: Route.ComponentProps) {
+    const { bite }: any = loaderData;
     const navigate = useNavigate();
-
-    const handleBiteChange = (biteId: number) => {
-        console.log(biteId)
-        navigate(`/courses/${params.id}/learn/bite/${biteId}`);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
 
     return (
         <section className="md:px-10 mt-10">
             <div className="md:mt-20 mb-8">
                 <div className="flex md:flex-row flex-col gap-10 md:gap-4">
-                    <div className="basis-2/3">
+                    <div className="basis-5/6">
                         <div className="mb-4">
-                            <Link to="/courses" className="flex gap-1 text-xs items-center uppercase hover:underline hover:underline-offset-2">
-                                <ChevronLeft size={18} strokeWidth={2} /> <span>Courses</span>
-                            </Link>
+                            <button onClick={() => navigate(-1)} className="flex gap-1 text-xs items-center uppercase hover:underline hover:underline-offset-2">
+                                <ChevronLeft size={18} strokeWidth={2} /> <span>Bites</span>
+                            </button>
                         </div>
                         {bite
                             ? <>
@@ -58,31 +77,18 @@ export default function CourseLearn({ loaderData, params }: Route.ComponentProps
                                 <div className="reader_content">
                                     <div dangerouslySetInnerHTML={{ __html: bite.content }} />
                                 </div>
+                                <div className="mt-8">
+                                    <Form method="POST">
+                                        <input type="hidden" name="completed" value={1} />
+                                        <input type="hidden" name="bite_id" value={bite.id} />
+                                        <Button className="font-light w-full md:w-max px-6 rounded-full" variant="outline">
+                                            Mark complete <span className="text-xs">🎉</span>
+                                        </Button>
+                                    </Form>
+                                </div>
                             </>
                             : <p className="text-gray-500 text-sm">No content available</p>
                         }
-                    </div>
-                    <div className="basis-1/3">
-                        <div className="border py-3 rounded-xl">
-                            <h4 className="text-secondary-foreground uppercase text-lg border-b px-3 pb-2">
-                                Lessons
-                            </h4>
-                            {bite_list.length
-                                ? bite_list.map((item: any, index: number) => (
-                                    <div
-                                        key={item.position}
-                                        className={`border-gray-200 p-3 cursor-pointer hover:text-secondary transition ${item.id === bite.id && "bg-secondary-foreground text-white hover:text-secondary"}`}
-                                        onClick={() => handleBiteChange(index + 1)}
-                                    >
-                                        <h5 className="text-sm font-bold">
-                                            {item.title}
-                                        </h5>
-                                        <p className="text-xs">{item.description}</p>
-                                    </div>
-                                ))
-                                : <p className="text-sm text-gray-500 my-2 p-3">No lessons found</p>
-                            }
-                        </div>
                     </div>
                 </div>
             </div>
