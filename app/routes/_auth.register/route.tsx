@@ -26,9 +26,6 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
         toast({
             title: "Congratulations! ✨",
             description: "Your account has been registered, we hope you enjoy your experience",
-            action: <ToastAction altText="Report issue">
-                <Link to={"/account/general"}>Setup profile</Link>
-            </ToastAction>,
         })
         return redirect('/dashboard');
     } catch ({ response }: any) {

@@ -40,7 +40,6 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                         </p>
                     </div>
                 </div>
-                {/* <hr className="my-5" /> */}
 
                 <div className="mb-10 flex flex-col md:flex-row md:items-start gap-8">
                     <div className="basis-8/12">
@@ -57,18 +56,30 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                     <div className="p-4 border rounded-xl basis-4/12">
                         <div className="text-primary text-xl font-bold">
                             {slice.price ? (
-                                <span className="">
-                                    &#8358;{parseFloat(slice.price).toLocaleString()} {" "}
+                                <p className='flex items-center gap-3'>
+                                    <span className='bg-secondary text-secondary-foreground rounded px-3 py-0.5 flex items-center gap-2'>
+                                        &#8358;{parseFloat(slice.price).toLocaleString()}
+                                    </span>
                                     <span className="line-through font-normal text-gray-500">
                                         &#8358;{(parseInt(slice.price) + 4000).toLocaleString()}
                                     </span>
-                                </span>
-                            ) : "FREE"}
+                                </p>
+                            ) :
+                                <p className='flex items-center gap-3'>
+                                    <span className='bg-secondary text-secondary-foreground rounded px-3 py-0.5 flex items-center gap-2'>
+                                        <span className='font-bold'>₦0.00</span>
+                                    </span>
+                                    <span className="font-light text-secondary-foreground line-through">
+                                        ₦{parseInt("8700").toLocaleString()}
+                                    </span>
+                                </p>
+                            }
                         </div>
                         <hr className="my-5" />
                         {is_enrolled
                             ? <Button
                                 disabled
+                                variant="outline"
                                 className="w-full py-6 text-sm font-bold uppercase rounded-lg">
                                 Already enrolled
                             </Button>
@@ -76,7 +87,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                             : <Form
                                 action={`/courses/enroll/${slice.id}`}
                                 method="POST">
-                                <Button className="w-full py-6 text-sm font-bold uppercase rounded-lg">
+                                <Button className="bg-primary-foreground text-secondary-auxiliary w-full py-6 text-sm font-bold uppercase rounded-lg hover:opacity-90">
                                     Enroll now
                                 </Button>
                             </Form>

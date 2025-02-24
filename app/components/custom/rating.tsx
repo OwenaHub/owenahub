@@ -1,6 +1,6 @@
 import { Star } from 'lucide-react';
 
-export default function Rating({ rating = 5 }: { rating: number }) {
+export default function Rating({ rating = 5 }: { rating?: number }) {
     const emptyStars = Array.from({ length: 5 - Math.round(rating) });
 
     return (

@@ -1,5 +1,6 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -16,6 +17,7 @@ import { Zap } from "lucide-react";
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "sonner";
 import ProgressBar from "./components/navigation/progress-bar";
+import { Button } from "./components/ui/button";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -31,7 +33,7 @@ export const links: Route.LinksFunction = () => [
   },
   { rel: "stylesheet", href: stylesheet },
   { rel: "stylesheet", href: globalcss },
-  
+
   { rel: "preconnect", href: "https://www.googletagmanager.com" },
   { rel: "dns-prefetch", href: "https://www.googletagmanager.com" },
 ];
@@ -133,14 +135,36 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <main className="fixed top-1/2 left-1/2 w-max transform -translate-x-1/2 -translate-y-1/2">
+      <div className="flex gap-4 px-2">
+        <div>
+          <img src="/images/logos/logo.png" alt="..." width={30} />
+        </div>
+        <div>
+          <h1 className="text-gray-500">{message} 😵</h1>
+          <p>{details}</p>
+          {stack && (
+            <pre className="w-full p-4 overflow-x-auto">
+              <code>{stack}</code>
+            </pre>
+          )}
+
+          <div className="mt-3 flex gap-5 items-center">
+            <Link to={"/"} >
+              <Button variant={"outline"} className="text-xs h-8 py-0">
+                Go home
+              </Button>
+            </Link>
+
+            <Button
+              onClick={() => window.location.reload()}
+              variant={"secondary"} className="text-xs h-8 py-0"
+            >
+              Reload
+            </Button>
+          </div>
+        </div>
+      </div>
+    </main >
   );
 }

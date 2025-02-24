@@ -23,6 +23,7 @@ body::-webkit-scrollbar-thumb:hover {
     background-color: #282c34;
     color: #fff;
     padding: 10px;
+    overflow-x: scroll;
     border-radius: 4px;
     font-family: "Courier New", monospace;
 }

@@ -22,12 +22,12 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     const credentials = Object.fromEntries(formData);
 
     const { getIntentedRoute } = useSession();
-    let route = (await getIntentedRoute()) ?? "/dashboard";
+    let route = (await getIntentedRoute());
 
     try {
         await loginUser(credentials);
         toast({ description: "Welcome back!" });
-
+        console.log(route)
         return redirect(route);
     } catch ({ response }: any) {
         const error: any = response?.data?.errors;

@@ -7,7 +7,6 @@ export default function useSession() {
         try {
             const response = await client.get(`api/user`);
             storeUser(response?.data);
-            console.log(response?.data);
             return response?.data;
         } catch (error) {
             localStorage.removeItem(storageKeys.user);
@@ -52,7 +51,7 @@ export default function useSession() {
 
     async function getIntentedRoute(): Promise<string> {
         const route = sessionStorage.getItem(storageKeys.route);
-        return route || '';
+        return route || '/dashboard';
     }
 
     return { validateSession, getUserType, intendedRoute, getIntentedRoute };
