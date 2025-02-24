@@ -25,7 +25,6 @@ export async function getCourses() {
 
 export async function getCourse(id: string) {
     const response = await client.get(`api/mentor/slices/${id}`);
-    console.log(response)
     return response.data.slice;
 };
 
@@ -51,25 +50,16 @@ export async function getBites(slice_id: string) {
 
 export async function getBite(bite_id: string) {
     const response = await client.get(`api/mentor/slices/bites/${bite_id}/edit`);
-    console.log(response);
     return response.data;
 }
 
 export async function editBite(props: { [k: string]: FormDataEntryValue }) {
-    // const formData = new FormData();
-
-    // for (const key in props) {
-    //     formData.append(key, props[key])
-    // };
-
-    // console.log(formData);
     let formData = {
         title: props.title,
         description: props.description,
         position: props.position,
         content: props.content,
     }
-    console.log(formData)
     const response = await client.patch(`api/mentor/slices/bites/${props.bite_id}/update`, formData);
 
     return response;

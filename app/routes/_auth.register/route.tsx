@@ -1,4 +1,4 @@
-import { BadgeCheck, CheckCheck, Laptop, Loader } from "lucide-react";
+import { CheckCheck, Loader } from "lucide-react";
 import { Form, Link, redirect, useNavigation, type MetaFunction } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";

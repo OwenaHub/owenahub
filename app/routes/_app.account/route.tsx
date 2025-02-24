@@ -1,6 +1,7 @@
 import { LogOut } from "lucide-react";
 import { Form, useOutletContext, type MetaFunction } from "react-router"
 import CustomAvatar from "~/components/custom/kribb-avatar";
+import { Button } from "~/components/ui/button";
 
 
 export const meta: MetaFunction = () => {
@@ -26,7 +27,7 @@ export default function Account() {
                 </div>
             </div>
 
-            <section>
+            <section className="flex md:flex-row md:gap-10 flex-col gap-8 md:items-center">
                 <div className="flex gap-2 items-center">
                     <div>
                         <CustomAvatar name={user.name} styles="w-[5rem] h-[5rem] text-2xl" />
@@ -39,11 +40,15 @@ export default function Account() {
                             {user.email}
                         </p>
                     </div>
-                    <div className="border-s px-4 py-4">
-                        <Form method="POST" action="logout" className="cursor-pointer" title="logout">
-                            <button type="submit"><LogOut className="text-destructive" strokeWidth={1} /></button>
-                        </Form>
-                    </div>
+                </div>
+
+                <div className="">
+                    <Form method="POST" action="logout" className="cursor-pointer" title="logout">
+                        <Button variant="outline" type="submit" className="rounded-full flex items-center gap-2 w-full">
+                            <span>Sign out</span>
+                            <LogOut className="text-destructive" strokeWidth={1} />
+                        </Button>
+                    </Form>
                 </div>
             </section>
         </section>

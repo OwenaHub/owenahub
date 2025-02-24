@@ -4,7 +4,7 @@ import { ChevronLeft, Pencil, Trash } from "lucide-react";
 import { CreateBite } from "./create-bite";
 import { toast } from "~/hooks/use-toast";
 import { Suspense } from "react";
-import { createBite, editBite, getBites, getCourse } from "./mentor-courses";
+import { createBite, getBites, getCourse } from "./mentor-courses";
 
 import {
     AlertDialog,
