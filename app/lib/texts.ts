@@ -1,6 +1,6 @@
-export function truncateText(text: string): string {
-    if (text.length > 50) {
-        return text.substring(0, 100) + "...";
+export function truncateText(text: string, length = 50): string {
+    if (text.length > length) {
+        return text.substring(0, length) + "...";
     }
     return text
 }

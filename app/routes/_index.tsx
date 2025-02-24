@@ -1,7 +1,9 @@
 import { Link, useNavigation } from "react-router";
-import { ArrowRight, Briefcase, Check, ChevronRight, Code, Facebook, Instagram, LayoutTemplate, Menu, Regex, Twitter, UserRound } from "lucide-react";
+import { ArrowRight, Briefcase, Check, ChevronRight, Code, Facebook, Instagram, LayoutTemplate, Menu, Regex, Star, Twitter, UserRound } from "lucide-react";
 import Badge from "~/components/custom/badge";
 import { useState } from "react";
+import { truncateText } from "~/lib/texts";
+import Rating from "~/components/custom/rating";
 
 const categories = [
     {
@@ -24,28 +26,40 @@ const categories = [
 
 const tracks = [
     {
-        title: "HTML, CSS and JavaScript",
-        tutor: "Ernest Haruna",
-        price: "FREE",
-        level: "Beginner"
+        title: "Web development: HTML, CSS and JavaScript",
+        price: "9,999",
+        discount: "15,999",
+        image_path: "/images/banners/html-course-banner.png",
+        rating: 4.5,
+        enrollCount: 103,
+        description: "Learn the basics of web development with HTML, CSS and JavaScript.",
     },
     {
         title: "Web development: JavaScript Mastery",
-        tutor: "Jacob Williams",
-        price: "Paid",
-        level: "Intermediate"
+        price: "14,500",
+        discount: "24,000",
+        image_path: "/images/banners/js-beginners-banner.png",
+        rating: 5,
+        enrollCount: 98,
+        description: "JavaScript core topics: TypeScript, Object-Oriented Programming, Maps, Promises",
     },
     {
-        title: "React JS: Frameworks/Libraries",
-        tutor: "James Arua",
-        price: "Paid",
-        level: "Upper intermediate"
+        title: "Web Development: Javascript Frameworks/Libraries",
+        price: "23,500",
+        discount: "30,000",
+        image_path: null,
+        rating: 4,
+        enrollCount: 58,
+        description: "Mastering popular JavaScript frameworks and libraries like React, Vue, and Angular.",
     },
     {
         title: "Algorithms and Data Structures",
-        tutor: "Ernest Haruna",
-        price: "Paid",
-        level: "Advanced"
+        price: "30,500",
+        discount: "40,000",
+        image_path: null,
+        rating: 3,
+        enrollCount: 83,
+        description: "Learn sorting, searching, dynamic programming, and more with real-world examples",
     },
 ]
 
@@ -185,40 +199,57 @@ export default function HomePage() {
                         </section>
 
                         <section>
-                            <div className="mx-auto max-w-2xl pb-10 sm:pb-16 lg:max-w-7xl">
+                            <div className="mx-auto pb-10 sm:pb-16">
                                 <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-6">
                                     {tracks.map((track, index) => (
-                                        <div key={index} className="group p-2 relative border border-gray-200 border-b-4 rounded-xl hover:border-b transition-all">
-                                            <div className="aspect-video p-2 bg-slate-100 w-full rounded-xl group-hover:opacity-75 lg:aspect-auto lg:h-36 overflow-hidden">
-                                                <div className="min-h-full text-secondary-foreground flex flex-col justify-center font-bold text-3xl md:text-2xl">
-                                                    {track.title}
-                                                </div>
+                                        <div key={index} className="group p-2 relative border border-gray-200 border-b-4 rounded-lg hover:border-b transition h-full flex flex-col">
+                                            {/* Course Image */}
+                                            <div className="aspect-video bg-slate-100 w-full rounded-lg group-hover:opacity-75 lg:aspect-auto lg:h-36 overflow-hidden">
+                                                <img
+                                                    src={track.image_path
+                                                        ? `${track.image_path}`
+                                                        : "/images/banners/default-course-img.png"}
+                                                    className="w-full h-full object-cover rounded"
+                                                />
                                             </div>
-                                            <div className="py-2">
-                                                <div>
-                                                    <div className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-1">
-                                                            <div className="h-5 w-5 border rounded-full flex justify-center items-center">
-                                                                <UserRound className="inline-block text-gray-400" size={16} />
-                                                            </div>
-                                                            <h4 className="text-sm text-gray-700">
-                                                                <Link to="/courses" className="md:text-sm">
-                                                                    <span aria-hidden="true" className="absolute inset-0" />
-                                                                    {track.tutor}
-                                                                </Link>
-                                                            </h4>
-                                                        </div>
-                                                        <p className="text-xs border border-primary bg-muted text-primary font-medium px-1 py-0.5 rounded-md">
-                                                            {track.price}
-                                                        </p>
+
+                                            {/* Content Wrapper */}
+                                            <div className="flex flex-col justify-between flex-grow mt-2">
+                                                {/* Title & Description */}
+                                                <div className="flex flex-col gap-1.5 mb-1.5">
+                                                    <div className="flex items-center">
+                                                        <h4 className="text-primary-foreground font-bold">
+                                                            <span className="leading-[-5px]">{track.title}</span>
+                                                            <Link to="/courses">
+                                                                <span aria-hidden="true" className="absolute inset-0" />
+                                                            </Link>
+                                                        </h4>
+                                                    </div>
+                                                    <div className="font-light text-xs">
+                                                        {truncateText(track.description, 100)}
                                                     </div>
                                                 </div>
-                                                <p className="text-sm text-gray-500">{track.level}</p>
+
+                                                {/* Rating & Price - Pushed to the bottom */}
+                                                <div className="mt-auto">
+                                                    <div className="flex items-center gap-2">
+                                                        <p className="font-extrabold text-yellow-800">4.5</p>
+                                                        <div className="flex gap-1">
+                                                            <Rating rating={track.rating} />
+                                                        </div>
+                                                        <p>({track.enrollCount})</p>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <p className="font-bold">₦{track.price}</p>
+                                                        <p className="font-light line-through">₦{track.discount}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
+
                         </section>
                     </div>
                 </div>
