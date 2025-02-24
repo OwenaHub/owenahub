@@ -1,7 +1,7 @@
 import { Link, useNavigation } from "react-router";
 import { ArrowRight, Briefcase, Check, ChevronRight, Code, Facebook, Instagram, LayoutTemplate, Menu, Regex, Star, Twitter, UserRound } from "lucide-react";
 import Badge from "~/components/custom/badge";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { truncateText } from "~/lib/texts";
 import Rating from "~/components/custom/rating";
 
@@ -67,16 +67,31 @@ export default function HomePage() {
     const { state } = useNavigation();
     let busy: boolean = state === "submitting" || state === "loading";
     const [menu, setMenu] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <section className={`${busy && "opacity-35"} transition`}>
             <div className="bg-muted py-16 relative">
                 <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 container px-4">
                     {/* Navbar */}
-                    <nav className="bg-white/90 border-t border-gray-200 shadow z-50 backdrop-blur-md p-3.5 mx-auto rounded-xl flex justify-between items-center gap-2">
+                    <nav
+                        className={`transition-all duration-300 ease-in-out ${scrolled ? "bg-white shadow-[0_5px_35px_rgba(0,0,0,0.1)] py-2 px-3" : "bg-transparent py-0"
+                            } border-gray-200 backdrop-blur-md rounded-2xl flex justify-between items-center gap-2`}
+                    >
                         <div className="flex gap-2 items-center">
-                            <img src="/images/logos/logo.png" width={30} />
-                            <Link to="/" className="mt-1 font-extrabold text-primary-foreground">OwenaHub</Link>
+                            <img src="/images/logos/logo.png" width={38} />
+                            <Link to="/" className="mt-1 md:text-lg font-black text-primary-foreground">
+                                <span>OwenaHub</span> <span className="font-light">the learner's hub</span>
+                            </Link>
                         </div>
                         <div className="hidden md:block">
                             <div className="flex items-center gap-2">
@@ -93,7 +108,7 @@ export default function HomePage() {
                         </button>
                     </nav>
                     {menu && (
-                        <div className="bg-white/90 mt-1 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-lg block md:hidden">
+                        <div className="bg-white/90 mt-1 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-2xl block md:hidden">
                             <div>
                                 <div className="mb-3">
                                     <div className="border-b py-4">
