@@ -26,7 +26,6 @@ export async function getBite(slice_id: string, bite_id: string) {
     const response = await client.get(
         `api/slices/enrolled/${slice_id}/bites/${bite_id}`
     );
-    console.log(response.data)
     return response.data;
 }
 

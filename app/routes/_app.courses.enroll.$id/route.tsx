@@ -13,7 +13,6 @@ export async function clientAction({ params }: Route.ClientActionArgs) {
         })
         return redirect('/courses')
     } catch (error) {
-        console.log(error);
         toast({
             variant: 'destructive',
             description: 'An error occurred, please try again.'

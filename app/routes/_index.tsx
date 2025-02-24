@@ -1,5 +1,5 @@
 import { Link, useNavigation } from "react-router";
-import { ArrowRight, Briefcase, Check, ChevronRight, Code, Facebook, Instagram, LayoutTemplate, Menu, Regex, Star, Twitter, UserRound } from "lucide-react";
+import { ArrowRight, Briefcase, Check, ChevronRight, Code, Facebook, Instagram, LayoutTemplate, Menu, Regex, Twitter } from "lucide-react";
 import Badge from "~/components/custom/badge";
 import { useEffect, useState } from "react";
 import { truncateText } from "~/lib/texts";

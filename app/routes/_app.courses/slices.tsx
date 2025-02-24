@@ -1,4 +1,3 @@
-import { HandCoins } from 'lucide-react'
 import { Link } from 'react-router'
 import Rating from '~/components/custom/rating'
 import Tags from '~/components/custom/tags'

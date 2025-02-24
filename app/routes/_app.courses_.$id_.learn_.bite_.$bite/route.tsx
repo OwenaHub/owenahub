@@ -27,18 +27,14 @@ export async function clientAction({ request, params }: Route.ClientActionArgs) 
     const formData = await request.formData();
     const credentials = Object.fromEntries(formData);
 
-    console.log(credentials);
-
     try {
         const res = await createUserBite(credentials);
-        console.log(res);
         toast({
             title: "Fantastic 🎊",
             description: "You've completed this bite, keep going!",
         })
         return redirect(`/courses/${params.id}/learn`);
     } catch ({ response }: any) {
-        console.error(response);
         toast({
             variant: 'destructive',
             title: 'Something went wrong!',

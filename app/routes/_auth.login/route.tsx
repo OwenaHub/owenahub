@@ -27,7 +27,6 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     try {
         await loginUser(credentials);
         toast({ description: "Welcome back!" });
-        console.log(route)
         return redirect(route);
     } catch ({ response }: any) {
         const error: any = response?.data?.errors;

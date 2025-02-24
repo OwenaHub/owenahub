@@ -26,7 +26,6 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
         })
         return redirect('/dashboard');
     } catch ({ response }: any) {
-        console.error(response)
         const error: any = response?.data?.errors;
         return error;
     }
