@@ -1,12 +1,5 @@
 import {
-  isRouteErrorResponse,
-  Link,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  type MetaFunction
+  isRouteErrorResponse, Link, Links, Meta, Outlet, Scripts, ScrollRestoration, type MetaFunction
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -41,18 +34,18 @@ export const links: Route.LinksFunction = () => [
 export const meta: MetaFunction = () => {
   return [
     { name: "title", content: "OwenaHub | Build your career with expert mentors" },
-    { name: "description", content: "Join OwenaHub and connect with top industry mentors to advance your career. Get expert guidance, career advice, and skill development in your field." },
-    { name: "keywords", content: "mentorship, career growth, expert mentors, skill development, professional guidance, tech, software" },
+    { name: "description", content: "Join OwenaHub and connect with top tech mentors to advance your career. Learn to code wtih guidance, career advice, and skill development." },
+    { name: "keywords", content: "mentorship, mentors, development, professional, tech, software, ai" },
     { name: "author", content: "OwenaHub" },
     { name: "robots", content: "index, follow" },
     { property: "og:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
-    { property: "og:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
+    { property: "og:description", content: "Join OwenaHub and connect with top tech mentors to advance your career" },
     { property: "og:image", content: "https://owenahub.com/images/logos/banner_image.png" }, // image URL
     { property: "og:url", content: "https://owenahub.com" },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: "OwenaHub | Build Your Career with Expert Mentors" },
-    { name: "twitter:description", content: "Join OwenaHub and connect with top industry mentors to advance your career." },
+    { name: "twitter:description", content: "Join OwenaHub and connect with top tech mentors to advance your career" },
     { name: "twitter:image", content: "https://owenahub.com/images/logos/banner_image.png" }, // image URL
   ];
 }

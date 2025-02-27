@@ -88,7 +88,7 @@ export default function HomePage() {
                             } border-gray-200 backdrop-blur-md rounded-2xl flex justify-between items-center gap-2`}
                     >
                         <div className="flex gap-2 items-center">
-                            <img src="/images/logos/logo.png" width={38} />
+                            <img src="/images/logos/logo.png" alt="logo" width={38} />
                             <Link to="/" className="mt-1 md:text-lg font-black text-primary-foreground">
                                 <span>OwenaHub</span> <span className="font-light">the learner's hub</span>
                             </Link>
@@ -183,7 +183,7 @@ export default function HomePage() {
                         <div className="hidden md:block me-14 flex-1">
                             <img
                                 src="/images/personalised.png"
-                                alt="..."
+                                alt="Join OwenaHub"
                                 className="block mx-auto w-[440px] h-[440px]pointer-events-none"
                             />
                         </div>
@@ -224,6 +224,7 @@ export default function HomePage() {
                                                     src={track.image_path
                                                         ? `${track.image_path}`
                                                         : "/images/banners/default-course-img.png"}
+                                                    alt={track.title}
                                                     className="w-full h-full object-cover rounded"
                                                 />
                                             </div>
@@ -233,12 +234,12 @@ export default function HomePage() {
                                                 {/* Title & Description */}
                                                 <div className="flex flex-col gap-1.5 mb-1.5">
                                                     <div className="flex items-center">
-                                                        <h4 className="text-primary-foreground font-bold leading-5">
+                                                        <h3 className="text-primary-foreground font-bold leading-5">
                                                             <span className="leading-[-5px]">{track.title}</span>
                                                             <Link to="/courses">
                                                                 <span aria-hidden="true" className="absolute inset-0" />
                                                             </Link>
-                                                        </h4>
+                                                        </h3>
                                                     </div>
                                                     <div className="font-light text-xs">
                                                         {truncateText(track.description, 100)}
@@ -279,9 +280,9 @@ export default function HomePage() {
                     <div>
                         <div className="text-gray-800 pt-5 lg:px-4">
                             <div>
-                                <h3 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
+                                <h4 className="text-foreground text-3xl md:text-4xl font-bold mb-4">
                                     Personalised learning
-                                </h3>
+                                </h4>
                                 <p className="text-base leading-snug mb-4">
                                     OwenaHub offers courses focused on mentorship. <br className="hidden lg:block" />
                                     Enroll in mentorship courses & learn at your own pace.
@@ -305,9 +306,9 @@ export default function HomePage() {
                         <div className="text-gray-800 pt-5 lg:px-4">
                             <div className="mb-5">
                                 <span className="text-red-500 text-lg font-bold">Visions Into Reality</span>
-                                <h3 className="text-4xl font-bold text-[#4B4B4B] mt-3 mb-4">
+                                <h4 className="text-4xl font-bold text-[#4B4B4B] mt-3 mb-4">
                                     Stop dreaming, start achieving
-                                </h3>
+                                </h4>
                                 <p className="text-lg leading-relaxed mb-4">
                                     Work towards long-term goals by connecting <br className="hidden lg:block" /> with mentors for private sessions.
                                 </p>
@@ -330,9 +331,9 @@ export default function HomePage() {
                         <div className="text-gray-800 py-5 lg:px-4">
                             <div className="mb-5">
                                 <span className="text-[#F6A600] text-lg font-bold">Talk With Experts</span>
-                                <h3 className="text-4xl font-bold text-[#4B4B4B] mt-3 mb-4">
+                                <h4 className="text-4xl font-bold text-[#4B4B4B] mt-3 mb-4">
                                     Easy access to the <br className="hidden lg:block" /> world’s best
-                                </h3>
+                                </h4>
                                 <p className="text-lg leading-relaxed mb-4">
                                     From Web Development to Software Engineering, <br className="hidden lg:block" /> there are thousands of top
                                     experts, you can get access for free.
@@ -352,9 +353,9 @@ export default function HomePage() {
                     <div>
                         <div className="text-center px-5">
                             <div className="mb-6 text-white">
-                                <h2 className="text-2xl lg:text-4xl font-bold mb-5">
+                                <h4 className="text-2xl lg:text-4xl font-bold mb-5">
                                     Get started
-                                </h2>
+                                </h4>
                                 <p className="my-3 text-sm leading-loose">
                                     Sign up now and start acquiring in demand tech skills today. Start online anytime, anywhere. <br className="hidden md:block" />
                                     Fill out the form and have mentor reach out. Start your learning journey.
@@ -388,7 +389,7 @@ export default function HomePage() {
                     <hr className="my-8 border-gray-200" />
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
                         <div>
-                            <h2 className="text-sm pb-2 font-semibold">SOCIALS</h2>
+                            <h5 className="text-sm pb-2 font-semibold">SOCIALS</h5>
                             <a href="https://instagram.com/owenahub?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
                                 target="_blank"
                                 className="flex items-center gap-2 hover:underline text-xs pb-2">
@@ -406,7 +407,7 @@ export default function HomePage() {
                             </a>
                         </div>
                         <div>
-                            <h2 className="text-sm pb-2 font-semibold">CONTACT</h2>
+                            <h5 className="text-sm pb-2 font-semibold">CONTACT</h5>
                             <a href="mailto:hello@owenahub.com"
                                 className="block hover:underline text-xs pb-2">hello@owenahub.com</a>
                             <a href="mailto:ernest@owenahub.com"
@@ -415,7 +416,7 @@ export default function HomePage() {
                                 className="block hover:underline text-xs pb-2">ernestharuna1@gmail.com</a>
                         </div>
                         <div>
-                            <h2 className="text-sm pb-2 font-semibold">QUICK LINKS</h2>
+                            <h5 className="text-sm pb-2 font-semibold">QUICK LINKS</h5>
                             <a href="#" className="block hover:underline text-xs pb-2">
                                 OwenaHub Blog
                             </a>
@@ -429,7 +430,7 @@ export default function HomePage() {
                             </a>
                         </div>
                         <div>
-                            <h2 className="text-sm pb-2 font-semibold">COMMUNITIES</h2>
+                            <h5 className="text-sm pb-2 font-semibold">COMMUNITIES</h5>
                             <a href="https://linkedin.com/company/owenahub" target="_blank"
                                 className="block hover:underline text-xs pb-2">
                                 LinkedIn Community
