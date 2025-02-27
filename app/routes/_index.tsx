@@ -66,13 +66,12 @@ const tracks = [
 export default function HomePage() {
     const { state } = useNavigation();
     let busy: boolean = state === "submitting" || state === "loading";
-    const [menu, setMenu] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
+
+    const [menu, setMenu] = useState<boolean>(false);
+    const [scrolled, setScrolled] = useState<boolean>(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 50);
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
@@ -175,7 +174,7 @@ export default function HomePage() {
                                 </Link>
                                 <a href="https://youtu.be/hBDECFvIk8w?si=G_1qfFhyCYJWwVv8" target="_blank"
                                     className="block md:inline-block text-sm text-center w-full md:w-max rounded-lg font-bold px-10 py-3 outline outline-1 outline-[#083156] text-[#083156] bg-white hover:shadow-lg">
-                                    Learn more
+                                    Watch a video
                                 </a>
                             </div>
 
@@ -287,10 +286,10 @@ export default function HomePage() {
                                     OwenaHub offers courses focused on mentorship. <br className="hidden lg:block" />
                                     Enroll in mentorship courses & learn at your own pace.
                                 </p>
-                                <a href="https://youtu.be/hBDECFvIk8w?si=G_1qfFhyCYJWwVv8" target="_blank"
+                                <Link to="/register" target="_blank"
                                     className="inline-block bg-[#FFE1BC] text-[#3D4D5C] rounded-xl px-6 py-2 font-bold hover:bg-gray-800 hover:text-white transition">
-                                    Learn more
-                                </a>
+                                    Take a look
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -340,7 +339,7 @@ export default function HomePage() {
                                 </p>
                                 <a href="https://youtube.com/@owenahub" target="_blank"
                                     className="inline-block bg-[#FFE1BC] text-[#3D4D5C] rounded-xl px-6 py-2 font-bold hover:bg-gray-800 hover:text-white transition">
-                                    Learn more
+                                    Our YouTube
                                 </a>
                             </div>
                         </div>
