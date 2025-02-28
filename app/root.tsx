@@ -56,6 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#FFFAED" />
         <title>
           OwenaHub | Build your career with expert mentors
         </title>

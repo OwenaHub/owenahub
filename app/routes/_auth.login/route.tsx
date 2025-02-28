@@ -41,7 +41,7 @@ export default function Login({ actionData }: Route.ComponentProps) {
     const busy: boolean = state === "submitting" || state === "loading";
 
     return (
-        <section className="container">
+        <section className="container animated fadeIn">
             <div className="max-w-sm mx-auto md:flex items-center gap-10 justify-center py-10">
                 <div className="flex-1">
                     <div className="border rounded-xl py-6 px-5 md:px-8 h-full">

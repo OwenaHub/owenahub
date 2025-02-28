@@ -25,7 +25,7 @@ export default function AuthLayout(_: Route.ComponentProps) {
                     </Link>
                 </div>
             </header>
-            <div className="transition">
+            <div className="">
                 <Outlet />
             </div>
         </main>

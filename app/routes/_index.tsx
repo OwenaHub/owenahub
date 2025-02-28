@@ -78,7 +78,7 @@ export default function HomePage() {
     }, []);
 
     return (
-        <section className={`${busy && "opacity-35"} transition`}>
+        <section className={`${busy && "opacity-50"} transition-all`}>
             <div className="bg-muted py-16 relative">
                 <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 container px-4">
                     {/* Navbar */}
@@ -102,7 +102,7 @@ export default function HomePage() {
                                 </Link>
                             </div>
                         </div>
-                        <button className="block md:hidden" type="button" onClick={() => setMenu(!menu)}>
+                        <button aria-label="Menu" className="block md:hidden" type="button" onClick={() => setMenu(!menu)}>
                             <Menu />
                         </button>
                     </nav>
@@ -195,7 +195,7 @@ export default function HomePage() {
                     <div className="py-5">
                         <div className="lg:text-start pb-5">
                             <h2 className="text-gray-800 pb-2 font-bold text-3xl md:text-4xl">
-                                Expand your skillset <br className="md:hidden" /> with <span className="text-primary">OwenaHub</span>.
+                                Expand your skillset <br className="md:hidden" /> with <span className="text-foreground">OwenaHub</span>.
                             </h2>
                             <p className="text-gray-500">
                                 Find resources curated by our team for Tech Enthusiasts.

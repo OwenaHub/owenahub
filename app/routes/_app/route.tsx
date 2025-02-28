@@ -70,7 +70,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                 <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
                             </div>
                         </header>
-                        <div className={`${busy && "opacity-35"} transition overflow-x-hidden animated fadeIn`}>
+                        <div className={`${busy && "opacity-35"} transition overflow-x-hidden`}>
                             <Outlet context={user} />
                         </div>
                     </main>
