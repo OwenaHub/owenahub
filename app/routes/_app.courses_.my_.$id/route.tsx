@@ -51,7 +51,7 @@ export default function ShowCourse({ loaderData, actionData }: Route.ComponentPr
     const navigate = useNavigate();
 
     return (
-        <section className="md:px-10 mt-10">
+        <section className="md:px-10 mt-10 animated fadeIn">
             <section>
                 <div className="md:mt-20">
                     <div className="mb-4">

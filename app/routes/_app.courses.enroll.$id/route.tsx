@@ -11,7 +11,7 @@ export async function clientAction({ params }: Route.ClientActionArgs) {
             title: 'Enrollment successful',
             description: 'You have successfully enrolled in this course.'
         })
-        return redirect('/courses')
+        return redirect(`/courses/${params.id}/learn`);
     } catch (error) {
         toast({
             variant: 'destructive',

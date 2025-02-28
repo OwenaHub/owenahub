@@ -9,7 +9,7 @@ export const meta: MetaFunction = () => {
 
 export default function Clases() {
     return (
-        <section className="md:px-10 mt-10">
+        <section className="md:px-10 mt-10 animated fadeIn">
             <section>
                 <h1 className="md:mt-20 text-xl md:text-2xl text-primary-foreground mb-3 font-bold">
                     Classes

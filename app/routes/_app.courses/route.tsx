@@ -9,6 +9,7 @@ import { SquareChartGantt } from 'lucide-react';
 import { formatRelativeDate } from '~/components/time-pipes/relative-date';
 import Slices from './slices';
 import Spinner from '~/components/navigation/default-spinner';
+import CardSkeleton from '~/components/skeletons/card-skeleton';
 
 export const meta: MetaFunction = () => {
     return [
@@ -38,9 +39,9 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
     const { enrolledSlices, slices, mentorSlices } = loaderData;
 
     return (
-        <section className="md:px-10 mt-10">
+        <section className="md:px-10 mt-10 animated fadeIn">
             <section>
-                <div className=" md:mt-20 mb-8 flex justify-between items-start">
+                <div className="md:mt-20 mb-8 flex justify-between items-start">
                     <div>
                         <h4 className="text-xl text-primary-foreground mb-3 font-bold">
                             Courses
@@ -60,14 +61,14 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                     </IsAdmin>
                 </div>
                 <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-3">
-                    <Suspense fallback={<Spinner />}>
+                    <Suspense fallback={<CardSkeleton />}>
                         <Await resolve={enrolledSlices}>
                             {(enrolledSlices) =>
                                 <>
                                     {enrolledSlices.length
                                         ? (
                                             enrolledSlices.map((enrolled: any) => (
-                                                <div key={enrolled.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3">
+                                                <div key={enrolled.id} className="border rounded-lg p-3 flex-1 flex items-center gap-3 animated fadeIn">
                                                     <div>
                                                         <SquareChartGantt size={40} strokeWidth={1} />
                                                     </div>
@@ -93,8 +94,6 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                             }
                         </Await>
                     </Suspense>
-
-
                 </div>
             </section>
 
@@ -131,7 +130,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                 </div>
 
                 <div className="mx-auto max-w-2xl pb-5 sm:pb-16 lg:max-w-7xl">
-                    <Suspense fallback={<Spinner />}>
+                    <Suspense fallback={<CardSkeleton type='course' />}>
                         <Await resolve={slices}>
                             {(slices) => <Slices slices={slices} />}
                         </Await>

@@ -84,11 +84,11 @@ export default function HomePage() {
                     {/* Navbar */}
                     <nav
                         className={`transition-all duration-300 ease-in-out ${scrolled ? "bg-white shadow-[0_5px_35px_rgba(0,0,0,0.1)] py-2 px-3" : "bg-transparent py-0"
-                            } border-gray-200 backdrop-blur-md rounded-2xl flex justify-between items-center gap-2`}
+                            } border-gray-200 rounded-2xl flex justify-between items-center gap-2`}
                     >
                         <div className="flex gap-2 items-center">
                             <img src="/images/logos/logo.png" alt="logo" width={38} />
-                            <Link to="/" className="mt-1 md:text-lg font-black text-primary-foreground">
+                            <Link to="/" className="md:text-lg font-black text-primary-foreground">
                                 <span>OwenaHub</span> <span className="font-light">the learner's hub</span>
                             </Link>
                         </div>
@@ -107,7 +107,7 @@ export default function HomePage() {
                         </button>
                     </nav>
                     {menu && (
-                        <div className="bg-white/90 mt-1 z-50 backdrop-blur-md py-4 px-4 mx-auto rounded-lg shadow-2xl block md:hidden">
+                        <div className="bg-white mt-1 z-50 py-4 px-4 mx-auto rounded-lg shadow-2xl block md:hidden">
                             <div>
                                 <div className="mb-3">
                                     <div className="border-b py-4">
@@ -264,7 +264,6 @@ export default function HomePage() {
                                     ))}
                                 </div>
                             </div>
-
                         </section>
                     </div>
                 </div>
@@ -273,7 +272,12 @@ export default function HomePage() {
             <section className="pb-20 lg:pb-9 container" id="learn-more">
                 <div className="md:flex items-center justify-evenly gap-5 pt-5">
                     <div>
-                        <img src="/images/personalised.png" alt="Personalized Learning" className="w-full" />
+                        <img
+                            src="/images/personalised.png"
+                            alt="Personalized Learning"
+                            className="w-full"
+                            loading="lazy"
+                        />
                     </div>
 
                     <div>
@@ -300,7 +304,12 @@ export default function HomePage() {
                 <div className=" mx-auto">
                     <div className="md:flex items-center justify-evenly gap-5 flex-row-reverse">
                         <div className="pt-5">
-                            <img src="/images/long-term-goals.png" alt="Long-Term Goals" className="w-full" />
+                            <img
+                                src="/images/long-term-goals.png"
+                                alt="Long-Term Goals"
+                                className="w-full"
+                                loading="lazy"
+                            />
                         </div>
                         <div className="text-gray-800 pt-5 lg:px-4">
                             <div className="mb-5">
@@ -325,7 +334,12 @@ export default function HomePage() {
                 <div className="mx-auto">
                     <div className="md:flex items-center justify-evenly gap-5">
                         <div className="pt-5">
-                            <img src="/images/get-access.png" alt="Get Access" className="w-full" />
+                            <img
+                                src="/images/get-access.png"
+                                alt="Get Access"
+                                className="w-full"
+                                loading="lazy"
+                            />
                         </div>
                         <div className="text-gray-800 py-5 lg:px-4">
                             <div className="mb-5">

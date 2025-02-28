@@ -1,9 +1,11 @@
-import { Form, redirect } from "react-router";
+import { Form, Link, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
 import { getCourse } from "../_app.courses/course";
-import { Clock, Share2, User } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import { Clock, User } from "lucide-react";
 import Tags from "~/components/custom/tags";
+
+import { Button } from "~/components/ui/button"
+import SharePage from "~/components/navigation/share-page";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
@@ -19,18 +21,23 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
     const { slice, is_enrolled }: any = loaderData;
 
     return (
-        <section className="md:px-10 mt-10">
+        <section className="md:px-10 mt-10 animated fadeIn">
             <section>
-                <div className="py-10 px-5 mb-8 rounded-2xl md:mt-20 border border-sky-700 text-sky-900 bg-sky-100">
-                    <h1 className="text-2xl md:text-3xl text-primary-foreground font-bold">
+                <div className="rounded-2xl md:mt-20 ">
+                    <h1 className="text-2xl md:text-3xl text-secondary-foreground font-extrabold mb-5">
                         {slice.title}
                     </h1>
-                    <p className="text-sm mt-2 leading-tight max-w-3xl">
+                    
+                    <p className="mt-2 max-w-3xl text-sm border-s-4 ps-4 mb-5">
                         {slice.about}
                     </p>
 
-                    <div className="mt-6 font-semibold text-sm">
-                        <p className="flex items-center gap-1 mb-1">
+                    <div className="mb-5">
+                        <Tags args={slice.tags} />
+                    </div>
+
+                    <div className="mt-5 flex gap-5 font-semibold text-sm">
+                        <p className="flex items-center gap-1">
                             <User size={18} />
                             <span>OwenaHub</span>
                         </p>
@@ -41,23 +48,19 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                     </div>
                 </div>
 
+                <hr className="my-10 bg-gray-50" />
+
                 <div className="mb-10 flex flex-col md:flex-row md:items-start gap-8">
                     <div className="basis-8/12">
-                        <div className="font-bold mb-4 text-xl">
-                            Course overview
-                        </div>
                         <div className="text-light">
                             <div dangerouslySetInnerHTML={{ __html: slice.overview }} />
-                        </div>
-                        <div className="mt-5">
-                            <Tags args={slice.tags} />
                         </div>
                     </div>
                     <div className="p-4 border rounded-xl basis-4/12">
                         <div className="text-primary text-xl font-bold">
                             {slice.price ? (
                                 <p className='flex items-center gap-3'>
-                                    <span className='bg-secondary text-secondary-foreground rounded px-3 py-0.5 flex items-center gap-2'>
+                                    <span className='bg-secondary text-secondary-foreground rounded-lg px-3 py-0.5 flex items-center gap-2'>
                                         &#8358;{parseFloat(slice.price).toLocaleString()}
                                     </span>
                                     <span className="line-through font-normal text-gray-500">
@@ -66,7 +69,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                                 </p>
                             ) :
                                 <p className='flex items-center gap-3'>
-                                    <span className='bg-secondary text-secondary-foreground rounded px-3 py-0.5 flex items-center gap-2'>
+                                    <span className='bg-secondary text-secondary-foreground rounded-lg px-3 py-0.5 flex items-center gap-2'>
                                         <span className='font-bold'>₦0.00</span>
                                     </span>
                                     <span className="font-light text-secondary-foreground line-through">
@@ -75,14 +78,23 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                                 </p>
                             }
                         </div>
+
                         <hr className="my-5" />
+
                         {is_enrolled
-                            ? <Button
-                                disabled
-                                variant="outline"
-                                className="w-full py-6 text-sm font-bold uppercase rounded-lg">
-                                Already enrolled
-                            </Button>
+                            ? <div>
+                                <Button
+                                    disabled
+                                    variant="outline"
+                                    className="w-full py-6 text-sm font-bold uppercase rounded-lg">
+                                    Already enrolled
+                                </Button>
+                                <Link
+                                    to={`/courses/${slice.id}/learn`}
+                                    className="mt-3 inline-block text-blue-500 text-center text-xs font-light uppercase w-full hover:underline underline-offset-2">
+                                    Go to course
+                                </Link>
+                            </div>
 
                             : <Form
                                 action={`/courses/enroll/${slice.id}`}
@@ -96,9 +108,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                 </div>
 
                 <div className="mb-10">
-                    <Button className="flex items-center gap-1 rounded-full w-full md:w-max px-6 py-5" variant={"outline"}>
-                        <Share2 /> <span>Share this course</span>
-                    </Button>
+                    <SharePage />
                 </div>
 
             </section>

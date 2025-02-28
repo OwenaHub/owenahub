@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 
 export default function Home() {
     return (
-        <section className="md:px-10 mt-10">
+        <section className="md:px-10 mt-10 animated fadeIn">
             <div className="md:flex items- justify-between gap-5 ">
                 <div>
                     <div className="mb-8">

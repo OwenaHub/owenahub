@@ -69,11 +69,13 @@ export default function SliceBites({ loaderData }: Route.ComponentProps) {
                             <div>
                                 <div className="">
                                     {bite.completed
-                                        ? <CircleCheck
-                                            className="text-white bg-green-800 rounded-full p-1"
-                                            strokeWidth={1}
-                                            size={40}
-                                        />
+                                        ? <div className='bg-green-200 rounded-full'>
+                                            <CircleCheck
+                                                className="text-white bg-green-0 fill-green-500 rounded-full p-1"
+                                                strokeWidth={1}
+                                                size={40}
+                                            />
+                                        </div>
 
                                         : <CircleCheck
                                             className="text-foreground rounded-full p-1"

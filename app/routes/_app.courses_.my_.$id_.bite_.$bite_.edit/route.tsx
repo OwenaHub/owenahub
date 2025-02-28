@@ -47,7 +47,7 @@ export default function EditBite({ actionData, loaderData }: Route.ComponentProp
     const busy: boolean = state === "submitting" || state === "loading";
 
     return (
-        <section className="md:px-10 my-10">
+        <section className="md:px-10 my-10 animated fadeIn">
             <div className="md:mt-20">
                 <div className="mb-4">
                     <Link to={"#"} onClick={() => navigate(-1)}

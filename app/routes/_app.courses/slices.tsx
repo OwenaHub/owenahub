@@ -23,7 +23,7 @@ export default function Slices({ slices, mentorProfile }: { slices: Slice[], men
 
 function SliceCard({ slice, mentorProfile }: { slice: Slice, mentorProfile?: boolean }) {
     return (
-        <div key={slice.id} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all">
+        <div key={slice.id} className="group p-2 relative border border-gray-200 rounded-lg hover:border-gray-300 transition-all animated fadeIn">
             <div className="mb-1 aspect-video bg-slate-50 w-full rounded group-hover:opacity-75 lg:aspect-video overflow-hidden">
                 <img
                     src={slice.image_path

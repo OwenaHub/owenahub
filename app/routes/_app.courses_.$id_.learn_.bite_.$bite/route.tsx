@@ -51,7 +51,7 @@ export default function CourseLearn({ loaderData }: Route.ComponentProps) {
     const navigate = useNavigate();
 
     return (
-        <section className="md:px-10 mt-10">
+        <section className="md:px-10 mt-10 animated fadeIn">
             <div className="md:mt-20 mb-8">
                 <div className="flex md:flex-row flex-col gap-10 md:gap-4">
                     <div className="basis-5/6">

@@ -34,7 +34,7 @@ export default function CreateCourse({ actionData }: Route.ComponentProps) {
     const [overview, setOverview] = useState("");
 
     return (
-        <section className="md:px-10 my-10">
+        <section className="md:px-10 my-10 animated fadeIn">
             <section>
                 <div className="md:mt-20 flex justify-between items-center">
                     <h1 className="text-xl md:text-2xl text-primary-foreground font-bold">
