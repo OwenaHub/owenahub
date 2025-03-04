@@ -3,13 +3,13 @@ import { IsAdmin } from '~/components/permissions/admin';
 import type { Route } from '../_app.courses/+types/route';
 import { getCourses, getEnrolledCourses } from './course';
 import useSession from '~/lib/session';
-import { getCreatedCourses } from '../_app.courses_.my_.$id/mentor-courses';
 import { Suspense } from 'react';
 import { SquareChartGantt } from 'lucide-react';
 import { formatRelativeDate } from '~/components/time-pipes/relative-date';
 import Slices from './slices';
 import Spinner from '~/components/navigation/default-spinner';
 import CardSkeleton from '~/components/skeletons/card-skeleton';
+import { getCreatedCourses } from './mentor-course';
 
 export const meta: MetaFunction = () => {
     return [
@@ -125,7 +125,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                         Suggested courses?
                     </h4>
                     <p className="text-sm leading-7">
-                        Here are courses you have created on OwenaHub
+                        Curated for you based on your interests
                     </p>
                 </div>
 

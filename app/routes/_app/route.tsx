@@ -71,7 +71,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                         Subscribe
                                     </button>
                                 </div>
-                                <div className="text-sm rounded-md px-1 py-3 bg-slate-100 border border-slate-200">
+                                <div className="text-sm rounded-md px-1 py-3 bg-gray-100 border border-gray-200">
                                     <div className="flex gap-2 items-start">
                                         <CustomAvatar name={user?.name} />
                                         <div>

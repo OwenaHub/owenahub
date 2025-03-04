@@ -7,9 +7,10 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Textarea } from '~/components/ui/textarea'
 import type { Route } from '../_app.courses_.my_.$id/+types/route'
-import { editBite, getBite } from '../_app.courses_.my_.$id/mentor-courses'
+import {getBite } from '../_app.courses_.my_.$id/mentor-courses'
 import { toast } from '~/hooks/use-toast'
 import InputError from '~/components/forms/input-error'
+import { editBite } from './edit-bite'
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {

@@ -51,7 +51,7 @@ export default function useSession() {
 
     async function getIntentedRoute(): Promise<string> {
         const route = sessionStorage.getItem(storageKeys.route);
-        sessionStorage.clearItem(storageKeys.route);
+        sessionStorage.removeItem(storageKeys.route);
         return route || '/dashboard';
     }
 

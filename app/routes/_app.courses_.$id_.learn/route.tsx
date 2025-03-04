@@ -1,10 +1,10 @@
-import { getBites } from '../_app.courses/course';
 import { redirect } from 'react-router';
 import { toast } from '~/hooks/use-toast';
 import type { Route } from '../_app.courses_.$id_.learn/+types/route';
 import { Link } from 'react-router';
 import { truncateText } from '~/lib/texts';
 import { ChevronLeft, CircleCheck } from 'lucide-react';
+import { getBites } from './get-bites';
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {

@@ -1,9 +1,9 @@
 import { Form, redirect, useNavigate } from "react-router";
 import type { Route } from "../_app.courses_.$id/+types/route";
-import { createUserBite, getBite } from "../_app.courses/course";
 import { ChevronLeft } from "lucide-react";
 import { toast } from "~/hooks/use-toast";
 import { Button } from "~/components/ui/button";
+import { createUserBite, getBite } from "./bite";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {

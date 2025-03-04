@@ -1,11 +1,11 @@
 import { Form, Link, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
-import { getCourse } from "../_app.courses/course";
 import { Clock, User } from "lucide-react";
 import Tags from "~/components/custom/tags";
 
 import { Button } from "~/components/ui/button"
 import SharePage from "~/components/navigation/share-page";
+import { getCourse } from "./get-course";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {

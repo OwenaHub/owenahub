@@ -5,15 +5,15 @@ import { Form, redirect } from "react-router";
 import type { Route } from "../_app.courses/+types/route";
 import { toast } from "~/hooks/use-toast";
 import InputError from "~/components/forms/input-error";
-import { createCourse } from "../_app.courses_.my_.$id/mentor-courses";
 import { useState } from "react";
 import { TextEditor } from "~/components/custom/quill.client";
+import { createSlice } from "./create-slice";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
     const formData = Object.fromEntries(await request.formData());
 
     try {
-        await createCourse(formData);
+        await createSlice(formData);
         toast({
             variant: 'default',
             description: 'Slice created successfully!'
