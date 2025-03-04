@@ -35,7 +35,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
         await createBite(formData);
         toast({
             variant: 'default',
-            description: 'Slice created successfully!'
+            description: 'Bite created successfully!'
         })
         return redirect(`/courses/my/${formData.slice_id}`)
     } catch ({ response }: any) {

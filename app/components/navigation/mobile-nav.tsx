@@ -18,7 +18,9 @@ export default function MobileNav() {
                                         : isPending
                                             ? "flex-1 block rounded-lg py-2 opacity-50"
                                             : "flex-1 block rounded-lg py-2"
-                                }>
+                                }
+                                viewTransition
+                            >
                                 {({ isActive }) => (
                                     <div className='flex flex-col items-center gap-1'>
                                         {React.cloneElement(item.icon, {

@@ -1,6 +1,6 @@
 import { LogOut } from "lucide-react";
 import { Form, useOutletContext, type MetaFunction } from "react-router"
-import CustomAvatar from "~/components/custom/kribb-avatar";
+import CustomAvatar from "~/components/custom/custom-avatar";
 import { Button } from "~/components/ui/button";
 
 
@@ -15,7 +15,7 @@ export default function Account() {
     const user: User = useOutletContext();
 
     return (
-        <section className="md:px-10 mt-10 animated fadeIn">
+        <section className="md:px-10 mt-10">
             <div className=" md:mt-20 mb-8 flex justify-between items-start">
                 <div>
                     <h4 className="text-xl text-primary-foreground mb-3 font-bold">

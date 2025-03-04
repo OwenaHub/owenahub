@@ -19,7 +19,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     const credentials = Object.fromEntries(formData);
 
     try {
-        const res = await registerUser(credentials);
+        await registerUser(credentials);
         toast({
             title: "Congratulations! ✨",
             description: "Your account has been registered, we hope you enjoy your experience",
@@ -149,7 +149,9 @@ export default function Register({ actionData }: Route.ComponentProps) {
                         </p>
                     </div>
                     <div className="text-foreground text-sm text-center py-5 font-semibold uppercase">
-                        Have an account? <Link to="/login" className="text-primary-foreground">Log in</Link>
+                        Have an account? <Link to="/login" className="text-primary-foreground" viewTransition>
+                            Log in
+                        </Link>
                     </div>
                 </div>
             </div>

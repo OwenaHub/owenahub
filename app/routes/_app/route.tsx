@@ -6,6 +6,9 @@ import APP_TABS from '~/components/navigation/app-tabs'
 import useSession from '~/lib/session'
 import type { Route } from '../_app/+types/route'
 import { toast } from '~/hooks/use-toast'
+import { ToastAction } from '~/components/ui/toast'
+import { RotateCcw } from 'lucide-react'
+import CustomAvatar from '~/components/custom/custom-avatar'
 
 export async function clientLoader() {
     const { validateSession, intendedRoute } = useSession();
@@ -14,11 +17,23 @@ export async function clientLoader() {
         let user = await validateSession();
         return user
     } catch ({ response }: any) {
-        toast({
-            variant: "destructive",
-            title: "Your session has expired!",
-            description: "Login again to continue using OwenaHub",
-        });
+        if (response.status === 401) {
+            toast({
+                variant: "destructive",
+                title: "Your session has expired!",
+                description: "Login again to continue using OwenaHub",
+            });
+        } else {
+            toast({
+                variant: "destructive",
+                title: "Something went wrong",
+                description: "Try reloading this page",
+                action: (
+                    <ToastAction altText="Reload"><RotateCcw size={18} /></ToastAction>
+                ),
+            });
+        }
+
         intendedRoute(window.location.pathname);
         return redirect('/login');
     }
@@ -56,9 +71,14 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                         Subscribe
                                     </button>
                                 </div>
-                                <div className="text-sm border rounded-md p-3">
-                                    <h3 className="font-bold text-[#001836]">{user?.name}</h3>
-                                    <p className="text-black text-xs">{user?.email}</p>
+                                <div className="text-sm rounded-md px-1 py-3 bg-slate-100 border border-slate-200">
+                                    <div className="flex gap-2 items-start">
+                                        <CustomAvatar name={user?.name} />
+                                        <div>
+                                            <h3 className="font-bold text-[#001836]">{user?.name}</h3>
+                                            <p className="text-black text-xs">{user?.email}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
                         </div>

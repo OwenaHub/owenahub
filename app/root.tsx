@@ -145,14 +145,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
           <div className="mt-3 flex gap-5 items-center">
             <Link to={"/"} >
-              <Button variant={"outline"} className="text-xs h-8 py-0">
+              <Button variant={"outline"} className="text-sm h-8 py-0">
                 Go home
               </Button>
             </Link>
 
             <Button
               onClick={() => window.location.reload()}
-              variant={"secondary"} className="text-xs h-8 py-0"
+              variant={"secondary"} className="text-sm h-8 py-0"
             >
               Reload
             </Button>

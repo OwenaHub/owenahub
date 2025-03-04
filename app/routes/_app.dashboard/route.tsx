@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 
 export default function Home() {
     return (
-        <section className="md:px-10 mt-10 animated fadeIn">
+        <section className="md:px-10 mt-10">
             <div className="md:flex items- justify-between gap-5 ">
                 <div>
                     <div className="mb-8">
@@ -23,7 +23,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <Link to="/courses">
+                    <Link to="/courses" viewTransition>
                         <Button className="bg-secondary-foreground text-white text-xs font-bold px-5 py-0 uppercase w-full md:w-max">
                             buy now
                         </Button>

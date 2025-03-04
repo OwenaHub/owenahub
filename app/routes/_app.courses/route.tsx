@@ -39,7 +39,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
     const { enrolledSlices, slices, mentorSlices } = loaderData;
 
     return (
-        <section className="md:px-10 mt-10 animated fadeIn">
+        <section className="md:px-10 mt-10">
             <section>
                 <div className="md:mt-20 mb-8 flex justify-between items-start">
                     <div>

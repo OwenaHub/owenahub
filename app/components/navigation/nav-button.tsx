@@ -15,6 +15,7 @@ export default function NavButton({ href, label, icon }: {
                         ? "block mb-2 rounded-lg  hover:bg-gray-100 text-[#67737E]"
                         : "block mb-2 rounded-lg hover:bg-gray-100 text-[#67737E]"
             }
+            viewTransition
         >
             {({ isActive }) => (
                 <div className="flex items-center gap-2">

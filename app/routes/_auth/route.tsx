@@ -6,7 +6,6 @@ export async function clientLoader(_: Route.ClientLoaderArgs) {
     const { validateSession } = useSession();
     try {
         await validateSession();
-
         return redirect('/dashboard');
     } catch ({ response }: any) {
         return {};

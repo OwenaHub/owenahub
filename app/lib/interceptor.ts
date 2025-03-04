@@ -24,7 +24,7 @@ client.interceptors.response.use((response) => response,
                 toast({
                     variant: "destructive",
                     title: "Something went wrong on the server",
-                    description: "It's not you, it's us — If this persists contact support@kribb.ng",
+                    description: "It's not you, it's us — If this persists contact support@owenahub.com",
                 })
             }
 
@@ -32,7 +32,7 @@ client.interceptors.response.use((response) => response,
                 toast({
                     variant: "destructive",
                     title: "Uh oh! Something went wrong - 419",
-                    description: "It's not you, it's us — If this persists contact support@kribb.ng",
+                    description: "It's not you, it's us — If this persists contact support@owenahub.com",
                 })
             }
 

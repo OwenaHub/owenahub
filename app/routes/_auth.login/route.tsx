@@ -112,7 +112,7 @@ export default function Login({ actionData }: Route.ComponentProps) {
                         </div>
                     </div>
                     <div className="text-foreground text-sm text-center py-5 font-semibold uppercase">
-                        Need an account? <Link to="/register" className="text-primary-foreground">sign up</Link>
+                        Need an account? <Link to="/register" className="text-primary-foreground" viewTransition>sign up</Link>
                     </div>
                 </div>
             </div>
