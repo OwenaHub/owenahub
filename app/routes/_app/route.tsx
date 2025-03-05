@@ -9,7 +9,7 @@ import { toast } from '~/hooks/use-toast'
 import { ToastAction } from '~/components/ui/toast'
 import { RotateCcw } from 'lucide-react'
 import CustomAvatar from '~/components/custom/custom-avatar'
-import { AppNotification } from './app-notification'
+import AppNotification from './app-notification'
 import { getNotifications } from './app'
 
 export async function clientLoader() {
@@ -33,7 +33,9 @@ export async function clientLoader() {
                 title: "Something went wrong",
                 description: "Try reloading this page",
                 action: (
-                    <ToastAction altText="Reload"><RotateCcw size={18} /></ToastAction>
+                    <ToastAction altText="Reload">
+                        <RotateCcw size={18} />
+                    </ToastAction>
                 ),
             });
         }
@@ -47,7 +49,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
     const { state } = useNavigation();
     let busy: boolean = state === "submitting" || state === "loading";
 
-    const { user }: { user: User } = loaderData;
+    const { user, notifications }: { user: User, notifications: any } = loaderData;
 
     return (
         <>
@@ -61,7 +63,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                         <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
                                     </Link>
 
-                                    <AppNotification />
+                                    <AppNotification notifications={notifications} />
                                 </div>
                                 <nav className="py-8 uppercase text-sm">
                                     {APP_TABS.map((item) => (
@@ -97,7 +99,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                             <div className='flex items-center gap-1'>
                                 <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
                             </div>
-                            <AppNotification />
+                            <AppNotification notifications={notifications} />
                         </header>
                         <div className={`${busy && "opacity-35"} transition overflow-x-hidden`}>
                             <Outlet context={user} />

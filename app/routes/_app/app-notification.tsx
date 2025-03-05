@@ -22,33 +22,32 @@ import {
     CardHeader,
     CardTitle,
 } from "~/components/ui/card"
+import { Suspense, useEffect } from "react";
+import { Await } from "react-router";
+import TextSkeleton from "~/components/skeletons/text-skeleton";
 
-const notifications = [
-    {
-        title: "Your call has been confirmed.",
-        description: "1 hour ago",
-    },
-    {
-        title: "You have a new message!",
-        description: "1 hour ago",
-    },
-    {
-        title: "Your subscription is expiring soon!",
-        description: "2 hours ago",
-    },
-]
+type CardProps = React.ComponentProps<typeof Card> & {
+    notifications: Notification[];
+};
 
-type CardProps = React.ComponentProps<typeof Card>
+import relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from "dayjs";
+
+dayjs.extend(relativeTime);
 
 
-export function AppNotification({ className, ...props }: CardProps) {
+export default function AppNotification({ className, notifications, ...props }: CardProps) {
+    useEffect(() => {
+        console.log(notifications.length)
+    }, [notifications])
+
     return (
         <Popover>
             <PopoverTrigger asChild>
                 <div className="p-2 rounded-full hover:bg-gray-100 cursor-pointer">
                     <div className='relative'>
-                        <Bell className="fill-secondary" size={28} strokeWidth={1} />
-                        <span className="h-3 w-3 absolute -top-0.5 -right-0.5 rounded-full bg-secondary-foreground animate-pulse" />
+                        <Bell className="fill-secondary" size={28} strokeWidth={0.5} />
+                        <span className="h-3 w-3 absolute top-0 right-0.5 rounded-full bg-destructive border border-white" />
                     </div>
                 </div>
             </PopoverTrigger>
@@ -56,7 +55,9 @@ export function AppNotification({ className, ...props }: CardProps) {
                 <Card className={cn("w-[380px]", className)} {...props}>
                     <CardHeader>
                         <CardTitle>Notifications</CardTitle>
-                        <CardDescription>You have 3 unread messages.</CardDescription>
+                        <CardDescription>
+                            You have {notifications.length} unread {notifications.length === 1 ? 'message' : 'messages'}.
+                        </CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-4">
                         {/* <div className=" flex items-center space-x-4 rounded-md border p-4">
@@ -72,22 +73,40 @@ export function AppNotification({ className, ...props }: CardProps) {
                             <Switch />
                         </div> */}
                         <div>
-                            {notifications.map((notification, index) => (
-                                <div
-                                    key={index}
-                                    className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-                                >
-                                    <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                                    <div className="space-y-1">
-                                        <p className="text-sm font-medium leading-none">
-                                            {notification.title}
-                                        </p>
-                                        <p className="text-sm text-muted-foreground">
-                                            {notification.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
+
+                            <Suspense fallback={<TextSkeleton lineCount={2} />}>
+                                <Await resolve={notifications}>
+                                    {(notifications) => (
+                                        <>
+                                            {notifications.length ? (
+                                                (
+                                                    notifications.map((notification, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"                                                        >
+                                                            {!notification.is_read
+                                                                && (<span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />)
+                                                            }
+                                                            <div className="space-y-1">
+                                                                <p className="text-sm font-medium leading-none">
+                                                                    {notification.content}
+                                                                </p>
+                                                                <p className="text-sm text-gray-400">
+                                                                    {dayjs(notification.created_at).fromNow()}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                ))
+                                                : <p className="text-gray-500 text-sm border px-3 py-1.5 w-max rounded">
+                                                    You haven't enrolled in any slices
+                                                </p>
+                                            }
+                                        </>
+                                    )}
+
+                                </Await>
+                            </Suspense>
                         </div>
                     </CardContent>
                     <CardFooter>
