@@ -9,13 +9,17 @@ import { toast } from '~/hooks/use-toast'
 import { ToastAction } from '~/components/ui/toast'
 import { RotateCcw } from 'lucide-react'
 import CustomAvatar from '~/components/custom/custom-avatar'
+import { AppNotification } from './app-notification'
+import { getNotifications } from './app'
 
 export async function clientLoader() {
     const { validateSession, intendedRoute } = useSession();
 
     try {
-        let user = await validateSession();
-        return user
+        const user = await validateSession();
+        const notifications = getNotifications();
+
+        return { user, notifications };
     } catch ({ response }: any) {
         if (response.status === 401) {
             toast({
@@ -43,7 +47,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
     const { state } = useNavigation();
     let busy: boolean = state === "submitting" || state === "loading";
 
-    const user: User = loaderData;
+    const { user }: { user: User } = loaderData;
 
     return (
         <>
@@ -51,10 +55,14 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                 <section className="flex flex-col md:flex-row min-h-screen">
                     <aside className="md:block hidden py-6 pr-5 md:basis-1/5 sticky top-0 border-e max-h-screen">
                         <div className="flex flex-col justify-between h-full">
-                            <div>
-                                <Link to={"/"} className='flex items-center gap-1'>
-                                    <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
-                                </Link>
+                            <div id='nav-container'>
+                                <div className="flex justify-between items-center">
+                                    <Link to={"/"} className='flex items-center gap-1'>
+                                        <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
+                                    </Link>
+
+                                    <AppNotification />
+                                </div>
                                 <nav className="py-8 uppercase text-sm">
                                     {APP_TABS.map((item) => (
                                         <NavButton key={item.href} href={item.href} label={item.title} icon={item.icon} />
@@ -85,10 +93,11 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                     </aside>
 
                     <main className="w-full flex-1 transition">
-                        <header className='py-5 md:hidden'>
+                        <header className='py-5 md:hidden flex justify-between items-center'>
                             <div className='flex items-center gap-1'>
                                 <img src='/images/logos/logo.png' width={25} /> <AppName size='base' />
                             </div>
+                            <AppNotification />
                         </header>
                         <div className={`${busy && "opacity-35"} transition overflow-x-hidden`}>
                             <Outlet context={user} />
