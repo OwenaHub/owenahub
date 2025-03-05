@@ -20,12 +20,16 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .ql-code-block-container {
-    background-color: #282c34;
+    background-color: #222221;
     color: #fff;
-    padding: 10px;
-    overflow-x: scroll;
-    border-radius: 4px;
+    padding: .75rem 1rem;
+    overflow-x: auto;
+    border-radius: 10px;
     font-family: "Courier New", monospace;
+    font-size: 12px;
+    outline: 1px solid #222;
+    outline-offset: 3px;
+    margin: 20px 0;
 }
 
 .ql-font-serif {
@@ -34,12 +38,19 @@ body::-webkit-scrollbar-thumb:hover {
 
 [data-list="ordered"] {
     list-style-type: decimal;
-    margin-left: 20px;
+    margin-left: 5px;
+    margin: 5px 0;
 }
 
 [data-list="bullet"] {
     list-style-type: disc;
-    margin-left: 20px;
+    margin-left: 5px;
+    margin: 5px 0;
+}
+
+.reader_content ol,
+ul {
+    margin-left: 35px;
 }
 
 /* Text Formatting */
@@ -61,9 +72,10 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* Blockquote */
 blockquote {
-    border-left: 4px solid #888;
+    border-left: 3px solid #E7E4E2;
     padding-left: 10px;
-    font-style: italic;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin: 10px 0;
     color: #333;
 }
@@ -113,12 +125,12 @@ blockquote {
 }
 
 .reader_content h2 {
-    font-size: 1.75rem;
+    font-size: 1.7rem;
     font-weight: bold;
 }
 
 .reader_content h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 

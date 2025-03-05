@@ -35,6 +35,7 @@ export const meta: MetaFunction = () => {
   return [
     { name: "title", content: "OwenaHub | Build your career with expert mentors" },
     { name: "description", content: "Join OwenaHub and connect with top tech mentors to advance your career. Learn to code wtih guidance, career advice, and skill development." },
+    { name: "theme-color", content: "#FFE1BC" },
     { name: "keywords", content: "mentorship, mentors, development, professional, tech, software, ai" },
     { name: "author", content: "OwenaHub" },
     { name: "robots", content: "index, follow" },
@@ -56,7 +57,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#FFFAED" />
         <title>
           OwenaHub | Build your career with expert mentors
         </title>
