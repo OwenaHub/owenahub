@@ -29,11 +29,14 @@ export const links: Route.LinksFunction = () => [
 
   { rel: "preconnect", href: "https://www.googletagmanager.com" },
   { rel: "dns-prefetch", href: "https://www.googletagmanager.com" },
+
+  { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+  { rel: "mask-icon", href: "/mask-icon.svg", color: "#FFFFFF" },
 ];
 
 export const meta: MetaFunction = () => {
   return [
-    { name: "title", content: "OwenaHub | Build your career with expert mentors" },
+    { title: "OwenaHub | Build your career with expert mentors" },
     { name: "description", content: "Join OwenaHub and connect with top tech mentors to advance your career. Learn to code wtih guidance, career advice, and skill development." },
     { name: "theme-color", content: "#FFE1BC" },
     { name: "keywords", content: "mentorship, mentors, development, professional, tech, software, ai" },
@@ -57,9 +60,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-          OwenaHub | Build your career with expert mentors
-        </title>
         <Meta />
         <Links />
 
