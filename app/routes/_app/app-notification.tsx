@@ -38,7 +38,7 @@ dayjs.extend(relativeTime);
 
 export default function AppNotification({ className, notifications, ...props }: CardProps) {
     useEffect(() => {
-        console.log(notifications.length)
+        // console.log(notifications.length)
     }, [notifications])
 
     return (

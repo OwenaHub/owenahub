@@ -28,7 +28,7 @@ export default defineConfig({
       manifest: {
         name: 'OwenaHub',
         short_name: 'OwenaHub',
-        description: 'Join OwenaHub and connect with top tech mentors to advance your career.',
+        description: 'Build your career with expert mentors',
         theme_color: '#FFE1BC',
         icons: [
           {
@@ -41,7 +41,6 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png'
           }
-
         ]
       }
     })

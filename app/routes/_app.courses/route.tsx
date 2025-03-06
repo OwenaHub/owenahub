@@ -56,7 +56,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                             to={"create"}
                             className='py-2 bg-secondary text-secondary-foreground px-6 rounded-md font-bold uppercase text-xs hover:opacity-50 transition'
                         >
-                            Create
+                            NEW SLICE
                         </Link>
                     </IsAdmin>
                 </div>

@@ -1,4 +1,5 @@
-import type { MetaFunction } from "react-router";
+import { Link, useOutletContext, type MetaFunction } from "react-router";
+import { IsAdmin } from "~/components/permissions/admin";
 
 export const meta: MetaFunction = () => {
     return [
@@ -8,9 +9,11 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Payments() {
+    const user: User = useOutletContext();
+
     return (
         <section className="md:px-10 mt-10">
-            <div className=" md:mt-20 mb-8 flex justify-between items-start">
+            <div className="md:mt-20 mb-8 flex justify-between items-start">
                 <div>
                     <h4 className="text-xl text-primary-foreground mb-3 font-bold">
                         Payments
@@ -19,6 +22,15 @@ export default function Payments() {
                         Your purchases are safely recorded.
                     </p>
                 </div>
+
+                <IsAdmin user={user}>
+                    <Link
+                        to={"vouchers/create"}
+                        className='py-2 bg-secondary text-secondary-foreground px-6 rounded-md font-bold uppercase text-xs hover:opacity-50 transition'
+                    >
+                        NEW VOUCHER
+                    </Link>
+                </IsAdmin>
             </div>
 
             <div className='border rounded-lg pb-10'>
