@@ -26,6 +26,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
             variant: 'destructive',
             description: 'Something went wrong!'
         });
+        console.log(response)
         const error: any = response?.data?.errors;
         return error;
     }
@@ -82,7 +83,6 @@ export default function CreateCourse({ actionData }: Route.ComponentProps) {
                             type="number"
                             id="price"
                             name="price"
-                            required
                         />
                         <InputError for="price" error={errors} />
                     </div>
@@ -93,7 +93,6 @@ export default function CreateCourse({ actionData }: Route.ComponentProps) {
                             type="date"
                             id="expires_at"
                             name="expires_at"
-                            required
                         />
                         <InputError for="price" error={errors} />
                     </div>

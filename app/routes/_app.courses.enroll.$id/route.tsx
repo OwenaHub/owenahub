@@ -22,7 +22,7 @@ export async function clientAction({ params, request }: Route.ClientActionArgs) 
         toast({
             variant: 'destructive',
             title: 'Oops! Something went wrong',
-            description: data.message || "Try again, contact support@owenahub.com if this persists"
+            description: data.error || "Try again, contact support@owenahub.com if this persists"
         });
         return redirect(`/courses/${params.id}`)
     }

@@ -5,6 +5,6 @@ export async function createVoucherCode(props: { [k: string]: FormDataEntryValue
         issued_to: props.issued_to,
         code: props.code,
         price: props.price,
-        expired_at: props.expires_at,
+        expires_at: props.expires_at,
     });
 }
