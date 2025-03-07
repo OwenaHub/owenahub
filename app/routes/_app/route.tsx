@@ -77,7 +77,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
                                     <p className="text-xs pb-3">
                                         Get full access to all courses offered on OwenaHub with a one time payment.
                                     </p>
-                                    <button className="rounded-md w-full py-2 px-4 text-xs bg-primary-foreground font-bold text-secondary-auxiliary">
+                                    <button className="rounded-md w-full py-2 px-4 text-xs bg-white border font-bold text-primary-foreground uppercase border-b-2">
                                         Subscribe
                                     </button>
                                 </div>

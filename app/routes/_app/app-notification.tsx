@@ -98,8 +98,8 @@ export default function AppNotification({ className, notifications, ...props }: 
                                                         </div>
                                                     ))
                                                 ))
-                                                : <p className="text-gray-500 text-sm border px-3 py-1.5 w-max rounded">
-                                                    You haven't enrolled in any slices
+                                                : <p className="text-gray-300 text-sm py-1.5">
+                                                    Nothing here yet
                                                 </p>
                                             }
                                         </>

@@ -6,6 +6,7 @@ import Tags from "~/components/custom/tags";
 import { Button } from "~/components/ui/button"
 import SharePage from "~/components/navigation/share-page";
 import { getCourse } from "./get-course";
+import EnrollSlice from "./enroll-slice";
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
     try {
@@ -19,6 +20,8 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 
 export default function ShowCourse({ loaderData }: Route.ComponentProps) {
     const { slice, is_enrolled }: any = loaderData;
+    // console.log(slice);
+
 
     return (
         <section className="md:px-10 mt-10 animated fadeIn">
@@ -27,7 +30,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                     <h1 className="text-2xl md:text-3xl text-secondary-foreground font-extrabold mb-5">
                         {slice.title}
                     </h1>
-                    
+
                     <p className="mt-2 max-w-3xl text-sm border-s-4 ps-4 mb-5">
                         {slice.about}
                     </p>
@@ -96,13 +99,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                                 </Link>
                             </div>
 
-                            : <Form
-                                action={`/courses/enroll/${slice.id}`}
-                                method="POST">
-                                <Button className="bg-primary-foreground text-secondary-auxiliary w-full py-6 text-sm font-bold uppercase rounded-lg hover:opacity-90">
-                                    Enroll now
-                                </Button>
-                            </Form>
+                            : <EnrollSlice sliceId={slice.id} price={slice.price} />
                         }
                     </div>
                 </div>

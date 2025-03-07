@@ -41,12 +41,12 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
     return (
         <section className="md:px-10 mt-10">
             <section>
-                <div className="md:mt-20 mb-8 flex justify-between items-start">
+                <div className="md:mt-20 mb-8 flex gap-8 justify-between items-start">
                     <div>
                         <h4 className="text-xl text-primary-foreground mb-3 font-bold">
                             Courses
                         </h4>
-                        <p className="text-sm leading-7">
+                        <p className="text-sm leading-4">
                             Here are coureses you have enrolled in
                         </p>
                     </div>
@@ -54,9 +54,9 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                     <IsAdmin user={user}>
                         <Link
                             to={"create"}
-                            className='py-2 bg-secondary text-secondary-foreground px-6 rounded-md font-bold uppercase text-xs hover:opacity-50 transition'
+                            className='py-2 bg-secondary inline-block text-nowrap text-secondary-foreground px-6 rounded-md font-bold uppercase text-xs hover:opacity-50 transition'
                         >
-                            NEW SLICE
+                            New slice
                         </Link>
                     </IsAdmin>
                 </div>

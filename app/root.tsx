@@ -130,12 +130,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="fixed top-1/2 left-1/2 w-max transform -translate-x-1/2 -translate-y-1/2">
-      <div className="flex gap-4 px-2">
+      <div className="">
         <div>
-          <img src="/images/logos/logo.png" alt="..." width={30} />
-        </div>
-        <div>
-          <h1 className="text-gray-500">{message} 😵</h1>
+          <div className="flex items-center justify-between">
+            <h1 className="text-gray-300">{message}</h1>
+            <div className="text-2xl">
+              😵
+            </div>
+          </div>
           <p>{details}</p>
           {stack && (
             <pre className="w-full p-4 overflow-x-auto">
@@ -152,7 +154,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
             <Button
               onClick={() => window.location.reload()}
-              variant={"secondary"} className="text-sm h-8 py-0"
+              className="text-sm h-8 py-1 px-5 bg-gray-800 text-white"
             >
               Reload
             </Button>
