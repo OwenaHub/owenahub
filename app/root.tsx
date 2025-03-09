@@ -133,7 +133,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       <div className="">
         <div>
           <div className="flex items-center justify-between">
-            <h1 className="text-gray-300">{message}</h1>
+            <h1 className="text-gray-400">{message}</h1>
             <div className="text-2xl">
               😵
             </div>

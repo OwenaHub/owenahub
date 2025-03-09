@@ -49,7 +49,7 @@ export default function ProtectedLayout({ loaderData }: Route.ComponentProps) {
     const { state } = useNavigation();
     let busy: boolean = state === "submitting" || state === "loading";
 
-    let { user, notifications }: { user: User, notifications: any } = loaderData;
+    const { user, notifications }: { user: User, notifications: any } = loaderData;
 
     return (
         <>

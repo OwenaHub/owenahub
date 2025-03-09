@@ -103,7 +103,7 @@ export default function Courses({ loaderData }: Route.ComponentProps) {
                 <div className='mb-10 md:mb-0'>
                     <div className="mb-5">
                         <h4 className="md:mt-20 text-xl text-primary-foreground mb-3 font-bold">
-                            Your courses
+                            Own courses
                         </h4>
                         <p className="text-sm leading-7">
                             Here are courses you have created on OwenaHub

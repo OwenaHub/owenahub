@@ -1,7 +1,7 @@
 import client from "~/lib/interceptor";
 
 export async function createVoucherCode(props: { [k: string]: FormDataEntryValue }) {
-    return await client.post('/api/voucher-code', {
+    return await client.post('/api/voucher-codes', {
         issued_to: props.issued_to,
         code: props.code,
         price: props.price,

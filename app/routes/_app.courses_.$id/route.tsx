@@ -31,7 +31,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                         {slice.title}
                     </h1>
 
-                    <p className="mt-2 max-w-3xl text-sm border-s-4 ps-4 mb-5">
+                    <p className="mt-2 max-w-3xl text-sm mb-5">
                         {slice.about}
                     </p>
 
@@ -99,7 +99,7 @@ export default function ShowCourse({ loaderData }: Route.ComponentProps) {
                                 </Link>
                             </div>
 
-                            : <EnrollSlice sliceId={slice.id} price={slice.price} />
+                            : <EnrollSlice slice={slice} price={slice.price} />
                         }
                     </div>
                 </div>

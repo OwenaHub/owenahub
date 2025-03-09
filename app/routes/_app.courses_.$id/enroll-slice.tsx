@@ -12,9 +12,9 @@ import {
 import { Input } from "~/components/ui/input"
 import { Label } from "~/components/ui/label"
 
-export default function EnrollSlice({ sliceId, price }: { sliceId: string, price: string }) {
+export default function EnrollSlice({ slice, price }: { slice: Slice, price: string }) {
     const navigation = useNavigation();
-    const busy = navigation.formAction === `/courses/enroll/${sliceId}`;
+    const busy = navigation.formAction === `/courses/enroll/${slice}`;
 
     return (
         <>
@@ -22,8 +22,8 @@ export default function EnrollSlice({ sliceId, price }: { sliceId: string, price
                 ? (
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button className="bg-primary-foreground text-secondary-auxiliary w-full py-6 text-sm font-bold uppercase rounded-lg hover:opacity-90">
-                                Enroll now*
+                            <Button variant={"outline"} className="w-full border-b-2 py-6 text-sm font-bold uppercase rounded-lg hover:opacity-90">
+                                Enroll now
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px]">
@@ -31,7 +31,7 @@ export default function EnrollSlice({ sliceId, price }: { sliceId: string, price
                                 <DialogTitle>Enter voucher code</DialogTitle>
                                 <DialogDescription>
                                     <p className='mb-2'>
-                                        Enter a voucher code to purchase this course
+                                        Enter a voucher code to enrroll for this course
                                     </p>
 
                                     <div className="border text-sm px-2.5 py-2 bg-sky-100 border-sky-600 text-sky-900 rounded-md">
@@ -42,17 +42,17 @@ export default function EnrollSlice({ sliceId, price }: { sliceId: string, price
                                 </DialogDescription>
                             </DialogHeader>
                             <Form
-                                action={`/courses/enroll/${sliceId}`}
+                                action={`/courses/enroll/${slice.id}`}
                                 method="POST"
                             >
                                 <div className="pt-1 pb-4">
                                     <Label htmlFor="code" className="text-right">
                                         Enter code
                                     </Label>
-                                    <Input id="code" name='code' placeholder='XXX-XXX-XXX' />
+                                    <Input id="code" name='code' placeholder='XXX-XXX-XXX' required />
                                 </div>
 
-                                <Button className='bg-gray-900 text-light text-white uppercase w-full disabled:cursor-not-allowed' disabled={busy}>
+                                <Button className='bg-primary-foreground text-secondary-auxiliary uppercase w-full disabled:cursor-not-allowed' disabled={busy}>
                                     {busy
                                         ? <Loader size={18} className='animate-spin' />
                                         : "Submit code"
@@ -63,13 +63,43 @@ export default function EnrollSlice({ sliceId, price }: { sliceId: string, price
                     </Dialog >
 
                 ) : (
-                    <Form
-                        action={`/courses/enroll/${sliceId}`}
-                        method="POST">
-                        <Button className="bg-primary-foreground text-secondary-auxiliary w-full py-6 text-sm font-bold uppercase rounded-lg hover:opacity-90">
-                            Enroll now
-                        </Button>
-                    </Form>
+                    <>
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button variant={"outline"} className="w-full border-b-2 py-6 text-sm font-bold uppercase rounded-lg hover:opacity-90">
+                                    Enroll now
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader className='text-left mb-4'>
+                                    <DialogTitle>Are you sure?</DialogTitle>
+                                    <DialogDescription>
+                                        <p className='mb-2'>
+                                            Enroll to <span className="font-semibold">{slice.title}</span> ?
+                                        </p>
+
+                                        <div className="border text-sm px-2.5 py-2 bg-sky-100 border-sky-600 text-sky-900 rounded-md">
+                                            Ensure you have spoken with a mentor from OwenaHub before you enroll in this course. {" "}
+                                            <br />
+                                            <br />
+                                            <a href="mailto:ernestharuna1@gmail.com" className='font-bold underline underline-offset-1'>Email mentor</a>{" "}
+                                        </div>
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <Form
+                                    action={`/courses/enroll/${slice.id}`}
+                                    method="POST"
+                                >
+                                    <Button className='bg-primary-foreground text-secondary-auxiliary uppercase w-full disabled:cursor-not-allowed' disabled={busy}>
+                                        {busy
+                                            ? <Loader size={18} className='animate-spin' />
+                                            : "Yes, Enroll"
+                                        }
+                                    </Button>
+                                </Form>
+                            </DialogContent>
+                        </Dialog>
+                    </>
                 )
             }
         </>
