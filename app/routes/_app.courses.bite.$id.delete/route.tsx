@@ -5,7 +5,7 @@ import { toast } from "sonner";
 export async function clientAction({ params }: Route.ClientActionArgs) {
     const promise = new Promise(async (resolve, reject) => {
         try {
-            await client.delete(`/api/mentor/slices/bites/${params.id}/delete`);
+            await client.delete(`/api/mentor/bites/${params.id}/delete`);
             resolve('Bite deleted successfully');
         } catch (error) {
             reject(error);
