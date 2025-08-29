@@ -1,0 +1,182 @@
+import { ChevronRight, Facebook, Instagram, Menu, Music, Piano, Shapes, Twitter, X } from 'lucide-react'
+import { Suspense, useEffect, useState } from 'react';
+import { Await, Link, NavLink, Outlet } from 'react-router'
+import { Button } from '~/components/ui/button'
+import { Input } from '~/components/ui/input'
+import AnnouncementBanner from '~/components/cards/announcement-banner';
+import type { Route } from '../_guest/+types/route';
+import useSession from '~/hooks/use-session';
+import CustomAvatar from '~/components/custom/custom-avatar';
+
+export default function GuestLayout({ loaderData }: Route.ComponentProps) {
+    const [menu, setMenu] = useState<boolean>(false);
+    const [scrolled, setScrolled] = useState<boolean>(false);
+
+    const NAV = ['Internships', 'Collaborations']
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    return (
+        <>
+            <div className={`sticky top-0 z-10 bg-white/50 backdrop-blur-md ${scrolled && 'border-b border-gray-50'}`}>
+                <nav className={`bg-white/50 backdrop-blur-md py-5 container flex items-center justify-between transition-all`}>
+                    <div className='flex items-center gap-20'>
+                        <Link to="/" className='flex items-center'>
+                            <div className='text-lg tracking-tighter flex flex-row items-center gap-1'>
+                                <span className="text-[#F6A700] font-bold">OwenaHub</span>
+                                <span className="text-black font-light">Collective</span>
+                            </div>
+                        </Link>
+
+                        <ul className='hidden md:flex gap-8 text-sm'>
+                            {NAV.map((item) => (
+                                <li key={item} className='hover:text-gray-400 font-medium transition-all'>
+                                    <Link to={item.toLowerCase()}>{item}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className='hidden md:flex items-center gap-2'>
+                        <Link to={"/login"}>
+                            <Button size={'sm'} className='px-6 py-6 bg-[#3A3546] rounded-full cursor-pointer'>
+                                Get Started
+                            </Button>
+                        </Link>
+                    </div>
+
+                    <button aria-label="Menu" className="block md:hidden" type="button" onClick={() => setMenu(!menu)}>
+                        {!menu
+                            ? <Menu />
+                            : <X />
+                        }
+                    </button>
+                </nav>
+                {menu && (
+                    <div className="bg-white animated fadeIn rounded-lg block md:hidden mx-auto px-4 py-4 z-50">
+                        <div>
+                            <div className="mb-3">
+                                {NAV.map((link) => (
+                                    <div key={link} className="border-b py-4">
+                                        <NavLink
+                                            onClick={() => setMenu(!menu)}
+                                            to={link}
+                                            className={({ isActive }) => isActive ? "text-primary font-bold" : "text-gray-500"}
+                                        >
+                                            {link}
+                                        </NavLink>
+                                    </div>
+                                ))}
+                                <div className="py-4">
+                                    <a href="tel:+2348026658956" className="flex text-foreground text-sm font-light gap-2 items-center">
+                                        <span>Contact support</span> <ChevronRight size={12} />
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-4">
+                                <Link
+                                    onClick={() => setMenu(!menu)}
+                                    to="/register"
+                                    className="rounded-full text-white text-center text-sm w-full block font-bold bg-[#3A3546] py-3"
+                                >
+                                    Get Started
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <AnnouncementBanner />
+            </div>
+
+            <Outlet />
+
+            <footer className="bg-white text-muted-foreground pt-20">
+                <div className="container grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h2 className="text-lg font-semibold text-foreground">
+                            <Link to="/" className='flex items-center'>
+                                <div className='text-lg tracking-tighter flex flex-row items-center gap-1'>
+                                    <span className="text-primary-theme font-bold">OwenaHub</span>
+                                    <span className="text-black font-light">Collective</span>
+                                </div>
+                            </Link>
+                        </h2>
+                        <p className="mt-2 mb-6 text-xs max-w-sm">
+                            A space for classical musicians to connect, share, and explore the world of music.
+                        </p>
+
+                        <div className="flex w-full max-w-sm items-center gap-2">
+                            <Input type="email" placeholder="Subscribe to updates" className='rounded-s-full h-10 text-xs placeholder:text-xs' />
+                            <Button type="submit" variant="secondary" className='text-xs rounded-e-full h-10'>
+                                Subscribe
+                            </Button>
+                        </div>
+                    </div>
+
+                    {/* Navigation */}
+                    <div>
+                        <h5 className="font-medium text-foreground mb-5 text-md">Quick Links</h5>
+                        <div className="flex flex-col space-y-4 text-xs">
+                            <a
+                                href="https://ariapass.owenahub.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-foreground flex gap-3 items-center"
+                            >
+                                <Piano size={18} strokeWidth={1} />  <span>AriaPass</span>
+                            </a>
+                            <a
+                                href="https://skillsprint.owenahub.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-foreground flex gap-3 items-center"
+                            >
+                                <Shapes size={18} strokeWidth={1} />  <span>Skill Sprint</span>
+                            </a>
+                            <a
+                                href="https://music.owenahub.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-foreground flex gap-3 items-center"
+                            >
+                                <Music size={18} strokeWidth={1} />  <span>Music Education</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Social / Legal */}
+
+                    <div>
+                        <h5 className="font-medium text-foreground mb-5 text-md">Follow our updates</h5>
+                        <div className="flex flex-col justify-between text-xs">
+                            <div className="flex flex-col items-start space-y-3 mb-8">
+                                <a href="#" aria-label="Twitter" className="hover:text-foreground flex gap-2 items-center">
+                                    <Twitter className="h-4 w-4" /> <span>Twitter</span>
+                                </a>
+                                <a href="#" aria-label="Instagram" className="hover:text-foreground flex gap-2 items-center">
+                                    <Instagram className="h-4 w-4" /> <span>Instagram</span>
+                                </a>
+                                <a href="#" aria-label="Facebook" className="hover:text-foreground flex gap-2 items-center">
+                                    <Facebook className="h-4 w-4" /> <span>Facebook</span>
+                                </a>
+                            </div>
+                            <div className="space-x-4">
+                                <Link to="/terms" className="hover:text-foreground">Terms of Use.</Link>
+                                <Link to="/privacy" className="hover:text-foreground">Privacy Policy.</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Bottom note */}
+                <div className="mt-10 border-t text-xs text-center text-muted-foreground py-5">
+                    &copy; {new Date().getFullYear()} OwenaHub Collective — All rights reserved.
+                </div>
+            </footer>
+        </>
+    )
+}
