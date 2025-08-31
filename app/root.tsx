@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  type MetaFunction,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -23,6 +24,26 @@ export const links: Route.LinksFunction = () => [
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
 ];
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "OwenaHub Collective" },
+    { name: "description", content: "Where Passions Converge" },
+    { name: "theme-color", content: "#F6A700" },
+    { name: "keywords", content: "mentorship, teach, learn, development, professional, tech, software, ai, career" },
+    { name: "author", content: "OwenaHub" },
+    { name: "robots", content: "index, follow" },
+    { property: "og:title", content: "OwenaHub Collective" },
+    { property: "og:description", content: "Where Passions Converge" },
+    { property: "og:image", content: "https://owenahub.com/images/banners/app_banner.png" }, // image URL
+    { property: "og:url", content: "https://owenahub.com" },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "OwenaHub Collective" },
+    { name: "twitter:description", content: "Where Passions Converge" },
+    { name: "twitter:image", content: "https://owenahub.com/images/banners/app_banner.png" }, // image URL
+  ];
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

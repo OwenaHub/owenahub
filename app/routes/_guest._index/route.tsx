@@ -4,12 +4,16 @@ import { BrMd } from "~/components/utility/line-break";
 import { Button } from "~/components/ui/button";
 import { ArrowRight, Music, Piano, Shapes } from "lucide-react";
 
-export function meta({ }: Route.MetaArgs) {
-    return [
-        { title: "OwenaHub Collective" },
-        { name: "description", content: "Innovation" },
-    ];
-}
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "~/components/ui/dialog"
 
 export default function Home(_: Route.ComponentProps) {
     return (
@@ -44,9 +48,47 @@ export default function Home(_: Route.ComponentProps) {
                                 Get Started
                             </Button>
                         </Link>
-                        <Button variant={"outline"} className="w-full md:w-max mx-auto py-6 px-10  rounded-4xl">
-                            Contact Us
-                        </Button>
+
+
+                        <Dialog>
+                            <div>
+                                <DialogTrigger asChild>
+                                    <Button variant={"outline"} className="w-full md:w-max mx-auto py-6 px-10  rounded-4xl">
+                                        Contact Us
+                                    </Button>
+                                </DialogTrigger>
+
+                                <DialogContent className="sm:max-w-[525px] rounded-4xl">
+                                    <DialogHeader>
+                                        <DialogTitle>Contact OwenaHub</DialogTitle>
+                                        <DialogDescription>
+                                            All eamils are sent directly to our Founder or the Support Team
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="flex flex-col gap-2">
+                                        <a href="mailto:ernest@owenahub.com" className="border py-4 px-6 rounded-lg hover:bg-gray-50 transition">
+                                            <small className="text-xs font-light">EMAIL</small>
+                                            <span className="block">ernest@owenahub.com</span>
+                                        </a>
+                                        <a href="mailto:support@owenahub.com" className="border py-4 px-6 rounded-lg hover:bg-gray-50 transition">
+                                            <small className="text-xs font-light">EMAIL</small>
+                                            <span className="block">support@owenahub.com</span>
+                                        </a>
+                                        <a href="tel:+2348026658956" className="border py-4 px-6 rounded-lg hover:bg-gray-50 transition">
+                                            <small className="text-xs font-light">PHONE</small>
+                                            <span className="block">Phone Call</span>
+                                        </a>
+                                    </div>
+                                    <DialogFooter>
+                                        <DialogClose asChild>
+                                            <Button variant="outline" className="rounded-full py-4">
+                                                Ok, Thanks!
+                                            </Button>
+                                        </DialogClose>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </div>
+                        </Dialog>
                     </div>
                 </section>
             </header>
@@ -54,19 +96,19 @@ export default function Home(_: Route.ComponentProps) {
             <main className="bg-[#F1F2F9] py-18">
                 <div className="container" id="products">
                     <div className="text-center">
-                        <h2 className="font-medium mb-5 tracking-tight text-xl md:text-3xl">
+                        <h2 className="font-medium mb-5 tracking-tight text-2xl md:text-3xl">
                             Tools of Innovation and Cultural Development
                         </h2>
-                        <p className="font-light text-sm md:text-lg">
-                            Sign in once, gain access to <br className="md:hidden" /> use our technologies
+                        <p className="font-light text-base md:text-lg">
+                            Gain access to use our technologies
                         </p>
                     </div>
 
-                    <div  className="flex gap-6 flex-col lg:flex-row items-stretch justify-center mt-18">
+                    <div className="flex gap-6 flex-col lg:flex-row items-stretch justify-center mt-18">
                         <div className="flex-1 rounded-2xl bg-white p-8 flex flex-col gap-10 hover:shadow-xl transition relative overflow-hidden">
                             <div className="flex flex-col gap-2">
                                 <small>
-                                    OwenaHub SkillSprint
+                                    OwenaHub <span className="text-[#f6a700]">SkillSprint</span>
                                 </small>
                                 <h3 className="font-medium tracking-tight text-2xl">Skill Sprint</h3>
                                 <div>
@@ -92,12 +134,12 @@ export default function Home(_: Route.ComponentProps) {
                                 </Button>
                             </a>
 
-                            <Shapes className="absolute opacity-50 -right-10 -bottom-8 h-40 w-40" strokeWidth={0.2} />
+                            <Shapes className="absolute opacity-70 -right-10 -bottom-8 h-40 w-40 text-[#f6a700]" strokeWidth={1} />
                         </div>
                         <div className="flex-1 rounded-2xl bg-white p-8 flex flex-col gap-10 hover:shadow-xl transition relative overflow-hidden">
                             <div className="flex flex-col gap-2">
                                 <small>
-                                    OwenaHub AriaPass
+                                    OwenaHub <span className="text-[#625df5]">AriaPass</span>
                                 </small>
                                 <h3 className="font-medium tracking-tight text-2xl">AriaPass</h3>
                                 <div>
@@ -122,13 +164,13 @@ export default function Home(_: Route.ComponentProps) {
                                     Find Events  <ArrowRight />
                                 </Button>
                             </a>
-                            <Piano className="absolute opacity-50 -right-10 -bottom-8 h-40 w-40" strokeWidth={0.2} />
+                            <Piano className="absolute opacity-70 -right-10 -bottom-8 h-40 w-40 text-[#625DF5]" strokeWidth={1} />
                         </div>
 
                         <div className="flex-1 rounded-2xl bg-white p-8 flex flex-col gap-10 hover:shadow-xl transition relative overflow-hidden">
                             <div className="flex flex-col gap-2">
                                 <small>
-                                    OwenaHub Music
+                                    OwenaHub <span className="text-[#439775]">Music</span>
                                 </small>
                                 <h3 className="font-medium tracking-tight text-2xl">Music Education</h3>
                                 <div>
@@ -149,13 +191,13 @@ export default function Home(_: Route.ComponentProps) {
                                 </Button>
                             </div>
 
-                            <Music className="absolute opacity-50 -right-6 -bottom-8 h-40 w-40" strokeWidth={0.2} />
+                            <Music className="absolute opacity-50 -right-6 -bottom-8 h-40 w-40 text-[#439775" strokeWidth={1} />
                         </div>
                     </div>
                 </div>
-            </main >
+            </main>
 
-        </div >
+        </div>
     );
 }
 

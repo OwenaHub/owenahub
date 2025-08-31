@@ -1,14 +1,12 @@
 import { ChevronRight, Facebook, Instagram, Menu, Music, Piano, Shapes, Twitter, X } from 'lucide-react'
-import { Suspense, useEffect, useState } from 'react';
-import { Await, Link, NavLink, Outlet } from 'react-router'
+import { useEffect, useState } from 'react';
+import { Link, NavLink, Outlet } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import AnnouncementBanner from '~/components/cards/announcement-banner';
 import type { Route } from '../_guest/+types/route';
-import useSession from '~/hooks/use-session';
-import CustomAvatar from '~/components/custom/custom-avatar';
 
-export default function GuestLayout({ loaderData }: Route.ComponentProps) {
+export default function GuestLayout(_: Route.ComponentProps) {
     const [menu, setMenu] = useState<boolean>(false);
     const [scrolled, setScrolled] = useState<boolean>(false);
 
@@ -42,7 +40,7 @@ export default function GuestLayout({ loaderData }: Route.ComponentProps) {
                     </div>
 
                     <div className='hidden md:flex items-center gap-2'>
-                        <Link to={"/login"}>
+                        <Link to={"#products"}>
                             <Button size={'sm'} className='px-6 py-6 bg-[#3A3546] rounded-full cursor-pointer'>
                                 Get Started
                             </Button>
